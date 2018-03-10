@@ -1,6 +1,10 @@
 <%@ page pageEncoding="UTF-8"%>
 </div><!-- /.container -->
-          
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+      </div>
+    </footer>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="${s}/js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
