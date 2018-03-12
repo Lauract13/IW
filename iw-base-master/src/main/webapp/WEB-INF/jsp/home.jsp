@@ -8,12 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Aplicacion Web IW</title>
+    <title>BookingFloor UCM</title>
 
     <!-- Bootstrap -->
     <link href="${s}/css/bootstrap.min.css" rel="stylesheet">
     <link href="${s}/css/starter-template.css" rel="stylesheet">
-  </head>
+</head>
  	
 <div id="throbber" style="display:none; min-height:120px;"></div>
 <div id="noty-holder"></div>
@@ -85,35 +85,42 @@
             <!-- Page Heading -->
             <div class="row" id="main" >
                 <div class="col-sm-12 col-md-12 well" id="content">
-                    <div class="starter-template">
-						<h1>Home</h1>					
-						<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-					  <ol class="carousel-indicators">
-					    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					  </ol>
-					  <div class="carousel-inner">
-					    <div class="carousel-item active">
-					      <img class="d-block w-100" src="${s}/img/baloncesto.jpg" alt="First slide">
-					    </div>
-					    <div class="carousel-item">
-					      <img class="d-block w-100" src="${s}/img/futbol.jpg" alt="Second slide">
-					    </div>
-					    <div class="carousel-item">
-					      <img class="d-block w-100" src="${s}/img/tenis.jpg" alt="Third slide">
-					    </div>
-					  </div>
-					  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Previous</span>
-					  </a>
-					  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-					    <span class="sr-only">Next</span>
-					  </a>
-					</div>
-				</div>
+                    <h1>Welcome!</h1>
+                    
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+						  <!-- Indicators -->
+						  <ol class="carousel-indicators">
+						    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						    <li data-target="#myCarousel" data-slide-to="1"></li>
+						    <li data-target="#myCarousel" data-slide-to="2"></li>
+						  </ol>
+						
+						  <!-- Wrapper for slides -->
+						  <div class="carousel-inner">
+						    <div class="item active">
+						      <img src="img/" alt="Los Angeles">
+						    </div>
+						
+						    <div class="item">
+						      <img src="chicago.jpg" alt="Chicago">
+						    </div>
+						
+						    <div class="item">
+						      <img src="ny.jpg" alt="New York">
+						    </div>
+						  </div>
+						
+						  <!-- Left and right controls -->
+						  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+						    <span class="glyphicon glyphicon-chevron-left"></span>
+						    <span class="sr-only">Previous</span>
+						  </a>
+						  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+						    <span class="glyphicon glyphicon-chevron-right"></span>
+						    <span class="sr-only">Next</span>
+						  </a>
+						</div>
+                    
                 </div>
             </div>
             <!-- /.row -->
