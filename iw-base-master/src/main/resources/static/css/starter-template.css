@@ -162,3 +162,7 @@ table td, table th {
 	justify-content: flex-start;
 	
 }
+
+.s-center{
+	margin: 0 auto;
+}
