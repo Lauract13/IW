@@ -154,3 +154,11 @@ table td, table th {
 .navbar-brand {
     padding: 5px 15px;
 }
+
+/* Reservations */
+
+.booking{
+	display: flex;
+	justify-content: flex-start;
+	
+}
