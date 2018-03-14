@@ -7,21 +7,30 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="starter-template">
-	<h1>Acceso</h1>
+	<h1>Registro</h1>
 
     <form action="/login" method="post">               
         <fieldset>
             <legend>Please Login</legend>
-            <label for="Email">Email</label>
-            <input type="text" id="username" name="email"/>        
+            <label for="name">Nombre</label>
+            <input type="text" id="username" name="name"/> 
+            <label for="surname">Apellidos</label>
+            <input type="text" id="username" name="surname"/>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email"/>        
             <label for="password">Password</label>
             <input type="password" id="password" name="password"/>
-            
+            <label for="ucm">¿UCM?</label>
+            <div class="form-check">
+            	<input type="radio" name="radio" checked> <span class="label-text">Sí</span>
+            	<label for="ucm">Código UCM</label>
+            	<input type="text" id="ucm" name="Código"/>
+            	<input type="radio" name="radio" checked> <span class="label-text">No</span>
+            </div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
             <div class="form-actions">
                 <button type="submit" class="btn">Log in</button>
-                <button type="button" class="btn btn-primary">Registro</button>
             </div>
         </fieldset>
     </form>
