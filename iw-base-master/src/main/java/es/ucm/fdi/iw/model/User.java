@@ -8,10 +8,13 @@ import javax.persistence.Id;
 @Entity
 public class User {
 	private long id;
-	private String login;
+	private String login; //e-mail
 	private String password;
 	private String roles; // split by , to separate roles
 	private byte enabled;
+	private String name;
+	private boolean isUCM;
+	
 	
 	@Id
 	@GeneratedValue
