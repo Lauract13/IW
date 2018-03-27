@@ -4,9 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.MappedSuperclass;
 
 @Entity
-public class User {
+@MappedSuperclass
+@Inheritance (strategy = InheritanceType.JOINED)
+public abstract class User {
 	private long id;
 	private String login; //e-mail
 	private String password;
@@ -14,7 +20,14 @@ public class User {
 	private byte enabled;
 	private String name;
 	private boolean isUCM;
+	private String codUCM;
+	private String phone;
+	private String dir;
+	private boolean isPlayer;
+	private boolean isAdmin;
 	
+	@ManyToMany
+	private Reservation reservation;
 	
 	@Id
 	@GeneratedValue
@@ -57,5 +70,61 @@ public class User {
 
 	public void setEnabled(byte enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public boolean isUCM() {
+		return isUCM;
+	}
+
+	public void setUCM(boolean isUCM) {
+		this.isUCM = isUCM;
+	}
+
+	public String getCodUCM() {
+		return codUCM;
+	}
+
+	public void setCodUCM(String codUCM) {
+		this.codUCM = codUCM;
+	}
+
+	public String getDir() {
+		return dir;
+	}
+
+	public void setDir(String dir) {
+		this.dir = dir;
+	}
+
+	public boolean isPlayer() {
+		return isPlayer;
+	}
+
+	public void setPlayer(boolean isPlayer) {
+		this.isPlayer = isPlayer;
+	}
+
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }

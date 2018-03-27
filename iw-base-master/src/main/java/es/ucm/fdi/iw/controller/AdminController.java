@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.iw.LocalData;
+import es.ucm.fdi.iw.model.Normal;
 import es.ucm.fdi.iw.model.User;
 
 @Controller	
@@ -65,7 +66,7 @@ public class AdminController {
 			@RequestParam String login, 
 			@RequestParam String password, 
 			@RequestParam(required=false) String isAdmin, Model m) {
-		User u = new User();
+		User u = new Normal();
 		u.setLogin(login);
 		u.setPassword(passwordEncoder.encode(password));
 		u.setRoles("on".equals(isAdmin) ? "ADMIN,USER" : "USER");
