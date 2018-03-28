@@ -11,7 +11,7 @@
 
     <form action="/newUser" method="post">               
         <fieldset>
-            <legend>Please Login</legend>
+            <legend>Por favor, rellene el formulario</legend>
             <label for="name">Nombre</label>
             <input type="text" id="username" name="name"/> 
             <label for="surname">Apellidos</label>

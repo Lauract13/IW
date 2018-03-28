@@ -21,7 +21,7 @@
             
             <div class="form-actions">
                 <button type="submit" class="btn">Log in</button>
-                <a href="register.jsp" class="btn btn-primary">Registro</a>
+                <a href="http://localhost:8080/register.jsp" class="btn btn-primary">Registro</a>
             </div>
         </fieldset>
     </form>
