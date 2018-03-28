@@ -3,7 +3,7 @@ package es.ucm.fdi.iw.model;
 import javax.persistence.Entity;
 
 @Entity
-public class Admin {
+public class Admin extends User{
 	private String dni;
 	private String workplace;
 	private String job;

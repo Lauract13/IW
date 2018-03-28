@@ -21,7 +21,7 @@
             
             <div class="form-actions">
                 <button type="submit" class="btn">Log in</button>
-                <button type="button" class="btn btn-primary">Registro</button>
+                <a href="register.jsp" class="btn btn-primary">Registro</a>
             </div>
         </fieldset>
     </form>

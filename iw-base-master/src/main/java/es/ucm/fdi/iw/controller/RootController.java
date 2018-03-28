@@ -39,4 +39,9 @@ public class RootController {
 	public String upload() {
 		return "upload";
 	}
+	
+	@GetMapping("/register")
+	public String register() {
+		return "register";
+	}
 }

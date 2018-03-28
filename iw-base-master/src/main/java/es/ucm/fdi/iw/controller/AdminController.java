@@ -63,11 +63,11 @@ public class AdminController {
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@Transactional
 	public String addUser(
-			@RequestParam String login, 
+			@RequestParam String email, 
 			@RequestParam String password, 
 			@RequestParam(required=false) String isAdmin, Model m) {
 		User u = new Normal();
-		u.setLogin(login);
+		u.setLogin(email);
 		u.setPassword(passwordEncoder.encode(password));
 		u.setRoles("on".equals(isAdmin) ? "ADMIN,USER" : "USER");
 		entityManager.persist(u);
@@ -75,6 +75,21 @@ public class AdminController {
 		entityManager.flush();
 		m.addAttribute("users", entityManager
 				.createQuery("select u from User u").getResultList());
+		
+		return "admin";
+	}
+	
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public String register() {
+		return "redirect: /register";
+	}
+	
+	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
+	@Transactional
+	public String newUser(
+			@RequestParam String email, 
+			@RequestParam String password, 
+			@RequestParam(required=false) String isAdmin, Model m) {
 		
 		return "admin";
 	}

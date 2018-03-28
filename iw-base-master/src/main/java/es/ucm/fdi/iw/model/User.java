@@ -10,7 +10,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 
 @Entity
-@MappedSuperclass
 @Inheritance (strategy = InheritanceType.JOINED)
 public abstract class User {
 	private long id;

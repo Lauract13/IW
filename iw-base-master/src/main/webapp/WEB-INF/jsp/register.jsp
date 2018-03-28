@@ -9,7 +9,7 @@
 <div class="starter-template">
 	<h1>Registro</h1>
 
-    <form action="/login" method="post">               
+    <form action="/newUser" method="post">               
         <fieldset>
             <legend>Please Login</legend>
             <label for="name">Nombre</label>
@@ -30,7 +30,7 @@
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
             <div class="form-actions">
-                <button type="submit" class="btn">Log in</button>
+                <button type="submit" class="btn">Register</button>
             </div>
         </fieldset>
     </form>
