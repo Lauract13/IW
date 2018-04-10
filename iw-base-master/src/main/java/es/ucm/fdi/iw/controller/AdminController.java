@@ -79,21 +79,6 @@ public class AdminController {
 		return "admin";
 	}
 	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register() {
-		return "redirect: /register";
-	}
-	
-	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-	@Transactional
-	public String newUser(
-			@RequestParam String email, 
-			@RequestParam String password, 
-			@RequestParam(required=false) String isAdmin, Model m) {
-		
-		return "admin";
-	}
-	
 	/**
 	 * Returns a users' photo
 	 * @param id of user to get photo from
