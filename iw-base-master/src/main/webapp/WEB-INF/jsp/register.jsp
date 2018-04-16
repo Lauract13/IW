@@ -44,13 +44,29 @@
     		<div class="form-group">
     			<label class="col-md-4 control-label" for="UCM">¿Vinculado a la UCM?</label> 
     			<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+				  <input class="form-check-input micheckbox" type="checkbox" id="inlineCheckbox1" value="option1">
 				  <label class="form-check-label" for="inlineCheckbox1">Sí</label>
+
 				</div>
 				<div class="form-check form-check-inline">
-				  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+				  <input class="form-check-input micheckbox" type="checkbox" id="inlineCheckbox2" value="option2">
 				  <label class="form-check-label" for="inlineCheckbox2">No</label>
 				</div>
+				
+				<script type="text/javascript">
+				  $(".micheckbox").on( 'change', function() {
+					    if( $(this).is(':checked') ) {
+					        if($(this).val() === "option1"){
+					        	
+					        }else{
+					        	
+					        }
+					    } else {
+					        // Hacer algo si el checkbox ha sido deseleccionado
+					        alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
+					    }
+					});
+				 </script>
     		</div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
