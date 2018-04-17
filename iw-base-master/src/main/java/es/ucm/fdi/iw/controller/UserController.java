@@ -1,6 +1,7 @@
 package es.ucm.fdi.iw.controller;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +37,42 @@ private static Logger log = Logger.getLogger(AdminController.class);
     public void addAttributes(Model model) {
         model.addAttribute("s", "../static");
     }
-
+    
+	@GetMapping("/logout")
+	public String logout() {
+		return "logout";
+	}
+	
+	@GetMapping("/upload")
+	public String upload() {
+		return "upload";
+	}
+    
 	@GetMapping({"", "/"})
 	public String root(Model m) {
 		m.addAttribute("users", entityManager
 				.createQuery("select u from User u").getResultList());
 		
 		return "login";	
+	}
+	
+	@RequestMapping(value = "/uploadUser", method = RequestMethod.POST)
+	@Transactional
+	public String uploadUser(
+			@RequestParam String Nombre, 
+			@RequestParam String Direccion,
+			@RequestParam String Telefono,
+			@RequestParam String Password, Model m, HttpSession session) {
+		
+		
+		User u = entityManager.find(User.class, session.getAttribute("user") );
+		
+		u.setName(Nombre);
+		u.setDir(Direccion);
+		u.setPhone(Telefono);
+		u.setPassword(Password);
+		
+		return "profile";
 	}
 	
 }

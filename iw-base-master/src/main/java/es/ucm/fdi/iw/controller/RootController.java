@@ -3,6 +3,7 @@ package es.ucm.fdi.iw.controller;
 import java.security.Principal;
 
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.ucm.fdi.iw.model.Normal;
 import es.ucm.fdi.iw.model.User;
-
-
 
 @Controller	
 public class RootController {
@@ -49,16 +48,6 @@ public class RootController {
 		return "login";
 	}
 	
-	@GetMapping("/logout")
-	public String logout() {
-		return "logout";
-	}
-	
-	@GetMapping("/upload")
-	public String upload() {
-		return "upload";
-	}
-	
 	@GetMapping("/register")
 	public String register() {
 		return "register";
@@ -73,7 +62,7 @@ public class RootController {
 			@RequestParam String Telefono,
 			@RequestParam String Password,
 			@RequestParam Boolean UCM,			
-			@RequestParam(required=false) String isAdmin, Model m) {
+			@RequestParam(required=false) String isAdmin, Model m, HttpSession session) {
 		
 		User u = new Normal();
 		u.setLogin(Email);
@@ -82,10 +71,13 @@ public class RootController {
 		u.setName(Nombre);
 		u.setPhone(Telefono);
 		u.setRoles("on".equals(isAdmin) ? "ADMIN,USER" : "USER");
+				
 		entityManager.persist(u);
 		
 		entityManager.flush();
 		m.addAttribute("users", entityManager.createQuery("select u from User u").getResultList());
+		
+		session.setAttribute("user", u);
 		
 		return "home";
 	}

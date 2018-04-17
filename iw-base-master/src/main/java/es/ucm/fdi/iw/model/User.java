@@ -12,7 +12,8 @@ import javax.persistence.MappedSuperclass;
 @Entity
 @Inheritance (strategy = InheritanceType.JOINED)
 public abstract class User {
-	private long id;
+	
+	@Id
 	private String login; //e-mail
 	private String password;
 	private String roles; // split by , to separate roles
@@ -27,16 +28,6 @@ public abstract class User {
 	
 	@ManyToMany
 	private Reservation reservation;
-	
-	@Id
-	@GeneratedValue
-	public long getId() {
-	return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}	
 
 	@Column(unique=true)
 	public String getLogin() {
