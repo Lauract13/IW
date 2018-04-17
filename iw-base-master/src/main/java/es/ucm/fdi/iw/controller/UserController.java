@@ -45,30 +45,4 @@ private static Logger log = Logger.getLogger(AdminController.class);
 		return "login";	
 	}
 	
-	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
-	@Transactional
-	public String addUser(
-			@RequestParam String Nombre, 
-			@RequestParam String Email,
-			@RequestParam String Direccion,
-			@RequestParam String Telefono,
-			@RequestParam String Password,
-			@RequestParam Boolean UCM,			
-			@RequestParam(required=false) String isAdmin, Model m) {
-		
-		User u = new Normal();
-		u.setLogin(Email);
-		u.setPassword(passwordEncoder.encode(Password));
-		u.setDir(Direccion);
-		u.setName(Nombre);
-		u.setPhone(Telefono);
-		u.setRoles("on".equals(isAdmin) ? "ADMIN,USER" : "USER");
-		entityManager.persist(u);
-		
-		entityManager.flush();
-		m.addAttribute("users", entityManager
-				.createQuery("select u from User u").getResultList());
-		
-		return "home";
-	}
 }
