@@ -55,17 +55,20 @@ private static Logger log = Logger.getLogger(AdminController.class);
 			@RequestParam String Password,
 			@RequestParam Boolean UCM,			
 			@RequestParam(required=false) String isAdmin, Model m) {
-		/*
+		
 		User u = new Normal();
-		u.setLogin(email);
-		u.setPassword(passwordEncoder.encode(password));
+		u.setLogin(Email);
+		u.setPassword(passwordEncoder.encode(Password));
+		u.setDir(Direccion);
+		u.setName(Nombre);
+		u.setPhone(Telefono);
 		u.setRoles("on".equals(isAdmin) ? "ADMIN,USER" : "USER");
 		entityManager.persist(u);
 		
 		entityManager.flush();
 		m.addAttribute("users", entityManager
 				.createQuery("select u from User u").getResultList());
-		*/
-		return "admin";
+		
+		return "home";
 	}
 }
