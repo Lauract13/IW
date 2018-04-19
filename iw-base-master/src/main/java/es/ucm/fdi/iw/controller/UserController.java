@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -15,20 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import es.ucm.fdi.iw.LocalData;
-import es.ucm.fdi.iw.model.Normal;
 import es.ucm.fdi.iw.model.User;
 
 @Controller	
 @RequestMapping("user")
 public class UserController {
 private static Logger log = Logger.getLogger(AdminController.class);
-	
-	@Autowired
-	private LocalData localData;
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private EntityManager entityManager;
@@ -75,4 +66,14 @@ private static Logger log = Logger.getLogger(AdminController.class);
 		return "profile";
 	}
 	
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
+	@Transactional
+	public String deleteUser(Model m, HttpSession session) {
+		
+		
+		User u = entityManager.find(User.class, session.getAttribute("user") );
+		entityManager.remove(u);
+		
+		return "profile";
+	}
 }
