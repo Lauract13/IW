@@ -1,5 +1,10 @@
 package es.ucm.fdi.iw.model;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,9 +30,7 @@ public abstract class User {
 	private String dir;
 	private boolean isPlayer;
 	private boolean isAdmin;
-	
-	@ManyToMany
-	private Reservation reservation;
+
 
 	@Column(unique=true)
 	public String getLogin() {
