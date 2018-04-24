@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.iw.LocalData;
+import es.ucm.fdi.iw.model.Court;
 import es.ucm.fdi.iw.model.Normal;
 import es.ucm.fdi.iw.model.User;
 
@@ -128,4 +130,31 @@ public class AdminController {
             return "You failed to upload a photo for " + id + " because the file was empty.";
         }
 	}
+	
+	@RequestMapping(value="addCourt", method=RequestMethod.POST)
+    public String addCourt(@RequestParam String name,
+    						@RequestParam String description,
+    						@RequestParam String dir,
+    						@RequestParam String prhone,
+    						@RequestParam String extras,
+    						@RequestParam double price, Model m){
+        
+		Court c = new Court();
+		
+		Query q = entityManager.createNamedQuery("select * from court where name =:n").setParameter("n", name);
+		
+		if(q.getResultList().isEmpty()) {
+			c.setDescription(description);
+			c.setDir(dir);
+			c.setExtras(extras);
+			c.setName(name);
+			c.setPhone(prhone);
+			c.setPrice(price);
+		}		
+		entityManager.persist(c);
+		entityManager.flush();
+		
+		return "home";
+	}
+	
 }
