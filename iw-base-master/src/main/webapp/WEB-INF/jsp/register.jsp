@@ -5,54 +5,38 @@
 
 <%@ include file="../jspf/header.jspf"%>
 
-<div class="starter-template">
-	<h1>Registro</h1>
-
-    <form action="/newUser" method="post">               
+<div class="container">
+    <form action="/newUser" method="post" id="form-registro">               
         <fieldset>
             <legend>Por favor, rellene el formulario</legend>
             <div class="form-group">
- 				<label class="col-md-4 control-label" for="Nombre">Nombre y Apellidos</label>  
-  				<div class="col-md-5">
-  				<input id="Nombre" name="Nombre" type="text" placeholder="Nombre" class="form-control input-md" required="">
-  				</div>
+ 				<label for="Nombre">Nombre y Apellidos</label>  
+  				<input id="Nombre" name="Nombre" type="text" placeholder="Nombre" class="form-control" required="">
             </div>
             <div class="form-group">
- 				<label class="col-md-4 control-label" for="Telefono">Teléfono</label>  
-  				<div class="col-md-5">
-  				<input id="Telefono" name="Telefono" type="tel" placeholder="Telefono" class="form-control input-md" required="">
-  				</div>
+ 				<label for="Telefono">Teléfono</label>  
+  				<input id="Telefono" name="Telefono" type="tel" placeholder="Telefono" class="form-control" required="">
             </div>
             <div class="form-group">
- 				<label class="col-md-4 control-label" for="Direccion">Dirección</label>  
-  				<div class="col-md-5">
-  				<input id="Direccion" name="Direccion" type="text" placeholder="Direccion" class="form-control input-md" required="">
-  				</div>
+ 				<label for="Direccion">Dirección</label>  
+  				<input id="Direccion" name="Direccion" type="text" placeholder="Direccion" class="form-control" required="">
             </div>
             <div class="form-group">
- 				<label class="col-md-4 control-label" for="Email">Email</label>  
-  				<div class="col-md-5">
-  				<input id="Email" name="Email" type="email" placeholder="Email" class="form-control input-md" required="">
-  				</div>
+ 				<label for="Email">Email</label>  
+  				<input id="Email" name="Email" type="email" placeholder="Email" class="form-control" required="">
             </div>
             <div class="form-group">
- 				<label class="col-md-4 control-label" for="Password">Contraseña</label>  
-  				<div class="col-md-5">
-  				<input id="Password" name="Email" type="password" placeholder="Password" class="form-control input-md" required="">
-  				</div>
+ 				<label for="Password">Contraseña</label>  
+  				<input id="Password" name="Email" type="password" placeholder="Password" class="form-control" required="">
             </div>
     		<div class="form-group">
-    			<label class="col-md-4 control-label" for="UCM">¿Vinculado a la UCM?</label> 
-    			<div class="form-check form-check-inline">
-				  <input class="form-check-input micheckbox" type="checkbox" id="inlineCheckbox1" value="option1">
+    			<label for="UCM">¿Vinculado a la UCM?</label>
+    			<div class="form-check">
+				  <input class="form-check-input micheckbox" type="radio" name="vinc-ucm" id="inlineCheckbox1" value="option1">
 				  <label class="form-check-label" for="inlineCheckbox1">Sí</label>
-
-				</div>
-				<div class="form-check form-check-inline">
-				  <input class="form-check-input micheckbox" type="checkbox" id="inlineCheckbox2" value="option2">
+				  <input class="form-check-input micheckbox" type="radio" name="vinc-ucm" id="inlineCheckbox2" value="option2">
 				  <label class="form-check-label" for="inlineCheckbox2">No</label>
 				</div>
-				
 				<script type="text/javascript">
 				  $(".micheckbox").on( 'change', function() {
 					    if( $(this).is(':checked') ) {
@@ -70,9 +54,7 @@
     		</div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
-            <div class="form-actions">
-                <button type="submit" class="btn">Register</button>
-            </div>
+            <button type="submit" class="btn btn-reg2">Register</button>
         </fieldset>
     </form>
 		

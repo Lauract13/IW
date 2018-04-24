@@ -5,27 +5,28 @@
 
 <%@ include file="../jspf/header.jspf"%>
 
-<div class="starter-template">
-	<h1>Acceso1</h1>
-
-    <form action="/login" method="post">               
-        <fieldset>
+<div class="container">
+    <form action="/login" method="post" id="form-registro">               
+        <fieldset class="form-group">
             <legend>Please Login</legend>
-            <label for="Email">Email</label>
-            <input type="text" id="username" name="email"/>        
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password"/>
+            <div class="form-group">
+	            <label for="Email">Email</label>
+	            <input type="text" id="username" name="email" class="form-control"/>
+	        </div>        
+	        <div class="form-group">
+	            <label for="password">Password</label>
+	            <input type="password" id="password" name="password" class="form-control"/>
+	        </div>
             
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
-            <div class="form-actions">
-                <button type="submit" class="btn">Log in</button>
-            </div>
+            <button type="submit" class="btn btn-login">Log in</button><a href="/register" class="btn btn-registro">Registro</a>
         </fieldset>
+        <%@ include file="../jspf/authinfo.jspf"%>
     </form>
-    <a href="/register" class="btn btn-primary">Registro</a>
+    
 
-	<%@ include file="../jspf/authinfo.jspf"%>		
+			
 </div>
 
 <%@ include file="../jspf/footer.jspf"%>

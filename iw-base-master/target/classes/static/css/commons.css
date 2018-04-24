@@ -1,10 +1,4 @@
 .navbar-inverse {
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#87e0fd+0,53cbf1+40,05abe0+100;Blue+3D+%23+16 */
-	background: #53cbf1; /* Old browsers */
-	background: -moz-linear-gradient(top, #53cbf1 0%, #05abe0 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, #53cbf1 0%,#05abe0 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, #53cbf1 0%,#05abe0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#53cbf1', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
 	color: white;
 	border: none;
 }
@@ -34,4 +28,57 @@
 }
 .text-muted {
     color: white;
+}
+
+#form-registro {
+	width: 60%;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.btn-registro {
+	margin: 0 10px;
+	background-color: DarkOrange;
+	color: white;
+	font-weight: 700;
+	font-size: 17px;
+}
+
+.btn-registro:hover {
+	background-color: #cc7000;
+	color: lightgray;
+}
+
+.btn-reg2 {
+	margin: auto;
+	display: block;
+	width: 200px;
+	background-color: DarkOrange;
+	color: white;
+	font-weight: 700;
+	font-size: 17px;
+}
+
+.btn-reg2:hover {
+	color: LightGray;
+	background-color: #cc7000;
+}
+
+.btn-login {
+	font-weight: 700;
+	font-size: 17px;
+}
+
+.btn-login:hover {
+	background-color: #cccccc;
+}
+
+#inlineCheckbox2 {
+	margin-left: 10px;
+}
+
+#logo {
+	display: flex;
+	align-items: center;
+	margin-left: 0;
 }
