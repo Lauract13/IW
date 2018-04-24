@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="starter-template">
-	<h1>Acceso</h1>
+	<h1>Acceso1</h1>
 
     <form action="/login" method="post">               
         <fieldset>
