@@ -11,11 +11,11 @@
             <legend>Please Login</legend>
             <div class="form-group">
 	            <label for="Email">Email</label>
-	            <input type="text" id="username" name="email" class="form-control"/>
+	            <input type="text" id="username" name="Email" class="form-control"/>
 	        </div>        
 	        <div class="form-group">
 	            <label for="password">Password</label>
-	            <input type="password" id="password" name="password" class="form-control"/>
+	            <input type="password" id="password" name="Password" class="form-control"/>
 	        </div>
             
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

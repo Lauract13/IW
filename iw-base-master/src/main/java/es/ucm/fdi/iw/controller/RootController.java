@@ -66,7 +66,7 @@ public class RootController {
 	
 		User u = new Normal();
 		u.setLogin(Email);
-		u.setPassword(passwordEncoder.encode(Password));
+		u.setPassword(Password);
 		u.setDir(Direccion);
 		u.setName(Nombre);
 		u.setPhone(Telefono);
@@ -84,5 +84,18 @@ public class RootController {
 		session.setAttribute("user", u);
 		
 		return "home";
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@Transactional
+	public String login(@RequestParam String Email,
+						@RequestParam String Password, Model m, HttpSession session) {
+		User u = entityManager.find(User.class, Email);
+		
+		if(u.getPassword().equals(Password)) {
+			return "home";
+		}else {
+			return "login";
+		}
 	}
 }
