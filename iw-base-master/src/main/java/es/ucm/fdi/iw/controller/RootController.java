@@ -81,9 +81,6 @@ public class RootController {
 				
 		entityManager.persist(u);
 		
-		//entityManager.flush();
-		//m.addAttribute("users", entityManager.createQuery("select u from User u").getResultList());
-		
 		session.setAttribute("user", u);
 		
 		return "home";
