@@ -38,7 +38,7 @@ public class RootController {
 
 	@GetMapping({"/", "/index"})
 	public String root(Model model, Principal principal) {
-		log.info(principal.getName() + " de tipo " + principal.getClass());		
+		//log.info(principal.getName() + " de tipo " + principal.getClass());		
 		// org.springframework.security.core.userdetails.User
 		return "login";
 	}
@@ -61,21 +61,28 @@ public class RootController {
 			@RequestParam String Direccion,
 			@RequestParam String Telefono,
 			@RequestParam String Password,
-			@RequestParam Boolean UCM,			
+			@RequestParam ("UCM") String checkboxValue,			
 			@RequestParam(required=false) String isAdmin, Model m, HttpSession session) {
-		
+	
 		User u = new Normal();
 		u.setLogin(Email);
 		u.setPassword(passwordEncoder.encode(Password));
 		u.setDir(Direccion);
 		u.setName(Nombre);
 		u.setPhone(Telefono);
+		
+		if(checkboxValue.equals("option1")) {
+			u.setUCM(true);
+		}else {
+			u.setUCM(false);
+		}
+		
 		u.setRoles("on".equals(isAdmin) ? "ADMIN,USER" : "USER");
 				
 		entityManager.persist(u);
 		
-		entityManager.flush();
-		m.addAttribute("users", entityManager.createQuery("select u from User u").getResultList());
+		//entityManager.flush();
+		//m.addAttribute("users", entityManager.createQuery("select u from User u").getResultList());
 		
 		session.setAttribute("user", u);
 		

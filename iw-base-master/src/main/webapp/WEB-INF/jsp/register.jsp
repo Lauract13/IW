@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-    <form action="/newUser" method="post" id="form-registro">               
+    <form action="/newUser" method="POST" id="form-registro">               
         <fieldset>
             <legend>Por favor, rellene el formulario</legend>
             <div class="form-group">
@@ -27,34 +27,20 @@
             </div>
             <div class="form-group">
  				<label for="Password">Contraseña</label>  
-  				<input id="Password" name="Email" type="password" placeholder="Password" class="form-control" required="">
+  				<input id="Password" name="Password" type="password" placeholder="Password" class="form-control" required="">
             </div>
     		<div class="form-group">
     			<label for="UCM">¿Vinculado a la UCM?</label>
     			<div class="form-check">
-				  <input class="form-check-input micheckbox" type="radio" name="vinc-ucm" id="inlineCheckbox1" value="option1">
+				  <input class="form-check-input micheckbox" type="radio" name="UCM" id="inlineCheckbox1" value="option1">
 				  <label class="form-check-label" for="inlineCheckbox1">Sí</label>
-				  <input class="form-check-input micheckbox" type="radio" name="vinc-ucm" id="inlineCheckbox2" value="option2">
+				  <input class="form-check-input micheckbox" type="radio" name="UCM" id="inlineCheckbox2" value="option2">
 				  <label class="form-check-label" for="inlineCheckbox2">No</label>
 				</div>
-				<script type="text/javascript">
-				  $(".micheckbox").on( 'change', function() {
-					    if( $(this).is(':checked') ) {
-					        if($(this).val() === "option1"){
-					        	
-					        }else{
-					        	
-					        }
-					    } else {
-					        // Hacer algo si el checkbox ha sido deseleccionado
-					        alert("El checkbox con valor " + $(this).val() + " ha sido deseleccionado");
-					    }
-					});
-				 </script>
     		</div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
-            <button type="submit" class="btn btn-reg2">Register</button>
+            <input type="submit" value="Register">
         </fieldset>
     </form>
 		
