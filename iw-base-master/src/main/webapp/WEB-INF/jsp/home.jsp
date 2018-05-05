@@ -41,7 +41,6 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
-                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
                     <li class="divider"></li>
                     <li><a href="/logout"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
                 </ul>
