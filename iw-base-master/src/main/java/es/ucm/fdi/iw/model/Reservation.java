@@ -1,6 +1,7 @@
 package es.ucm.fdi.iw.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +12,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.type.DateType;
 
 public class Reservation {
 	
@@ -23,14 +26,14 @@ public class Reservation {
 	private Court court;
 	
 	@OneToOne
-	private User user;
+	private String idUser;
 
 	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDate(Date date2) {
+		this.date = date2;
 	}
 	
 	public long getId() {
@@ -39,5 +42,11 @@ public class Reservation {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	public String getIdUser() {
+		return idUser;
+	}
+	public void setIdUser(String idU) {
+		this.idUser = idU;
 	}
 }
