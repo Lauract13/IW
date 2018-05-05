@@ -64,7 +64,7 @@ public class RootController {
 		session.invalidate();
 		
 		
-		return "login";
+		return "redirect:login";
 		
 		
 	}
@@ -108,11 +108,19 @@ public class RootController {
 	public String login(@RequestParam String Email,
 						@RequestParam String Password, Model m, HttpSession session) {
 		User u = entityManager.find(User.class, Email);
+	
+	
 		
 		if(u.getPassword().equals(Password)) {
 			return "home";
 		}else {
 			return "login";
 		}
+		
+
+		
+	
+		
+	
 	}
 }
