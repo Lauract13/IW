@@ -47,10 +47,26 @@ public class RootController {
 	public String login() {
 		return "login";
 	}
+
 	
 	@GetMapping("/register")
 	public String register() {
 		return "register";
+	}
+	
+	
+	@GetMapping("/logout")
+	public String logout(
+			
+			HttpSession session) {
+			
+		
+		session.invalidate();
+		
+		
+		return "login";
+		
+		
 	}
 	
 	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
@@ -82,6 +98,7 @@ public class RootController {
 		entityManager.persist(u);
 		
 		session.setAttribute("user", u);
+		
 		
 		return "home";
 	}

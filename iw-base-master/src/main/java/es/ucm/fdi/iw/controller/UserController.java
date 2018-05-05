@@ -29,10 +29,7 @@ private static Logger log = Logger.getLogger(AdminController.class);
         model.addAttribute("s", "../static");
     }
     
-	@GetMapping("/logout")
-	public String logout() {
-		return "logout";
-	}
+	
 	
 	@GetMapping("/upload")
 	public String upload() {
