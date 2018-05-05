@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -131,7 +132,7 @@ public class AdminController {
         }
 	}
 	
-	@RequestMapping(value="addCourt", method=RequestMethod.POST)
+	@RequestMapping(value="/addCourt", method=RequestMethod.POST)
     public String addCourt(@RequestParam String name,
     						@RequestParam String description,
     						@RequestParam String dir,
@@ -152,7 +153,35 @@ public class AdminController {
 			c.setPrice(price);
 		}		
 		entityManager.persist(c);
-		entityManager.flush();
+		
+		return "home";
+	}
+	
+	@RequestMapping(value="/deleteCourt", method=RequestMethod.DELETE)
+	public String deleteCourt(@RequestParam long id) {
+				
+		Court c = entityManager.find(Court.class, id);
+		
+		entityManager.remove(c);
+		
+		return "home";
+	}
+	
+	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
+	public String uploadCourt(@RequestParam long id,
+							 @RequestParam String name,
+							 @RequestParam String description,
+							 @RequestParam String phone,
+							 @RequestParam String extras,
+							 @RequestParam double price) {
+				
+		Court c = entityManager.find(Court.class, id);
+		
+		c.setDescription(description);
+		c.setName(name);
+		c.setPhone(phone);
+		c.setExtras(extras);
+		c.setPrice(price);
 		
 		return "home";
 	}
