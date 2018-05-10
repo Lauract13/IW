@@ -54,6 +54,11 @@ public class RootController {
 		return "register";
 	}
 	
+	@GetMapping("/perfil")
+	public String perfil() {
+		return "profile";
+	}
+	
 	
 	@GetMapping("/logout")
 	public String logout(

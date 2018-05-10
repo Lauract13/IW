@@ -73,4 +73,11 @@ private static Logger log = Logger.getLogger(AdminController.class);
 		
 		return "profile";
 	}
+	
+	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
+	@Transactional
+	public String perfil(Model m, HttpSession session) {
+		return "profile";
+	}
 }
+

@@ -8,7 +8,7 @@
 <div class="container">
     <form action="/newUser" method="POST" id="form-registro">               
         <fieldset>
-            <legend>Por favor, rellene el formulario</legend>
+            <legend>Registro</legend>
             <div class="form-group">
  				<label for="Nombre">Nombre y Apellidos</label>  
   				<input id="Nombre" name="Nombre" type="text" placeholder="Nombre" class="form-control" required="">
@@ -40,7 +40,7 @@
     		</div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
-            <input type="submit" value="Register">
+            <input type="submit" value="Regístrate" class="btn btn-login">
         </fieldset>
     </form>
 		

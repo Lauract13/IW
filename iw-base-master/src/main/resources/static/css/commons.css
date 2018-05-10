@@ -44,6 +44,14 @@
 	font-size: 17px;
 }
 
+.btn-modificar {
+	background-color: DarkOrange;
+	color: white;
+	font-weight: 700;
+	font-size: 17px;
+	margin: 10px;
+}
+
 .btn-registro:hover {
 	background-color: #cc7000;
 	color: lightgray;
@@ -81,4 +89,44 @@
 	display: flex;
 	align-items: center;
 	margin-left: 0;
+}
+
+.foto-perfil {
+	width: 70px;
+	height: 70px;
+	margin: 10px;
+}
+
+.cabecera-perfil {
+	margin: 10px;
+	padding: 5px;
+	border-bottom: solid 2px orange;
+}
+
+.nombre-perfil {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.perfil {
+	padding: 10px;
+	width: 80%;
+	margin: auto;
+	background-color: #e6e6e6;
+	border-radius: 15px;
+}
+
+.entrada-perfil {
+	font-weight: bold;
+}
+
+.celda-perfil {
+	margin-left: 30px;
+}
+
+.div-modificar {
+	text-align: center;
+}
+dd {
+	float: right;
 }
