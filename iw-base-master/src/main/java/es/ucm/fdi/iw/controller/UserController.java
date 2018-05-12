@@ -29,6 +29,14 @@ private static Logger log = Logger.getLogger(AdminController.class);
         model.addAttribute("s", "../static");
     }
     
+    @GetMapping("/profile")
+    public String profile(Model m, HttpSession session) {
+    	User u = entityManager.find(User.class, session.getAttribute("user"));
+    	
+    	m.addAttribute("user", u);
+    	
+    	return "profile";
+    }
 	
 	
 	@GetMapping("/upload")
@@ -36,13 +44,6 @@ private static Logger log = Logger.getLogger(AdminController.class);
 		return "upload";
 	}
     
-	@GetMapping({"", "/"})
-	public String root(Model m) {
-		m.addAttribute("users", entityManager
-				.createQuery("select u from User u").getResultList());
-		
-		return "login";	
-	}
 	
 	@RequestMapping(value = "/uploadUser", method = RequestMethod.POST)
 	@Transactional
@@ -71,12 +72,6 @@ private static Logger log = Logger.getLogger(AdminController.class);
 		User u = entityManager.find(User.class, session.getAttribute("user") );
 		entityManager.remove(u);
 		
-		return "profile";
-	}
-	
-	@RequestMapping(value = "/perfil", method = RequestMethod.GET)
-	@Transactional
-	public String perfil(Model m, HttpSession session) {
 		return "profile";
 	}
 }

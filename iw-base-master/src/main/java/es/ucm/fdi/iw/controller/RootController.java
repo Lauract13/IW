@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -24,10 +23,7 @@ import es.ucm.fdi.iw.model.User;
 public class RootController {
 
 	private static Logger log = Logger.getLogger(RootController.class);
-	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	
+		
 	@Autowired
 	private EntityManager entityManager;
 	
@@ -52,11 +48,6 @@ public class RootController {
 	@GetMapping("/register")
 	public String register() {
 		return "register";
-	}
-	
-	@GetMapping("/perfil")
-	public String perfil() {
-		return "profile";
 	}
 	
 	
@@ -102,7 +93,7 @@ public class RootController {
 				
 		entityManager.persist(u);
 		
-		session.setAttribute("user", u);
+		session.setAttribute("user", u.getLogin());
 		
 		
 		return "home";
@@ -114,18 +105,13 @@ public class RootController {
 						@RequestParam String Password, Model m, HttpSession session) {
 		User u = entityManager.find(User.class, Email);
 	
-	
+		session.setAttribute("user", u.getLogin());	
 		
 		if(u.getPassword().equals(Password)) {
 			return "home";
 		}else {
 			return "login";
 		}
-		
-
-		
-	
-		
-	
+			
 	}
 }

@@ -1,15 +1,11 @@
 package es.ucm.fdi.iw.model;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Player extends User {
 	private boolean isCaptain;
 	private String team;
-	
-	@OneToOne
-	private Sports sport;
 
 	public Player() {}
 	

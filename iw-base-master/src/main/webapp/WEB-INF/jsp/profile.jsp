@@ -7,20 +7,20 @@
 
 <div class="container">
     	<div class="perfil">
-    		<div class="cabecera-perfil"><img src="${s}/img/unknown-user.jpg" class="foto-perfil"/><span class="nombre-perfil">Pedro Morell Prats</span></div>
+    		<div class="cabecera-perfil"><img src="${s}/img/unknown-user.jpg" class="foto-perfil"/><span class="nombre-perfil">${user.name}</span></div>
     		<div class="celda-perfil">
 		  		<span class="entrada-perfil">e-mail: </span>
-		  		<span>pedromorellprats@gmail.com</span>
+		  		<span>${user.login}</span>
 	  		</div>
 	  		<div class="celda-perfil">
 		  		<span class="entrada-perfil">teléfono: </span>
-		  		<span>666777888</span>
+		  		<span>${user.phone}</span>
 		  	</div>
 		  	<div class="celda-perfil">
 		  		<span class="entrada-perfil">dirección: </span>
-		  		<span>Calle ejemplo, 1, 1ºA</span>
+		  		<span>${user.dir}</span>
 		  	</div>
-		  	<div class="div-modificar"><a href="/perfil" class="btn btn-modificar">Modificar perfil</a></div>
+		  	<div class="div-modificar"><a href="/user/upload" class="btn btn-modificar">Modificar perfil</a></div>
 		</div>
 </div>
 

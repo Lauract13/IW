@@ -3,7 +3,6 @@ package es.ucm.fdi.iw.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 @Entity
 public class Court {
@@ -15,9 +14,6 @@ public class Court {
 	private String phone;
 	private String extras;
 	private double price;
-	
-	@OneToOne
-	private Sports sport;
 	
 	@Id
 	@GeneratedValue
