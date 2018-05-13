@@ -39,6 +39,7 @@
 .btn-registro {
 	margin: 0 10px;
 	background-color: DarkOrange;
+	border: solid 1px #e67e00;
 	color: white;
 	font-weight: 700;
 	font-size: 17px;
@@ -46,6 +47,7 @@
 
 .btn-modificar {
 	background-color: DarkOrange;
+	border: solid 1px #e67e00;
 	color: white;
 	font-weight: 700;
 	font-size: 17px;
@@ -62,6 +64,7 @@
 	display: block;
 	width: 200px;
 	background-color: DarkOrange;
+	border: solid 1px #e67e00;
 	color: white;
 	font-weight: 700;
 	font-size: 17px;
@@ -75,6 +78,7 @@
 .btn-login {
 	font-weight: 700;
 	font-size: 17px;
+	border: solid 1px #cccccc;
 }
 
 .btn-login:hover {
@@ -92,9 +96,10 @@
 }
 
 .foto-perfil {
-	width: 70px;
-	height: 70px;
+	width: 80px;
+	height: 80px;
 	margin: 10px;
+	border: solid 1px #d9d9d9;
 }
 
 .cabecera-perfil {
@@ -104,7 +109,7 @@
 }
 
 .nombre-perfil {
-	font-size: 18px;
+	font-size: 22px;
 	font-weight: 700;
 }
 
@@ -114,10 +119,13 @@
 	margin: auto;
 	background-color: #e6e6e6;
 	border-radius: 15px;
+	border: solid 1px #d9d9d9;
 }
 
 .entrada-perfil {
 	font-weight: bold;
+	width: 80px;
+	display: inline-block;
 }
 
 .celda-perfil {
@@ -127,6 +135,46 @@
 .div-modificar {
 	text-align: center;
 }
+
 dd {
 	float: right;
+}
+
+.crear-pista {
+	text-align: center;
+}
+
+.centrar {
+	text-align: center;
+}
+
+.link-crear-pista {
+	color: orange;
+	font-size: 15px;
+}
+
+.link-crear-pista:hover {
+	color: orange;
+	text-decoration: underline;
+}
+
+.pistas {
+	margin-top: 10px;
+}
+
+.img-pista {
+	width: 80px;
+	height: 80px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	border: solid 1px #d9d9d9;
+}
+
+.titulo-pista {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.link-borrar-pista, .link-borrar-pista:hover{
+	color: red;
 }
