@@ -43,6 +43,11 @@ private static Logger log = Logger.getLogger(AdminController.class);
 	public String upload() {
 		return "upload";
 	}
+	
+	@GetMapping("/editar")
+	public String editar() {
+		return "editar-perfil";
+	}
     
 	
 	@RequestMapping(value = "/uploadUser", method = RequestMethod.POST)

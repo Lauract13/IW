@@ -43,6 +43,11 @@ public class RootController {
 	public String login() {
 		return "login";
 	}
+	
+	@GetMapping("/login-admin")
+	public String loginAdmin() {
+		return "login-admin";
+	}
 
 	
 	@GetMapping("/register")

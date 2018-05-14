@@ -178,3 +178,20 @@ dd {
 .link-borrar-pista, .link-borrar-pista:hover{
 	color: red;
 }
+
+#form-modificar {
+	width: 60%;
+	margin: auto;
+	border: solid 1px #d9d9d9;
+	border-radius: 15px;
+	padding: 15px;
+}
+
+.link-masinfo-pista {
+	font-size: 15spx;
+	font-weight: 700;
+	border: solid 1px #d9d9d9;
+	border-radius: 15px;
+	padding: 10px;
+	margin-left: 10px;
+}
