@@ -7,11 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,13 +53,21 @@ public class AdminController {
     public void addAttributes(Model model) {
         model.addAttribute("s", "../static");
     }
-
-	@GetMapping({"", "/"})
-	public String root(Model m) {
-		m.addAttribute("users", entityManager
-				.createQuery("select u from User u").getResultList());
+    
+	@RequestMapping(value = "/login-admin", method = RequestMethod.POST)
+	@Transactional
+	public String login(@RequestParam String Email,
+						@RequestParam String Password, Model m, HttpSession session) {
+		User u = entityManager.find(User.class, Email);
+	
+		session.setAttribute("user", u.getLogin());	
 		
-		return "admin";	
+		if(u.getPassword().equals(Password)) {
+			return "home";
+		}else {
+			return "login-admin";
+		}
+			
 	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)

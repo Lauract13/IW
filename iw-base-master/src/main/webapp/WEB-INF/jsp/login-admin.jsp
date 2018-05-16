@@ -6,9 +6,9 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-    <form action="/login" method="post" id="form-registro">               
+    <form action="/login-admin" method="post" id="form-registro">               
         <fieldset class="form-group">
-            <legend>Inicio de sesión</legend>
+            <legend>Inicio de sesión administrador</legend>
             <div class="form-group">
 	            <label for="Email">Email</label>
 	            <input type="text" id="username" name="Email" class="form-control"/>
@@ -20,7 +20,7 @@
             
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
-            <button type="submit" class="btn btn-login">Iniciar sesión</button><a href="/register" class="btn btn-registro">Registro</a>
+            <button type="submit" class="btn btn-login">Iniciar sesión</button>
         </fieldset>
         <%@ include file="../jspf/authinfo.jspf"%>
     </form>
