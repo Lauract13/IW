@@ -64,6 +64,11 @@ public class CourtController {
 		return "pistas";
 	}
 	
+	@GetMapping("/perfil-pista")
+	public String perfilPista() {
+		return "perfil-pista";
+	}
+	
 	@GetMapping("/pistas-user")
 	public String pistasUser() {
 		return "pistas-user";

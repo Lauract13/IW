@@ -9,17 +9,13 @@
     	<div class="perfil">
     		<div class="cabecera-perfil"><img src="${s}/img/unknown-user.jpg" class="foto-perfil"/><span class="nombre-perfil">${user.name}</span></div>
     		<div class="celda-perfil">
-		  		<span class="entrada-perfil">e-mail: </span>
-		  		<span>${user.login}</span>
+    			<h4>Info</h4>
+    			<p>
+		  		<span>${user.login}</span><br/>
+		  		<span>${user.phone}</span><br/>
+		  		<span>${user.dir}</span><br/>
+		  		</p>
 	  		</div>
-	  		<div class="celda-perfil">
-		  		<span class="entrada-perfil">teléfono: </span>
-		  		<span>${user.phone}</span>
-		  	</div>
-		  	<div class="celda-perfil">
-		  		<span class="entrada-perfil">dirección: </span>
-		  		<span>${user.dir}</span>
-		  	</div>
 		  	<div class="div-modificar"><a href="/user/upload" class="btn btn-modificar">Modificar perfil</a></div>
 		</div>
 </div>
