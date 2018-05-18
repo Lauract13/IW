@@ -10,11 +10,11 @@
     		<div class="cabecera-perfil"><img src="${s}/img/futbol.jpg" class="foto-perfil"/><span class="nombre-perfil">Pista futbol, 20€/hora</span></div>
     		<div class="info-pista">
     			<h4>Descripción</h4>
-		  		<p>Descripción</p>
+		  		<p>Texto de descripción...</p>
 		  		<h4>Info</h4>
 		  		<p>dirección · 666777888</p>
 	  		</div>
-		  	<div class="div-modificar"><a href="/user/upload" class="btn btn-modificar">Reservar</a></div>
+		  	<div class="div-modificar"><a href="" class="btn btn-modificar">Reservar</a></div>
 		</div>
 </div>
 

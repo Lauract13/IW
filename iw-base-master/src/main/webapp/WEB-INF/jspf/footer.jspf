@@ -1,8 +1,19 @@
 <%@ page pageEncoding="UTF-8"%>
 </div><!-- /.container -->
+	<div class="espacio-footer"></div>
     <footer class="footer">
       <div class="container">
-        <span class="text-muted">Place sticky footer content here.</span>
+      	<div class="centrar contenido-pie">
+      		<span class="text-muted">Para cualquier duda o sugerencia envíe un correo a <a href="#">correo@ejemplo.com</a>.</span><br/>
+      		<div class="iconos-pie">
+      		<a href="#" class="fa fa-facebook"></a>
+      		<a href="#" class="fa fa-twitter"></a>
+      		<a href="#" class="fa fa-google"></a>
+      		<a href="#" class="fa fa-linkedin"></a>
+      		</div>
+			<hr class="division-pie"/>
+      		<span class="text-muted">copyright © 2018 PeLauMi</span>
+      	</div>
       </div>
     </footer>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
