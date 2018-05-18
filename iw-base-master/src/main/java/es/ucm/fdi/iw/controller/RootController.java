@@ -119,4 +119,20 @@ public class RootController {
 		}
 			
 	}
+	
+	@RequestMapping(value = "/login-admin", method = RequestMethod.POST)
+	@Transactional
+	public String loginAdmin(@RequestParam String Email,
+						@RequestParam String Password, Model m, HttpSession session) {
+		User u = entityManager.find(User.class, Email);
+	
+		session.setAttribute("user", u.getLogin());	
+		
+		if(u.getPassword().equals(Password) && u.getRoles().contains("ADMIN")) {
+			return "court/crear-pista";
+		}else {
+			return "login-admin";
+		}
+			
+	}
 }

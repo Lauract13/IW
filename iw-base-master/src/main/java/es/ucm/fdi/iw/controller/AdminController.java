@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -53,22 +52,7 @@ public class AdminController {
     public void addAttributes(Model model) {
         model.addAttribute("s", "../static");
     }
-    
-	@RequestMapping(value = "/login-admin", method = RequestMethod.POST)
-	@Transactional
-	public String login(@RequestParam String Email,
-						@RequestParam String Password, Model m, HttpSession session) {
-		User u = entityManager.find(User.class, Email);
-	
-		session.setAttribute("user", u.getLogin());	
-		
-		if(u.getPassword().equals(Password)) {
-			return "home";
-		}else {
-			return "login-admin";
-		}
-			
-	}
+
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@Transactional
@@ -139,30 +123,6 @@ public class AdminController {
         }
 	}
 	
-	@RequestMapping(value="/addCourt", method=RequestMethod.POST)
-    public String addCourt(@RequestParam String name,
-    						@RequestParam String description,
-    						@RequestParam String dir,
-    						@RequestParam String prhone,
-    						@RequestParam String extras,
-    						@RequestParam double price, Model m){
-        
-		Court c = new Court();
-		
-		Query q = entityManager.createNamedQuery("select * from court where name =:n").setParameter("n", name);
-		
-		if(q.getResultList().isEmpty()) {
-			c.setDescription(description);
-			c.setDir(dir);
-			c.setExtras(extras);
-			c.setName(name);
-			c.setPhone(prhone);
-			c.setPrice(price);
-		}		
-		entityManager.persist(c);
-		
-		return "home";
-	}
 	
 	@RequestMapping(value="/deleteCourt", method=RequestMethod.DELETE)
 	public String deleteCourt(@RequestParam long id) {

@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-    <form action="/login-admin" method="post" id="form-registro">               
+    <form action="login-admin" method="post" id="form-registro">               
         <fieldset class="form-group">
             <legend>Inicio de sesión administrador</legend>
             <div class="form-group">

@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-	<form action="/newCourt" method="POST" id="form-registro">               
+	<form action="court/newCourt" method="POST" id="form-registro">               
         <fieldset>
             <legend>Crear pista</legend>
             <div class="form-group">
@@ -29,6 +29,10 @@
             <div class="form-group">
            		<label for="Descripcion">Descripción</label> 
             	<textarea id="Descripcion" name="Descripcion" cols="40" rows="5" class="form-control"></textarea>    
+            </div>
+             <div class="form-group">
+           		<label for="Extras">Extras</label> 
+            	<textarea id="Extras" name="Extras" cols="40" rows="5" class="form-control"></textarea>    
             </div>
             <div class="form-group">
 			    <label for="Imagen">Imágen</label>
