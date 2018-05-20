@@ -123,34 +123,4 @@ public class AdminController {
         }
 	}
 	
-	
-	@RequestMapping(value="/deleteCourt", method=RequestMethod.DELETE)
-	public String deleteCourt(@RequestParam long id) {
-				
-		Court c = entityManager.find(Court.class, id);
-		
-		entityManager.remove(c);
-		
-		return "home";
-	}
-	
-	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
-	public String uploadCourt(@RequestParam long id,
-							 @RequestParam String name,
-							 @RequestParam String description,
-							 @RequestParam String phone,
-							 @RequestParam String extras,
-							 @RequestParam double price) {
-				
-		Court c = entityManager.find(Court.class, id);
-		
-		c.setDescription(description);
-		c.setName(name);
-		c.setPhone(phone);
-		c.setExtras(extras);
-		c.setPrice(price);
-		
-		return "home";
-	}
-	
 }

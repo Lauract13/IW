@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.Court;
@@ -98,7 +99,8 @@ public class CourtController {
 			@RequestParam String Direccion,
 			@RequestParam String Telefono,
 			@RequestParam String Extras,
-			@RequestParam String Descripcion, Model m, HttpSession session) {
+			@RequestParam String Descripcion,
+			@RequestParam("file") MultipartFile file,Model m, HttpSession session) {
 		
 		Court c = new Court();
 		
@@ -116,6 +118,35 @@ public class CourtController {
 		entityManager.persist(c);
 		
 		return "pistas";
+	}
+	
+	@RequestMapping(value="/deleteCourt", method=RequestMethod.DELETE)
+	public String deleteCourt(@RequestParam long id) {
+				
+		Court c = entityManager.find(Court.class, id);
+		
+		entityManager.remove(c);
+		
+		return "home";
+	}
+	
+	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
+	public String uploadCourt(@RequestParam long id,
+							 @RequestParam String name,
+							 @RequestParam String description,
+							 @RequestParam String phone,
+							 @RequestParam String extras,
+							 @RequestParam double price) {
+				
+		Court c = entityManager.find(Court.class, id);
+		
+		c.setDescription(description);
+		c.setName(name);
+		c.setPhone(phone);
+		c.setExtras(extras);
+		c.setPrice(price);
+		
+		return "home";
 	}
 	
 }

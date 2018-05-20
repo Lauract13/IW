@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-	<form action="court/newCourt" method="POST" id="form-registro">               
+	<form action="newCourt" method="POST" id="form-registro">               
         <fieldset>
             <legend>Crear pista</legend>
             <div class="form-group">
@@ -36,7 +36,7 @@
             </div>
             <div class="form-group">
 			    <label for="Imagen">Imágen</label>
-			    <input type="file" class="form-control-file" id="Imagen" aria-describedby="fileHelp">
+			    <input type="file" name="file" class="form-control-file" id="Imagen" aria-describedby="fileHelp">
 			    <small id="fileHelp" class="form-text text-muted"></small>
 			</div>
             <div class="centrar">
