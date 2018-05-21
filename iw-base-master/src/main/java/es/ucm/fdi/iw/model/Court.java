@@ -3,6 +3,12 @@ package es.ucm.fdi.iw.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+@NamedQueries({
+	@NamedQuery(name = "findCourtByName", query = "select c from Court c where c.name = :n")
+})
 
 @Entity
 public class Court {
@@ -14,6 +20,7 @@ public class Court {
 	private String phone;
 	private String extras;
 	private double price;
+	private byte[] photo;
 	
 	@Id
 	@GeneratedValue
@@ -58,6 +65,12 @@ public class Court {
 	}
 	public void setExtras(String extras) {
 		this.extras = extras;
+	}
+	public byte[] getPhoto() {
+		return photo;
+	}
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
 	}
 	
 	

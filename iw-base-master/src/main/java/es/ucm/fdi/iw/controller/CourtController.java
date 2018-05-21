@@ -95,11 +95,11 @@ public class CourtController {
 			@RequestParam String Telefono,
 			@RequestParam String Extras,
 			@RequestParam String Descripcion,
-			@RequestParam("file") MultipartFile file,Model m, HttpSession session) {
+			@RequestParam("file") MultipartFile photo,Model m, HttpSession session) {
 		
 		Court c = new Court();
-		
-		Query q = entityManager.createNamedQuery("select * from court where name =:n").setParameter("n", Nombre);
+					
+		Query q = entityManager.createNamedQuery("findCourtByName").setParameter("n", Nombre);
 		
 		if(q.getResultList().isEmpty()) {
 			c.setDescription(Descripcion);
@@ -108,6 +108,16 @@ public class CourtController {
 			c.setName(Nombre);
 			c.setPhone(Telefono);
 			c.setPrice(Precio);
+			
+			if (!photo.isEmpty()) {
+				try {
+					byte[] bytes = photo.getBytes();
+					c.setPhoto(bytes);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+	        }		
 		}				
 				
 		entityManager.persist(c);
@@ -131,7 +141,8 @@ public class CourtController {
 							 @RequestParam String description,
 							 @RequestParam String phone,
 							 @RequestParam String extras,
-							 @RequestParam double price) {
+							 @RequestParam double price,
+							 @RequestParam("file") MultipartFile photo) {
 				
 		Court c = entityManager.find(Court.class, id);
 		
@@ -140,6 +151,16 @@ public class CourtController {
 		c.setPhone(phone);
 		c.setExtras(extras);
 		c.setPrice(price);
+		
+		if (!photo.isEmpty()) {
+			try {
+				byte[] bytes = photo.getBytes();
+				c.setPhoto(bytes);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+        }	
 		
 		return "home";
 	}

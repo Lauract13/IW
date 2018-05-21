@@ -1,18 +1,10 @@
 package es.ucm.fdi.iw.model;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
 
 @Entity
 @Inheritance (strategy = InheritanceType.JOINED)
@@ -22,15 +14,12 @@ public abstract class User {
 	private String login; //e-mail
 	private String password;
 	private String roles; // split by , to separate roles
-	private byte enabled;
 	private String name;
 	private boolean isUCM;
 	private String codUCM;
 	private String phone;
 	private String dir;
 	private boolean isPlayer;
-	private boolean isAdmin;
-
 
 	@Column(unique=true)
 	public String getLogin() {
@@ -57,13 +46,7 @@ public abstract class User {
 		this.roles = roles;
 	}
 
-	public byte getEnabled() {
-		return enabled;
-	}
 
-	public void setEnabled(byte enabled) {
-		this.enabled = enabled;
-	}
 
 	public String getName() {
 		return name;
@@ -103,14 +86,6 @@ public abstract class User {
 
 	public void setPlayer(boolean isPlayer) {
 		this.isPlayer = isPlayer;
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
 	}
 
 	public String getPhone() {
