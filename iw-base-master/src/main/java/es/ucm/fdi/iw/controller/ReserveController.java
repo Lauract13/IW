@@ -71,6 +71,10 @@ public class ReserveController {
 		return "upload";
 	}
 	
+    @GetMapping("/reserva")
+	public String reserva() {
+		return "reserva";
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	@Transactional

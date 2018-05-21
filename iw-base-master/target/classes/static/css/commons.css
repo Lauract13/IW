@@ -59,6 +59,15 @@
 	margin: 10px;
 }
 
+.btn-reservar {
+	background-color: DarkTurquoise;
+	border: solid 1px #00b0b3;
+	color: white;
+	font-weight: 500;
+	font-size: 20px;
+	margin: 10px;
+}
+
 .btn-registro:hover {
 	background-color: #cc7000;
 	color: lightgray;
@@ -274,4 +283,27 @@ dd {
 
 .cancelar:hover {
 	color: DarkRed;
+}
+
+.reserva {
+	margin: auto;
+	width: 60%;
+}
+.horario {
+	
+	border-radius: 5px;
+	border: solid 1px #d9d9d9;
+}
+
+.horario:last-child {
+	border-bottom: 0;
+}
+
+.celda-horario {
+	padding: 10px;
+	border-bottom: solid 1px #d9d9d9;
+	font-size: 20px;
+	font-weight: 1;
+	display: flex;
+	justify-content: space-around;
 }
