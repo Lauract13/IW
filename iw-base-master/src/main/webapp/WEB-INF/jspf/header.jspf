@@ -31,11 +31,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#" id="logo">BookingFloor UCM</a>
+          <a class="navbar-brand" href="#" id="logo"><strong>UCM</strong>Volley</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Inicio</a></li>
+            <li class="active"><a href="/home">Inicio</a></li>
             <li><a href="/user/profile">Perfil</a></li>
             <li><a href="/court/pistas-user">Pistas</a></li>
             <li><a href="/user/tus-reservas">Reservas</a></li>
