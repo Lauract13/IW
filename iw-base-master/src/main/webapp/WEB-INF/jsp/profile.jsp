@@ -16,7 +16,7 @@
 		  		<span>${user.dir}</span><br/>
 		  		</p>
 	  		</div>
-		  	<div class="div-modificar"><a href="/user/upload" class="btn btn-modificar">Modificar perfil</a></div>
+		  	<div class="div-modificar"><a href="/user/editar" class="btn btn-modificar">Modificar perfil</a></div>
 		</div>
 </div>
 

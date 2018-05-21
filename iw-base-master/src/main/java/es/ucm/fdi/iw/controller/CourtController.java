@@ -81,11 +81,6 @@ public class CourtController {
 		return "pistas-user";
 	}
 	
-	@GetMapping("/tus-reservas")
-	public String tusReservas() {
-		return "tus-reservas";
-	}
-	
 	@GetMapping("/crear-pista")
 	public String loginAdmin() {
 		return "crear-pista";

@@ -49,6 +49,10 @@ private static Logger log = Logger.getLogger(AdminController.class);
 		return "editar-perfil";
 	}
     
+	@GetMapping("/tus-reservas")
+	public String tusReservas() {
+		return "tus-reservas";
+	}
 	
 	@RequestMapping(value = "/uploadUser", method = RequestMethod.POST)
 	@Transactional

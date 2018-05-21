@@ -36,9 +36,9 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Inicio</a></li>
-            <li><a href="#">Perfil</a></li>
-            <li><a href="#">Servicios</a></li>
-            <li><a href="#">Reservas</a></li>
+            <li><a href="/user/profile">Perfil</a></li>
+            <li><a href="/court/pistas-user">Pistas</a></li>
+            <li><a href="/user/tus-reservas">Reservas</a></li>
             <li><a href="#">Desconectarse</a></li>
           </ul>
         </div><!--/.nav-collapse -->
