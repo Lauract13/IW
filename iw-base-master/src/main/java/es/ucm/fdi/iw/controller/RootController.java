@@ -134,7 +134,7 @@ public class RootController {
 		session.setAttribute("user", u.getLogin());	
 		
 		if(u.getPassword().equals(Password) && u.getRoles().contains("ADMIN")) {
-			return "court/crear-pista";
+			return "redirect:/court/pistas";
 		}else {
 			return "login-admin";
 		}

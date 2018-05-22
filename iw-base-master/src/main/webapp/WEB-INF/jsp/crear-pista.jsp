@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-	<form action="newCourt" method="POST" id="form-registro">               
+	<form action="/court/newCourt" method="POST" id="form-registro">               
         <fieldset>
             <legend>Crear pista</legend>
             <div class="form-group">

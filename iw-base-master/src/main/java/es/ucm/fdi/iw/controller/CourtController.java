@@ -88,7 +88,7 @@ public class CourtController {
 	
 	@RequestMapping(value = "/newCourt", method = RequestMethod.POST)
 	@Transactional
-	public String addUser(
+	public String newCourt(
 			@RequestParam String Nombre, 
 			@RequestParam Double Precio,
 			@RequestParam String Direccion,
