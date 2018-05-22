@@ -14,7 +14,7 @@
 		  		<h4>Info</h4>
 		  		<p>dirección · 666777888</p>
 	  		</div>
-		  	<div class="div-modificar"><a href="/reserve/reserva" class="btn btn-modificar">Reservar</a></div>
+		  	<div class="div-modificar"><input type="button" id="datepicker" class="btn btn-modificar" value="Reservar"/></div>
 		</div>
 </div>
 

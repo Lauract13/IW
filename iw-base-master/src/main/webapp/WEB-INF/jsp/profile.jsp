@@ -7,7 +7,7 @@
 
 <div class="container">
     	<div class="perfil">
-    		<div class="cabecera-perfil"><img src="${s}/img/unknown-user.jpg" class="foto-perfil"/><span class="nombre-perfil">${user.name}</span></div>
+    		<div class="cabecera-perfil"><span class="nombre-perfil">${user.name}</span></div>
     		<div class="celda-perfil">
     			<h4>Info</h4>
     			<p>

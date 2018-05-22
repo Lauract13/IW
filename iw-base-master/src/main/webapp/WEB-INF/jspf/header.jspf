@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Aplicacion Web IW</title>
-
+	
     <!-- Bootstrap -->
     <link href="${s}/css/bootstrap.min.css" rel="stylesheet">
     <link href="${s}/css/starter-template.css" rel="stylesheet">
@@ -18,7 +18,10 @@
     <!-- Custom styles for this template -->
     <link href="${s}/css/sticky-footer.css" rel="stylesheet">
     <link href="${s}/css/commons.css" rel="stylesheet">
-    
+    <script   src="https://code.jquery.com/jquery-1.12.1.js"></script>
+    <script   src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="${s}/js/bootstrap.js"></script>
+    <script src="${s}/js/commons.js"></script>
   </head>
   <body>
   
