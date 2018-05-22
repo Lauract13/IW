@@ -60,17 +60,24 @@ private static Logger log = Logger.getLogger(AdminController.class);
 			@RequestParam String Nombre, 
 			@RequestParam String Direccion,
 			@RequestParam String Telefono,
+			@RequestParam String OldPassword, 
 			@RequestParam String Password, Model m, HttpSession session) {
 		
 		
 		User u = entityManager.find(User.class, session.getAttribute("user") );
+		if(u.getPassword().equals(OldPassword)) {
+			u.setName(Nombre);
+			u.setDir(Direccion);
+			u.setPhone(Telefono);
+			u.setPassword(Password);
+			m.addAttribute("user", u);
+			return "profile";
+		}else {
+			return "editar-perfil";
+		}
 		
-		u.setName(Nombre);
-		u.setDir(Direccion);
-		u.setPhone(Telefono);
-		u.setPassword(Password);
 		
-		return "profile";
+		
 	}
 	
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)

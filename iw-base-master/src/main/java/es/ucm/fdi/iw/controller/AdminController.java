@@ -7,12 +7,14 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -86,6 +88,7 @@ public class AdminController {
 	    try {
 		    if (f.exists()) {
 		    	in = new BufferedInputStream(new FileInputStream(f));
+		    	
 		    } else {
 		    	in = new BufferedInputStream(
 		    			this.getClass().getClassLoader().getResourceAsStream("unknown-user.jpg"));

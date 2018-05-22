@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-	<form action="/court/newCourt" method="POST" id="form-registro">               
+	<form action="/court/newCourt" method="POST" id="form-registro" enctype="multipart/form-data">               
         <fieldset>
             <legend>Crear pista</legend>
             <div class="form-group">
@@ -40,10 +40,11 @@
 			    <small id="fileHelp" class="form-text text-muted"></small>
 			</div>
             <div class="centrar">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             	<input type="submit" value="Crear" class="btn btn-login">
             </div>        
         </fieldset>
     </form> 	
 </div>
-
+<%@ include file="../jspf/authinfo.jspf"%>
 <%@ include file="../jspf/footer.jspf"%>

@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-    <form action="" method="POST" id="form-modificar">               
+    <form action="/user/uploadUser" method="POST" id="form-modificar">               
         <fieldset>
             <legend>Editar perfil</legend>
             <div class="form-group">
@@ -20,10 +20,6 @@
             <div class="form-group">
  				<label for="Direccion">Dirección</label>  
   				<input id="Direccion" name="Direccion" type="text" placeholder="Direccion" class="form-control" required="">
-            </div>
-            <div class="form-group">
- 				<label for="Email">Email</label>  
-  				<input id="Email" name="Email" type="email" placeholder="Email" class="form-control" required="">
             </div>
             <div class="form-group">
  				<label for="OldPassword">Contraseña antigua</label>  
