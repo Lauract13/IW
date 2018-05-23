@@ -1,18 +1,16 @@
 package es.ucm.fdi.iw.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
 
 @NamedQueries({
-	@NamedQuery(name = "findCourtByName", query = "select c from Court c where c.name = :n")
+	@NamedQuery(name = "findCourtByName", query = "select c from Court c where c.name = :n"),
+	@NamedQuery(name = "allCourts", query = "select c from Court c"),
+	@NamedQuery(name = "findCourtById", query = "select c from Court c where c.id = :n")
 })
 
 @Entity
@@ -26,9 +24,6 @@ public class Court {
 	@Size(min=1, max=500)
 	private String extras;
 	private double price;
-	@Basic(fetch = FetchType.LAZY)
-	@Lob 
-	@Column(nullable = false, length = 100000)
 	private byte[] photo;
 	
 	@Id

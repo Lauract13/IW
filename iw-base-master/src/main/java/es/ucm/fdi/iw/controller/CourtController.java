@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -66,13 +67,21 @@ public class CourtController {
 	    }
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping("/pistas")
-	public String pistas() {
+	public String pistas(Model m) {
+		
+		List<Court> l = entityManager.createNamedQuery("allCourts").getResultList();
+		
+		m.addAttribute("list", l);
 		return "pistas";
 	}
 	
-	@GetMapping("/perfil-pista")
-	public String perfilPista() {
+	@RequestMapping(value="/perfil-pista/{id}", method = RequestMethod.GET)
+	public String perfilPista(@PathVariable("id") String id, Model m) {
+		Court c = (Court) entityManager.createNamedQuery("findCourtById").getSingleResult();
+		
+		m.addAttribute("court", c);
 		return "perfil-pista";
 	}
 	
@@ -95,7 +104,7 @@ public class CourtController {
 			@RequestParam String Telefono,
 			@RequestParam String Extras,
 			@RequestParam String Descripcion,
-			@RequestParam("file") MultipartFile photo,Model m, HttpSession session) {
+			@RequestParam("file") MultipartFile photo, Model m, HttpSession session) {
 		
 		Court c = new Court();
 					
@@ -122,7 +131,7 @@ public class CourtController {
 				
 		entityManager.persist(c);
 		
-		return "pistas";
+		return "redirect:/court/pistas";
 	}
 	
 	@RequestMapping(value="/deleteCourt", method=RequestMethod.DELETE)

@@ -8,9 +8,16 @@
 <div class="container">
     	<div class="crear-pista"><a href="/court/crear-pista" class="link-crear-pista"><span class="glyphicon glyphicon-plus"></span> CREAR PISTA</a></div>
 		<ul class="list-group pistas">
-			<li class="list-group-item"><img class="img-pista" src="${s}/img/rugby.jpg"/><span class="titulo-pista">Pista rugby, 12€/hora</span><p class="descripcion-pista">
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ullamcorper consectetur lobortis. Praesent et orci sollicitudin, dignissim magna a, convallis odio. Aenean eget tristique lorem. Nam ex sem, lobortis a tortor feugiat, euismod lobortis ante. Aenean sagittis nulla lectus, imperdiet lacinia mi rhoncus non. </p><p>direccion · 666777888</p><a href="#" class="link-editar-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>  <a href="#" class="link-borrar-pista"><span class="glyphicon glyphicon-remove"></span> Borrar</a></li>
-			<li class="list-group-item"><img class="img-pista" src="${s}/img/tenis.jpg"/><span class="titulo-pista">Pista tenis, 10€/hora</span><p class="descripcion-pista">Mauris a lobortis augue, vel hendrerit mi. Sed tincidunt libero et diam pellentesque, vel lobortis augue porta. Fusce dictum purus vitae pulvinar euismod. Pellentesque leo eros, imperdiet eget luctus eu, hendrerit quis mauris. Fusce gravida eros libero. Quisque pharetra magna tempor, bibendum orci quis, luctus ipsum. Suspendisse potenti. Integer molestie est nisl. In hac habitasse platea dictumst. Phasellus metus ligula, eleifend vitae tellus laoreet, sodales malesuada ipsum.</p><p>direccion · 666777888</p><a href="#" class="link-editar-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>  <a href="#" class="link-borrar-pista"><span class="glyphicon glyphicon-remove"></span> Borrar</a></li>
+			<c:forEach items="${list}" var="court">
+	         	<li class="list-group-item">
+	         		<img class="img-pista" src="${s}/img/futbol.jpg"/>
+	         		<span class="titulo-pista">${court.name}, ${court.price}€/hora</span>
+	         		<p class="descripcion-pista">${court.description}</p>
+					<p>${court.dir} · ${court.phone}</p>
+					<a href="#" class="link-editar-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+					<a href="#" class="link-borrar-pista"><span class="glyphicon glyphicon-remove"></span> Borrar</a>
+				</li>
+	      	</c:forEach>
 		</ul>
 		
 </div>
