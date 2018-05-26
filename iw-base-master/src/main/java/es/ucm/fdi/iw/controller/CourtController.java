@@ -156,7 +156,8 @@ public class CourtController {
 							 @RequestParam String phone,
 							 @RequestParam String extras,
 							 @RequestParam double price,
-							 @RequestParam("file") MultipartFile photo) {
+							 @RequestParam("file") MultipartFile photo,
+							 Model m) {
 				
 		Court c = entityManager.find(Court.class, id);
 		
@@ -170,6 +171,7 @@ public class CourtController {
 			try {
 				byte[] bytes = photo.getBytes();
 				c.setPhoto(bytes);
+				m.addAttribute("court", c);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
