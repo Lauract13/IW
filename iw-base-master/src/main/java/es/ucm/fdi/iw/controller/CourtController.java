@@ -95,6 +95,11 @@ public class CourtController {
 		return "crear-pista";
 	}
 	
+	@GetMapping("/editar-pista")
+	public String editarPista() {
+		return "modificar-pista";
+	}
+	
 	@RequestMapping(value = "/newCourt", method = RequestMethod.POST)
 	@Transactional
 	public String newCourt(
