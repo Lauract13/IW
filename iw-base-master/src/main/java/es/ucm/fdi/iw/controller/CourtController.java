@@ -150,22 +150,23 @@ public class CourtController {
 	}
 	
 	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
-	public String uploadCourt(@RequestParam long id,
-							 @RequestParam String name,
-							 @RequestParam String description,
-							 @RequestParam String phone,
-							 @RequestParam String extras,
-							 @RequestParam double price,
-							 @RequestParam("file") MultipartFile photo,
-							 Model m) {
+	public String uploadCourt(
+			@RequestParam String Nombre, 
+			@RequestParam Double Precio,
+			@RequestParam String Direccion,
+			@RequestParam String Telefono,
+			@RequestParam String Extras,
+			@RequestParam String Descripcion,
+			@RequestParam("file") MultipartFile photo, Model m) {
 				
-		Court c = entityManager.find(Court.class, id);
+		Court c = entityManager.find(Court.class, Nombre);
 		
-		c.setDescription(description);
-		c.setName(name);
-		c.setPhone(phone);
-		c.setExtras(extras);
-		c.setPrice(price);
+		c.setDescription(Descripcion);
+		c.setName(Nombre);
+		c.setPhone(Telefono);
+		c.setExtras(Extras);
+		c.setPrice(Precio);
+		c.setDir(Direccion);
 		
 		if (!photo.isEmpty()) {
 			try {
@@ -178,7 +179,7 @@ public class CourtController {
 			}	
         }	
 		
-		return "home";
+		return "redirect:/court/pistas";
 	}
 	
 }
