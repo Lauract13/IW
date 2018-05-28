@@ -78,8 +78,8 @@ public class CourtController {
 	}
 	
 	@RequestMapping(value="/perfil-pista/{id}", method = RequestMethod.GET)
-	public String perfilPista(@PathVariable("id") String id, Model m) {
-		Court c = (Court) entityManager.createNamedQuery("findCourtById").getSingleResult();
+	public String perfilPista(@PathVariable("id") long id, Model m) {
+		Court c = (Court) entityManager.find(Court.class, id);
 		
 		m.addAttribute("court", c);
 		return "perfil-pista";
@@ -95,8 +95,11 @@ public class CourtController {
 		return "crear-pista";
 	}
 	
-	@GetMapping("/editar-pista")
-	public String editarPista() {
+	@RequestMapping(value="/editar-pista/{id}", method = RequestMethod.GET)
+	public String editarPista(@PathVariable("id") long id, Model m) {
+		Court c = (Court) entityManager.find(Court.class, id);
+		
+		m.addAttribute("court", c);
 		return "modificar-pista";
 	}
 	
@@ -139,18 +142,20 @@ public class CourtController {
 		return "redirect:/court/pistas";
 	}
 	
-	@RequestMapping(value="/deleteCourt", method=RequestMethod.DELETE)
-	public String deleteCourt(@RequestParam long id) {
+	@RequestMapping(value="/deleteCourt/{id}", method=RequestMethod.GET)
+	public String deleteCourt(@PathVariable("id") long id) {
 				
 		Court c = entityManager.find(Court.class, id);
 		
-		entityManager.remove(c);
+		//entityManager.remove(c);
 		
 		return "home";
 	}
 	
+	
 	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
 	public String uploadCourt(
+			@RequestParam long idCourt,
 			@RequestParam String Nombre, 
 			@RequestParam Double Precio,
 			@RequestParam String Direccion,
@@ -159,7 +164,7 @@ public class CourtController {
 			@RequestParam String Descripcion,
 			@RequestParam("file") MultipartFile photo, Model m) {
 				
-		Court c = entityManager.find(Court.class, Nombre);
+		Court c = entityManager.find(Court.class, idCourt);
 		
 		c.setDescription(Descripcion);
 		c.setName(Nombre);
