@@ -15,7 +15,7 @@
 	         		<p class="descripcion-pista">${court.description}</p>
 					<p>${court.dir} · ${court.phone}</p>
 					<a href="/court/editar-pista/${court.id}" class="link-editar-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-					<a href="/court/deleteCourt/${court.id}" class="link-borrar-pista"><span class="glyphicon glyphicon-remove"></span> Borrar</a>
+					<a href="#" class="link-borrar-pista"><span class="glyphicon glyphicon-remove"></span> Borrar</a>
 				</li>
 	      	</c:forEach>
 		</ul>

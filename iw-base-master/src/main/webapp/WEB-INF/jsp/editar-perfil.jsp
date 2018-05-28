@@ -11,19 +11,19 @@
             <legend>Editar perfil</legend>
             <div class="form-group">
  				<label for="Nombre">Nombre y Apellidos</label>  
-  				<input id="Nombre" name="Nombre" type="text" placeholder="Nombre" class="form-control" required="">
+  				<input id="Nombre" name="Nombre" value="${user.name}" type="text" placeholder="Nombre" class="form-control" required="">
             </div>
             <div class="form-group">
  				<label for="Telefono">Teléfono</label>  
-  				<input id="Telefono" name="Telefono" type="tel" placeholder="Telefono" class="form-control" required="">
+  				<input id="Telefono" name="Telefono" value="${user.phone}" type="tel" placeholder="Telefono" class="form-control" required="">
             </div>
             <div class="form-group">
  				<label for="Direccion">Dirección</label>  
-  				<input id="Direccion" name="Direccion" type="text" placeholder="Direccion" class="form-control" required="">
+  				<input id="Direccion" name="Direccion" value="${user.dir}" type="text" placeholder="Direccion" class="form-control" required="">
             </div>
             <div class="form-group">
  				<label for="OldPassword">Contraseña antigua</label>  
-  				<input id="OldPassword" name="OldPassword" type="password" placeholder="Password" class="form-control" required="">
+  				<input id="OldPassword" name="OldPassword" value="${user.password}" type="password" placeholder="Password" class="form-control" required="">
             </div>
             <div class="form-group">
  				<label for="Password">Nueva contraseña</label>  

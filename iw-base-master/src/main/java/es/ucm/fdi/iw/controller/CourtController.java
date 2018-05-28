@@ -85,8 +85,13 @@ public class CourtController {
 		return "perfil-pista";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@GetMapping("/pistas-user")
-	public String pistasUser() {
+	public String pistasUser(Model m) {
+		
+		List<Court> l = entityManager.createNamedQuery("allCourts").getResultList();
+		
+		m.addAttribute("list", l);
 		return "pistas-user";
 	}
 	
@@ -142,16 +147,15 @@ public class CourtController {
 		return "redirect:/court/pistas";
 	}
 	
-	@RequestMapping(value="/deleteCourt/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/deleteCourt/{id}", method=RequestMethod.DELETE)
 	public String deleteCourt(@PathVariable("id") long id) {
 				
 		Court c = entityManager.find(Court.class, id);
 		
-		//entityManager.remove(c);
+		entityManager.remove(c);
 		
 		return "home";
-	}
-	
+	}	
 	
 	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
 	public String uploadCourt(

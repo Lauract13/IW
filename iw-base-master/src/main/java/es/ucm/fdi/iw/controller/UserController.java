@@ -40,7 +40,11 @@ private static Logger log = Logger.getLogger(AdminController.class);
 	
 	
 	@GetMapping("/upload")
-	public String upload() {
+	public String upload(Model m, HttpSession session) {
+		User u = entityManager.find(User.class, session.getAttribute("user"));
+  	
+    	m.addAttribute("user", u);
+    	
 		return "upload";
 	}
 	
