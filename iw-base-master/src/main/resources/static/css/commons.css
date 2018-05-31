@@ -319,3 +319,8 @@ dd {
 .img-home {
 	width: 700px;
 }
+
+label[for="datepicker"] {
+    font-size: 20px;
+	font-weight: 1;
+}

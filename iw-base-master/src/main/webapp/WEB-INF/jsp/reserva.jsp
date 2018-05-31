@@ -7,7 +7,10 @@
 
 <div class="container">
 		<div class="reserva">
-			<h3>Reserva para el día 21/05/2018</h3>
+			<h3>Reservar pista Pista1</h3>
+			<div class="centrar">
+			<label for="datepicker">Fecha:</label> <input type="text" id="datepicker" autocomplete="off">
+			</div>
 	    	<div class="horario">
 	    		<div class="celda-horario">
 	    			<div><input type="checkbox" name="franja-horaria" id="franja-9-10"> <label for="franja-9-10"> 09:00 — 10:00</label></div>
@@ -30,6 +33,7 @@
 	    			<div><input type="checkbox" name="franja-horaria" id="franja-20-21"> <label for="franja-20-21"> 20:00 — 21:00</label></div>
 	    		</div>
 	    	</div>
+	    	
 	    	<div class="centrar">
 	    		<button type="submit" class="btn btn-reservar">Reservar</button>
 	    	</div>
