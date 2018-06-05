@@ -7,7 +7,7 @@
 
 <% int count = 0; %>
 
-<script type="text/javascript">
+<script type="text/javascript">  
     var count = "<%=count%>"
 </script>
 
@@ -21,7 +21,7 @@
 		    	<div class="horario">
 		    		<div class="celda-horario">
 		    			<div><input type="checkbox" name="franja-horaria" id="franja-9-10"> <label for="franja-9-10"> 09:00 — 10:00</label></div>
-		    			<div><input type="checkbox" name="franja-horaria" id="franja-10-11"> <label for="franja-10-11"> 10:00 — 11:00</label></div>
+		     			<div><input type="checkbox" name="franja-horaria" id="franja-10-11"> <label for="franja-10-11"> 10:00 — 11:00</label></div>
 		    			<div><input type="checkbox" name="franja-horaria" id="franja-11-12"> <label for="franja-11-12"> 11:00 — 12:00</label></div>
 		    		</div>
 		    		<div class="celda-horario">
