@@ -56,11 +56,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/home">Inicio</a></li>
-            <li><a href="/user/profile">Perfil</a></li>
-            <li><a href="/court/pistas-user">Pistas</a></li>
-            <li><a href="/user/tus-reservas">Reservas</a></li>
-            <li><a href="/logout">Desconectarse</a></li>
+            <li><a href="/login">Iniciar sesión</a></li>
+            <li><a href="/register">Registrarse</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
