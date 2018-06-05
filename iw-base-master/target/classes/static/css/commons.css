@@ -318,4 +318,20 @@ dd {
 
 .img-home {
 	width: 700px;
+	margin: 10px 0px;
 }
+
+label[for*="datepicker"] {
+    font-size: 20px;
+	font-weight: 1;
+}
+
+.nueva-reserva {
+    margin-top: 10px;
+}
+
+.margen-arriba {
+	margin-top: 10px;
+}
+
+#anadir-fecha { cursor: pointer; }

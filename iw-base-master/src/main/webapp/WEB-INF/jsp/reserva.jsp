@@ -17,7 +17,7 @@
 			<div class="centrar">
 			<label for="datepicker<%= count%>">Fecha <%= count + 1%>:</label> <input type="text" id="datepicker<%= count%>" class="datepicker" autocomplete="off">
 			</div>
-			<form action="/" method="post" id="form-reserva">
+			<form action="/reserve/nuevaReserva" method="post" id="form-reserva">
 		    	<div class="horario">
 		    		<div class="celda-horario">
 		    			<div><input type="checkbox" name="franja-horaria" id="franja-9-10"> <label for="franja-9-10"> 09:00 — 10:00</label></div>
@@ -45,6 +45,7 @@
 		    	<div class="centrar">
 		    		<button type="submit" class="btn btn-reservar">Reservar</button>
 		    	</div>
+		    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		    </form>
 	    </div>
 </div>

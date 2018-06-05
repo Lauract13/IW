@@ -45,10 +45,12 @@ public class ReserveController {
 		return "create";
 	}
     // id usuario, fecha->date, id pista
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/nuevaReserva", method = RequestMethod.POST)
 	@Transactional
 	public String creaReserva(
-			@RequestParam String Email) {
+			@RequestParam String Email,
+			@RequestParam String datepicker
+			) {
 	
 		Reservation r = new Reservation();
 		//año-mes-dia-horas-minutos-segundos
