@@ -321,7 +321,17 @@ dd {
 	margin: 10px 0px;
 }
 
-label[for="datepicker"] {
+label[for*="datepicker"] {
     font-size: 20px;
 	font-weight: 1;
 }
+
+.nueva-reserva {
+    margin-top: 10px;
+}
+
+.margen-arriba {
+	margin-top: 10px;
+}
+
+#anadir-fecha { cursor: pointer; }
