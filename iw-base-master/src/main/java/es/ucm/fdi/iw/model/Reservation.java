@@ -10,9 +10,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
-@NamedQueries({
+/*@NamedQueries({
 	@NamedQuery(name = "findUserBooking", query = "select r from Reservation r where r.user_login = :n")
-})
+})*/
 
 @Entity
 public class Reservation {
@@ -24,6 +24,7 @@ public class Reservation {
 	
 	@OneToOne
 	private Court court;
+	
 	
 	@OneToOne
 	private User user;

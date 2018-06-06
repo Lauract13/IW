@@ -335,3 +335,8 @@ label[for*="datepicker"] {
 }
 
 #anadir-fecha { cursor: pointer; }
+
+p.error {
+	color: red;
+	margin-top: 5px;
+}

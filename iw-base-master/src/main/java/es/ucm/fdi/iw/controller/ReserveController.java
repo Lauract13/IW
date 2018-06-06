@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.ucm.fdi.iw.model.Court;
+import es.ucm.fdi.iw.model.ReservaHoras;
 import es.ucm.fdi.iw.model.Reservation;
 import es.ucm.fdi.iw.model.User;
 
@@ -47,36 +48,66 @@ public class ReserveController {
 			@RequestParam ("franja-horaria") String[] checkboxValue,
 			HttpSession session) {
     	int j = 0;
-    	for(int i = 9; i < 21; i++) {
-    		String aux = Integer.toString(i);
-    		if(checkboxValue[j].equals(aux)) {
-    			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-    			
-    			String d = datepicker + " " + checkboxValue[j] + ":00";
-    			
-    			try {
-					Date date = sdf.parse(d);
+    	Reservation r = new Reservation();
+    	
+    	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    	String d = datepicker;
+    	Date date;
+		try {
+			date = sdf.parse(d);
+			r.setDate(date);
+			User u = entityManager.find(User.class, session.getAttribute("user"));
+			
+			r.setUser(u);
+			
+			Court c = entityManager.find(Court.class, Long.parseLong(idCourt));
+			
+			r.setCourt(c);
+			
+			long idr = r.getId();
 					
-					Reservation r = new Reservation();
+			entityManager.persist(r);
+			
+			for(int i = 9; i < 21; i++) {
+	    		String aux = Integer.toString(i);
+	    		if(checkboxValue[j].equals(aux)) {
+	    			//SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+	    			//SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	    			
+	    			
+	    			//String d = datepicker + " " + checkboxValue[j] + ":00";
+	    			
+	    			//String d = datepicker;
+	    			String h = checkboxValue[j] + ":00";
+	    			
+	    			
+						//Date date = sdf.parse(d);
+						
+						
+						
+						ReservaHoras rs = new ReservaHoras();
+						
+						
+						rs.setIdReserva(idr);
+						
+						rs.setHora(h);
+						
+						entityManager.persist(rs);
+						
 					
-					r.setDate(date);
-					User u = entityManager.find(User.class, session.getAttribute("user"));
-					
-					r.setUser(u);
-					
-					Court c = entityManager.find(Court.class, Long.parseLong(idCourt));
-					
-					r.setCourt(c);
-							
-					entityManager.persist(r);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    			j++;
-    		}
-    		
-    	}
+	    			j++;
+	    		}
+	    		
+	    	}
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    
+		
+		
+    	
+    	
     			
 		
 		
