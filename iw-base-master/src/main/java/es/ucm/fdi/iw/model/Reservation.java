@@ -3,12 +3,12 @@ package es.ucm.fdi.iw.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-
+@Entity
 public class Reservation {
 	
 	@Id
@@ -16,7 +16,7 @@ public class Reservation {
 	private long id;
 	private Date date;
 	
-	@OneToMany
+	@OneToOne
 	private Court court;
 	
 	@OneToOne
@@ -37,10 +37,20 @@ public class Reservation {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public User getIdUser() {
+
+	public Court getCourt() {
+		return court;
+	}
+
+	public void setCourt(Court court) {
+		this.court = court;
+	}
+
+	public User getUser() {
 		return user;
 	}
-	public void setIdUser(User idU) {
-		this.user = idU;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

@@ -16,7 +16,7 @@
 		  		<h4>Extras</h4>
 		  		<p>${court.extras}</p>
 	  		</div>
-		  	<div class="div-modificar"><a href="/reserve/reserva" class="btn btn-modificar">Reservar</a></div>
+		  	<div class="div-modificar"><a href="/reserve/reserva/${court.id}" class="btn btn-modificar">Reservar</a></div>
 		</div>
 </div>
 

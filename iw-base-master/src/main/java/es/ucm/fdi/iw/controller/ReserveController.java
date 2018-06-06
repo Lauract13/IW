@@ -1,11 +1,5 @@
 package es.ucm.fdi.iw.controller;
 
-
-
-
-
-
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,18 +7,18 @@ import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import es.ucm.fdi.iw.model.Court;
 import es.ucm.fdi.iw.model.Reservation;
 import es.ucm.fdi.iw.model.User;
 
@@ -32,9 +26,6 @@ import es.ucm.fdi.iw.model.User;
 @Controller	
 @RequestMapping("reserve")
 public class ReserveController {
-	
-	private static Logger log = Logger.getLogger(AdminController.class);
-	
 	@Autowired
 	private EntityManager entityManager;
 
@@ -51,6 +42,7 @@ public class ReserveController {
     @RequestMapping(value = "/nuevaReserva", method = RequestMethod.POST)
 	@Transactional
 	public String creaReserva(
+			@RequestParam String idCourt,
 			@RequestParam String datepicker,
 			@RequestParam ("franja-horaria") String[] checkboxValue,
 			HttpSession session) {
@@ -66,10 +58,15 @@ public class ReserveController {
 					Date date = sdf.parse(d);
 					
 					Reservation r = new Reservation();
-					//año-mes-dia-horas-minutos-segundos
 					
 					r.setDate(date);
-					//r.setIdUser((String) session.getAttribute("user"));
+					User u = entityManager.find(User.class, session.getAttribute("user"));
+					
+					r.setUser(u);
+					
+					Court c = entityManager.find(Court.class, Long.parseLong(idCourt));
+					
+					r.setCourt(c);
 							
 					entityManager.persist(r);
 				} catch (ParseException e) {
@@ -90,8 +87,10 @@ public class ReserveController {
 		return "upload";
 	}
 	
-    @GetMapping("/reserva")
-	public String reserva() {
+    @RequestMapping(value ="/reserva/{id}", method = RequestMethod.GET)
+	public String reserva(@PathVariable("id") String id, Model m) {
+    	m.addAttribute("idCourt", id);
+    	m.addAttribute("s", "../../static");
 		return "reserva";
 	}
 
