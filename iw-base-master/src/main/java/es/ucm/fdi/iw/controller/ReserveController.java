@@ -88,7 +88,7 @@ public class ReserveController {
 						ReservaHoras rs = new ReservaHoras();
 						
 						
-						rs.setIdReserva(idr);
+						rs.setIdReserva(idr); 
 						
 						rs.setHora(h);
 						
