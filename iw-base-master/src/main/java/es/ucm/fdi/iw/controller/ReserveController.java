@@ -6,6 +6,8 @@ package es.ucm.fdi.iw.controller;
 
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.EntityManager;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import es.ucm.fdi.iw.model.Reservation;
+import es.ucm.fdi.iw.model.User;
 
 
 @Controller	
@@ -48,22 +51,36 @@ public class ReserveController {
     @RequestMapping(value = "/nuevaReserva", method = RequestMethod.POST)
 	@Transactional
 	public String creaReserva(
-			@RequestParam String Email,
-			@RequestParam String datepicker
-			) {
-	
-		Reservation r = new Reservation();
-		//año-mes-dia-horas-minutos-segundos
-		Date date = new Date();
-		r.setDate(date);
-		
-		r.setIdUser(Email);
-		
-
-				
-		entityManager.persist(r);
-		
-		
+			@RequestParam String datepicker,
+			@RequestParam ("franja-horaria") String[] checkboxValue,
+			HttpSession session) {
+    	int j = 0;
+    	for(int i = 9; i < 21; i++) {
+    		String aux = Integer.toString(i);
+    		if(checkboxValue[j].equals(aux)) {
+    			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+    			
+    			String d = datepicker + " " + checkboxValue[j] + ":00";
+    			
+    			try {
+					Date date = sdf.parse(d);
+					
+					Reservation r = new Reservation();
+					//año-mes-dia-horas-minutos-segundos
+					
+					r.setDate(date);
+					//r.setIdUser((String) session.getAttribute("user"));
+							
+					entityManager.persist(r);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    			j++;
+    		}
+    		
+    	}
+    			
 		
 		
 		return "home";

@@ -20,7 +20,7 @@ public class Reservation {
 	private Court court;
 	
 	@OneToOne
-	private String idUser;
+	private User user;
 
 	public Date getDate() {
 		return date;
@@ -37,10 +37,10 @@ public class Reservation {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getIdUser() {
-		return idUser;
+	public User getIdUser() {
+		return user;
 	}
-	public void setIdUser(String idU) {
-		this.idUser = idU;
+	public void setIdUser(User idU) {
+		this.user = idU;
 	}
 }
