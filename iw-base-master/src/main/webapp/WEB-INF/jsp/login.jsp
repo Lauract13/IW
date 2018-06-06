@@ -6,18 +6,20 @@
 <%@ include file="../jspf/header-2.jspf"%>
 
 <div class="container">
-    <form action="/login" method="post" id="form-registro">               
+    <form action="/login" method="post" id="form-registro">
         <fieldset class="form-group">
             <legend>Inicio de sesión</legend>
             <div class="form-group">
 	            <label for="Email">Email</label>
 	            <input type="text" id="username" name="Email" class="form-control"/>
+	            <c:if test="${not empty errorEmail}"><p class="error">${errorEmail}</p></c:if>
 	        </div>        
 	        <div class="form-group">
 	            <label for="password">Contraseña</label>
 	            <input type="password" id="password" name="Password" class="form-control"/>
+	            <c:if test="${not empty errorPassword}"><p class="error">${errorPassword}</p></c:if>
 	        </div>
-            
+            <c:if test="${not empty error}"><p class="error">${error}</p></c:if>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
             <button type="submit" class="btn btn-login">Iniciar sesión</button><a href="/register" class="btn btn-registro">Registro</a>

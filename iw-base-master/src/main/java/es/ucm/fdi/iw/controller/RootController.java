@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -113,13 +115,31 @@ public class RootController {
 	@Transactional
 	public String login(@RequestParam String Email,
 						@RequestParam String Password, Model m, HttpSession session) {
-		User u = entityManager.find(User.class, Email);
-	
-		session.setAttribute("user", u.getLogin());	
 		
-		if(u.getPassword().equals(Password)) {
-			return "home";
-		}else {
+		Boolean errores = false;
+		if (Email == "") {
+			m.addAttribute("errorEmail", "Debe insertar un email");
+			errores = true;
+		}
+		if (Password == "") {
+			m.addAttribute("errorPassword", "Debe insertar una contraseña");
+			errores = true;
+		}
+		if (errores) {
+			return "login";
+		}
+		try {
+			User u = entityManager.find(User.class, Email);
+			session.setAttribute("user", u.getLogin());	
+			
+			if(u.getPassword().equals(Password)) {
+				return "home";
+			}else {
+				m.addAttribute("error", "El usuario introducido no es correcto");
+				return "login";
+			}
+		} catch (Exception e) {
+			m.addAttribute("error", "El usuario introducido no es correcto");
 			return "login";
 		}
 			
