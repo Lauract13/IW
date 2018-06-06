@@ -1,5 +1,7 @@
 package es.ucm.fdi.iw.controller;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.ucm.fdi.iw.model.Court;
+import es.ucm.fdi.iw.model.Reservation;
 import es.ucm.fdi.iw.model.User;
 
 @Controller	
@@ -54,7 +58,13 @@ private static Logger log = Logger.getLogger(AdminController.class);
 	}
     
 	@GetMapping("/tus-reservas")
-	public String tusReservas() {
+	public String tusReservas(Model m) {
+		List<Reservation> l = entityManager.createNamedQuery("findUserBooking").getResultList();
+		//Hay que hacer que todas las reervas de un mismo día se vean en un solo pack
+		for(Reservation r: l) {
+			
+		}
+		
 		return "tus-reservas";
 	}
 	
@@ -94,5 +104,7 @@ private static Logger log = Logger.getLogger(AdminController.class);
 		
 		return "profile";
 	}
+	
+	
 }
 

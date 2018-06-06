@@ -6,7 +6,13 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+
+@NamedQueries({
+	@NamedQuery(name = "findUserBooking", query = "select r from Reservation r where r.user_login = :n")
+})
 
 @Entity
 public class Reservation {
