@@ -1,8 +1,13 @@
 package es.ucm.fdi.iw.model;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,9 +15,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
-/*@NamedQueries({
-	@NamedQuery(name = "findUserBooking", query = "select r from Reservation r where r.user_login = :n")
-})*/
+@NamedQueries({
+	@NamedQuery(name = "findUserBooking", query = "select r from Reservation r where r.user = :n")
+})
 
 @Entity
 public class Reservation {
@@ -25,7 +30,18 @@ public class Reservation {
 	@OneToOne
 	private Court court;
 	
+	@ElementCollection
+	@CollectionTable(name ="horas")
+	private List<String> horas = new ArrayList<>();
 	
+	public List<String> getHoras() {
+		return horas;
+	}
+
+	public void setHoras(List<String> horas) {
+		this.horas = horas;
+	}
+
 	@OneToOne
 	private User user;
 

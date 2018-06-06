@@ -2,7 +2,9 @@ package es.ucm.fdi.iw.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
@@ -19,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.ucm.fdi.iw.model.Court;
-import es.ucm.fdi.iw.model.ReservaHoras;
 import es.ucm.fdi.iw.model.Reservation;
 import es.ucm.fdi.iw.model.User;
 
@@ -62,55 +63,27 @@ public class ReserveController {
 			
 			Court c = entityManager.find(Court.class, Long.parseLong(idCourt));
 			
-			r.setCourt(c);
+			r.setCourt(c);			
 			
-			long idr = r.getId();
-					
-			entityManager.persist(r);
-			
-			for(int i = 9; i < 21; i++) {
+			List<String> horas = new ArrayList<>();
+			for(int i = 9; i < 21 && j < checkboxValue.length; i++) {
 	    		String aux = Integer.toString(i);
 	    		if(checkboxValue[j].equals(aux)) {
-	    			//SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-	    			//SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-	    			
-	    			
-	    			//String d = datepicker + " " + checkboxValue[j] + ":00";
-	    			
-	    			//String d = datepicker;
 	    			String h = checkboxValue[j] + ":00";
 	    			
-	    			
-						//Date date = sdf.parse(d);
-						
-						
-						
-						ReservaHoras rs = new ReservaHoras();
-						
-						
-						rs.setIdReserva(idr); 
-						   
-						rs.setHora(h);
-						
-						entityManager.persist(rs);
-						
+	    			horas.add(h);				
 					
 	    			j++;
-	    		}
-	    		
+	    		}	    		
 	    	}
+			
+			r.setHoras(horas);
+    		entityManager.persist(r);
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-    
-		
-		
-    	
-    	
-    			
-		
-		
+
 		return "home";
 	}
     @GetMapping("/upload")
