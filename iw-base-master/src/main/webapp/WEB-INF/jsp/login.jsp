@@ -11,12 +11,12 @@
             <legend>Inicio de sesión</legend>
             <div class="form-group">
 	            <label for="Email">Email</label>
-	            <input type="text" id="username" name="Email" class="form-control"/>
+	            <input type="text" id="username" name="Email" class="form-control" required=""/>
 	            <c:if test="${not empty errorEmail}"><p class="error">${errorEmail}</p></c:if>
 	        </div>        
 	        <div class="form-group">
 	            <label for="password">Contraseña</label>
-	            <input type="password" id="password" name="Password" class="form-control"/>
+	            <input type="password" id="password" name="Password" class="form-control" required=""/>
 	            <c:if test="${not empty errorPassword}"><p class="error">${errorPassword}</p></c:if>
 	        </div>
             <c:if test="${not empty error}"><p class="error">${error}</p></c:if>
