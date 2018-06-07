@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.Court;
+import es.ucm.fdi.iw.model.User;
 
 
 @Controller
@@ -105,7 +106,7 @@ public class CourtController {
 	
 	@RequestMapping(value="/editar-pista/{id}", method = RequestMethod.GET)
 	public String editarPista(@PathVariable("id") long id, Model m) {
-		Court c = (Court) entityManager.find(Court.class, id);
+		Court c =  entityManager.find(Court.class, id);
 		
 		m.addAttribute("court", c);
 		return "modificar-pista";
@@ -185,6 +186,7 @@ public class CourtController {
 				byte[] bytes = photo.getBytes();
 				c.setPhoto(bytes);
 				m.addAttribute("court", c);
+				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

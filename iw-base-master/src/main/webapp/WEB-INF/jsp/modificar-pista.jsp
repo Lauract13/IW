@@ -28,15 +28,15 @@
             
             <div class="form-group">
            		<label for="Descripcion">Descripción</label> 
-            	<textarea id="Descripcion" name="Descripcion" cols="40" rows="5" class="form-control">${court.description}</textarea>    
+            	<textarea id="Descripcion" name="Descripcion" cols="40" rows="5" class="form-control" required>${court.description}</textarea>    
             </div>
              <div class="form-group">
            		<label for="Extras">Extras</label> 
-            	<textarea id="Extras" name="Extras" cols="40" rows="5" class="form-control">${court.extras}</textarea>    
+            	<textarea id="Extras" name="Extras" cols="40" rows="5" class="form-control" required>${court.extras}</textarea>    
             </div>
             <div class="form-group">
 			    <label for="Imagen">Imágen</label>
-			    <input type="file" name="file" class="form-control-file" id="Imagen" aria-describedby="fileHelp">
+			    <input type="file" name="file" class="form-control-file" id="Imagen" aria-describedby="fileHelp" required>
 			    <small id="fileHelp" class="form-text text-muted"></small>
 			</div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
