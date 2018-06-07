@@ -9,25 +9,20 @@
     <form action="/newUser" method="POST" id="form-registro">               
         <fieldset>
             <legend>Registro</legend>
-            <div class="form-group">
- 				<label for="Nombre">Nombre y Apellidos</label>  
-  				<input id="Nombre" name="Nombre" type="text" placeholder="Nombre" class="form-control" required="">
+            <div class="form-group custom-form-group">
+  				<input id="Nombre" name="Nombre" type="text" placeholder="Nombre" class="form-control custom-input" required="">
             </div>
-            <div class="form-group">
- 				<label for="Telefono">Teléfono</label>  
-  				<input id="Telefono" name="Telefono" type="tel" placeholder="Telefono" class="form-control" required="">
+            <div class="form-group custom-form-group">
+  				<input id="Telefono" name="Telefono" type="tel" placeholder="Teléfono" class="form-control custom-input" required="">
             </div>
-            <div class="form-group">
- 				<label for="Direccion">Dirección</label>  
-  				<input id="Direccion" name="Direccion" type="text" placeholder="Direccion" class="form-control" required="">
+            <div class="form-group custom-form-group">
+  				<input id="Direccion" name="Direccion" type="text" placeholder="Dirección" class="form-control custom-input" required="">
             </div>
-            <div class="form-group">
- 				<label for="Email">Email</label>  
-  				<input id="Email" name="Email" type="email" placeholder="Email" class="form-control" required="">
+            <div class="form-group custom-form-group">
+  				<input id="Email" name="Email" type="email" placeholder="Email" class="form-control custom-input" required="">
             </div>
-            <div class="form-group">
- 				<label for="Password">Contraseña</label>  
-  				<input id="Password" name="Password" type="password" placeholder="Password" class="form-control" required="">
+            <div class="form-group custom-form-group">
+  				<input id="Password" name="Password" type="password" placeholder="Password" class="form-control custom-input" required="">
             </div>
     		<div class="form-group">
     			<label for="UCM">¿Vinculado a la UCM?</label>
@@ -38,12 +33,13 @@
 				  <label class="form-check-label" for="inlineCheckbox2">No</label>
 				</div>
     		</div>
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            
-            <input type="submit" value="Regístrate" class="btn btn-login">
+    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    		<div class="centrar">
+    			<input type="submit" value="Registrarse" class="btn submit-registro">
+    		</div>
+                       
         </fieldset>
     </form>
 		
 </div>
-
 <%@ include file="../jspf/footer.jspf"%>
