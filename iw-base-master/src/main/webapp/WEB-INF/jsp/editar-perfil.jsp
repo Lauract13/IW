@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
  				<label for="OldPassword">Contraseña antigua</label>  
-  				<input id="OldPassword" name="OldPassword" value="${user.password}" type="password" placeholder="Password" class="form-control" required="">
+  				<input id="OldPassword" name="OldPassword" type="password" placeholder="Password" class="form-control" required="">
            		<c:if test="${not empty errorOldPassword}"><p class="error">${errorOldPassword}</p></c:if>
             
             </div>
