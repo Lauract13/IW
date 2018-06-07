@@ -18,10 +18,11 @@ public class Court {
 
 	private long id;
 	private String name;
+	@Size(min=1, max=1000)
 	private String description;
 	private String dir;
 	private String phone;
-	@Size(min=1, max=500)
+	@Size(min=1, max=1000)
 	private String extras;
 	private double price;
 	private byte[] photo;

@@ -36,7 +36,7 @@
 }
 
 #form-registro {
-	width: 60%;
+	width: 700px;
 	margin: auto;
 	margin-bottom: 20px;
 }
@@ -129,7 +129,7 @@
 
 .perfil {
 	padding: 10px;
-	width: 80%;
+	width: 800px;
 	margin: auto;
 	border-radius: 5px;
 	border: solid 1px #d9d9d9;
@@ -195,7 +195,7 @@ dd {
 }
 
 #form-modificar {
-	width: 60%;
+	width: 700px;
 	margin: auto;
 	border: solid 1px #d9d9d9;
 	border-radius: 15px;
@@ -287,10 +287,10 @@ dd {
 
 .reserva {
 	margin: auto;
-	width: 60%;
+	width: 700px;
 }
 .horario {
-	
+	background-color: white;
 	border-radius: 5px;
 	border: solid 1px #d9d9d9;
 }
@@ -339,4 +339,11 @@ label[for*="datepicker"] {
 p.error {
 	color: red;
 	margin-top: 5px;
+}
+
+.reserva-celda {
+	border-radius: 5px;
+	background-color: #dadee0;
+	margin: 20px;
+	padding: 10px;
 }
