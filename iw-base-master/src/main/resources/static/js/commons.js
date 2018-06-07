@@ -17,7 +17,7 @@ function datepickerFunction() {
         altFormat: "dd-mm-yy",
         dateFormat: "dd-mm-yy",
 	});
-	$( ".datepicker-weekends" ).datepicker({
+	$( ".datepicker-weekend" ).datepicker({
         altFormat: "dd-mm-yy",
         dateFormat: "dd-mm-yy",
         beforeShowDay:
