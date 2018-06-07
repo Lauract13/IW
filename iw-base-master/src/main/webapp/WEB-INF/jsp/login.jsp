@@ -22,7 +22,7 @@
             <c:if test="${not empty error}"><p class="error">${error}</p></c:if>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             
-            <button type="submit" class="btn btn-login">Iniciar sesión</button><a href="/register" class="btn btn-registro">Registro</a>
+            <button type="submit" class="btn btn-login">Iniciar sesión</button><a href="/register" class="btn btn-registro">Registrarse</a>
         </fieldset>
         <%@ include file="../jspf/authinfo.jspf"%>
     </form>

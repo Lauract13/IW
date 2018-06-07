@@ -36,11 +36,15 @@ private static Logger log = Logger.getLogger(AdminController.class);
     
     @GetMapping("/profile")
     public String profile(Model m, HttpSession session) {
-    	User u = entityManager.find(User.class, session.getAttribute("user"));
+    	if (session.getAttribute("user") != null) {
+    		User u = entityManager.find(User.class, session.getAttribute("user"));
+        	m.addAttribute("user", u);
+        	return "profile";
+        	
+    	} else {
+    		return "redirect:/login";
+    	}
     	
-    	m.addAttribute("user", u);
-    	
-    	return "profile";
     }
 	
 	
@@ -54,47 +58,55 @@ private static Logger log = Logger.getLogger(AdminController.class);
 	}
 	
 	@GetMapping("/editar")
-	public String editar() {
-		return "editar-perfil";
+	public String editar(HttpSession session) {
+		if (session.getAttribute("user") != null) {
+			return "editar-perfil";
+		} else {
+			return "redirect:/login";
+		}
 	}
     
 	@SuppressWarnings("unchecked")
 	@GetMapping("/tus-reservas")
 	public String tusReservas(Model m, HttpSession session) {
-		User u = entityManager.find(User.class, session.getAttribute("user"));
-		List<Reservation> l = entityManager.createNamedQuery("findUserBooking").setParameter("n", u).getResultList();
-		
-		List<TReservation> list = new ArrayList<TReservation>();
-		for(Reservation r: l) {
-			TReservation t = new TReservation();
+		if (session.getAttribute("user") != null) {
+			User u = entityManager.find(User.class, session.getAttribute("user"));
+			List<Reservation> l = entityManager.createNamedQuery("findUserBooking").setParameter("n", u).getResultList();
 			
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-			String date = sdf.format(r.getDate());
-			
-			t.setDate(date);
-			t.setId(r.getId());
-			t.setNameCourt(r.getCourt().getName());
-			
-			List<String> horas = r.getHoras();
-			List<String> tHoras = new ArrayList<String>();
-			for(int i = 0; i < horas.size(); i++) {
-				String[] h = horas.get(i).split(":");
+			List<TReservation> list = new ArrayList<TReservation>();
+			for(Reservation r: l) {
+				TReservation t = new TReservation();
 				
-				int n = Integer.parseInt(h[0]);
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				String date = sdf.format(r.getDate());
 				
-				String cad = n + ":00 - " + (n+1) + ":00";
+				t.setDate(date);
+				t.setId(r.getId());
+				t.setNameCourt(r.getCourt().getName());
 				
-				tHoras.add(cad);
+				List<String> horas = r.getHoras();
+				List<String> tHoras = new ArrayList<String>();
+				for(int i = 0; i < horas.size(); i++) {
+					String[] h = horas.get(i).split(":");
+					
+					int n = Integer.parseInt(h[0]);
+					
+					String cad = n + ":00 - " + (n+1) + ":00";
+					
+					tHoras.add(cad);
+				}
+				
+				t.setHoras(tHoras);
+				
+				list.add(t);
 			}
 			
-			t.setHoras(tHoras);
+			m.addAttribute("list", list);	
 			
-			list.add(t);
+			return "tus-reservas";
+		} else {
+			return "redirect:/login";
 		}
-		
-		m.addAttribute("list", list);	
-		
-		return "tus-reservas";
 	}
 	
 	@RequestMapping(value = "/uploadUser", method = RequestMethod.POST)

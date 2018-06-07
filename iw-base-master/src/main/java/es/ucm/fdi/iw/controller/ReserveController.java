@@ -85,7 +85,7 @@ public class ReserveController {
 			e1.printStackTrace();
 		}
 
-		return "home";
+		return "tus-reservas";
 	}
     @GetMapping("/upload")
 	public String upload() {

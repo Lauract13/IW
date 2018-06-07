@@ -87,12 +87,15 @@ public class CourtController {
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/pistas-user")
-	public String pistasUser(Model m) {
-		
-		List<Court> l = entityManager.createNamedQuery("allCourts").getResultList();
-		
-		m.addAttribute("list", l);
-		return "pistas-user";
+	public String pistasUser(Model m, HttpSession session) {
+		if (session.getAttribute("user") != null) {
+			List<Court> l = entityManager.createNamedQuery("allCourts").getResultList();
+			
+			m.addAttribute("list", l);
+			return "pistas-user";
+		} else {
+			return "redirect:/login";
+		}
 	}
 	
 	@GetMapping("/crear-pista")
