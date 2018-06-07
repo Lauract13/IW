@@ -7,6 +7,7 @@
 
 <div class="container">
     	<div class="crear-pista"><a href="/court/crear-pista" class="link-crear-pista"><span class="glyphicon glyphicon-plus"></span> CREAR PISTA</a></div>
+    	<c:if test="${empty list}"><p>Aún no hay ninguna pista creada.</p></c:if>
 		<ul class="list-group pistas">
 			<c:forEach items="${list}" var="court">
 	         	<li class="list-group-item">
