@@ -27,7 +27,7 @@ function anadirFecha() {
 	$("#anadir-fecha").click(function(){
 		count++;
 	    $("#nuevas-fechas").append('<div class="reserva-celda"><div class="centrar nueva-reserva">' +
-	        '<label for="datepicker">Fecha ' + (count+1) + ':</label> <input type="text" id="datepicker' + count + '" autocomplete="off" class="datepicker">' +
+	        '<label for="datepicker">Fecha ' + (count+1) + ':</label> <input type="text" name="datepicker" id="datepicker' + count + '" autocomplete="off" class="datepicker">' +
 	        '</div>' +
 	        '<div class="horario">' + 
 	            '<div class="celda-horario">' +

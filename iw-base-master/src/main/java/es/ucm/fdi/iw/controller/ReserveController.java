@@ -45,14 +45,15 @@ public class ReserveController {
 	@Transactional
 	public String creaReserva(
 			@RequestParam String idCourt,
-			@RequestParam String datepicker,
+			@RequestParam String[] datepicker,
 			@RequestParam ("franja-horaria") String[] checkboxValue,
 			HttpSession session) {
+    	
     	int j = 0;
     	Reservation r = new Reservation();
     	
     	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    	String d = datepicker;
+    	String d = datepicker[0];
     	Date date;
 		try {
 			date = sdf.parse(d);
