@@ -47,19 +47,12 @@ private static Logger log = Logger.getLogger(AdminController.class);
     	
     }
 	
-	
-	@GetMapping("/upload")
-	public String upload(Model m, HttpSession session) {
-		User u = entityManager.find(User.class, session.getAttribute("user"));
-  	
-    	m.addAttribute("user", u);
-    	
-		return "upload";
-	}
-	
-	@GetMapping("/editar")
-	public String editar(HttpSession session) {
+	@GetMapping("/editar-perfil")
+	public String editar(Model m, HttpSession session) {
 		if (session.getAttribute("user") != null) {
+			User u = entityManager.find(User.class, session.getAttribute("user"));
+		  	
+	    	m.addAttribute("user", u);
 			return "editar-perfil";
 		} else {
 			return "redirect:/login";
@@ -129,10 +122,7 @@ private static Logger log = Logger.getLogger(AdminController.class);
 			return "profile";
 		}else {
 			return "editar-perfil";
-		}
-		
-		
-		
+		}		
 	}
 	
 	@RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
