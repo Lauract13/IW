@@ -103,6 +103,11 @@ public class ReserveController {
     	m.addAttribute("s", "../../static");
 		return "reserva";
 	}
+    
+    @GetMapping("/editar-reserva")
+	public String editarReserva() {
+		return "editar-reserva";
+	}
 
 	@RequestMapping(value = "/", method = RequestMethod.DELETE)
 	@Transactional
