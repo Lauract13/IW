@@ -47,45 +47,48 @@ public class ReserveController {
 			@RequestParam String idCourt,
 			@RequestParam String[] datepicker,
 			@RequestParam ("franja-horaria") String[] checkboxValue,
+			@RequestParam String[] countH,
 			HttpSession session) {
     	
     	int j = 0;
-    	Reservation r = new Reservation();
+    	User u = entityManager.find(User.class, session.getAttribute("user"));
+    	Court c = entityManager.find(Court.class, Long.parseLong(idCourt));
     	
-    	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    	String d = datepicker[0];
-    	Date date;
-		try {
-			date = sdf.parse(d);
-			r.setDate(date);
-			User u = entityManager.find(User.class, session.getAttribute("user"));
-			
-			r.setUser(u);
-			
-			Court c = entityManager.find(Court.class, Long.parseLong(idCourt));
-			
-			r.setCourt(c);			
-			
-			List<String> horas = new ArrayList<>();
-			for(int i = 9; i < 21 && j < checkboxValue.length; i++) {
-	    		String aux = Integer.toString(i);
-	    		if(checkboxValue[j].equals(aux)) {
-	    			String h = checkboxValue[j] + ":00";
-	    			
-	    			horas.add(h);				
-					
-	    			j++;
-	    		}	    		
-	    	}
-			
-			r.setHoras(horas);
-    		entityManager.persist(r);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+    	for(int k = 0; k < datepicker.length; k++) {
+        	Reservation r = new Reservation();
+        	
+        	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        	String d = datepicker[k];
+        	Date date;
+    		try {
+    			date = sdf.parse(d);
+    			r.setDate(date);
+    			r.setUser(u);		
+    			r.setCourt(c);			
+    			
+    			List<String> horas = new ArrayList<>();
+    			int count = 0;
+    			for(int i = 9; i < 21 && count < Integer.parseInt(countH[k]); i++) {
+    	    		String aux = Integer.toString(i);
+    	    		if(checkboxValue[j].equals(aux)) {
+    	    			String h = checkboxValue[j] + ":00";
+    	    			
+    	    			horas.add(h);				
+    					
+    	    			j++;
+    	    			count++;
+    	    		}	    		
+    	    	}
+    			
+    			r.setHoras(horas);
+        		entityManager.persist(r);
+    		} catch (ParseException e1) {
+    			// TODO Auto-generated catch block
+    			e1.printStackTrace();
+    		}
+    	}    	
 
-		return "tus-reservas";
+		return "redirect:/user/tus-reservas";
 	}
     @GetMapping("/upload")
 	public String upload() {
