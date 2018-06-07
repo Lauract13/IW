@@ -26,7 +26,7 @@ function datepickerFunction() {
 function anadirFecha() {
 	$("#anadir-fecha").click(function(){
 		count++;
-	    $("#nuevas-fechas").append('<div class="centrar nueva-reserva">' +
+	    $("#nuevas-fechas").append('<div class="reserva-celda"><div class="centrar nueva-reserva">' +
 	        '<label for="datepicker">Fecha ' + (count+1) + ':</label> <input type="text" id="datepicker' + count + '" autocomplete="off" class="datepicker">' +
 	        '</div>' +
 	        '<div class="horario">' + 
@@ -50,7 +50,7 @@ function anadirFecha() {
 	                '<div><input type="checkbox" name="franja-horaria" id="franja-19-20-' + count + '" value="19"> <label for="franja-19-20-' + count + '"> 19:00 — 20:00</label></div>' + 
 	                '<div><input type="checkbox" name="franja-horaria" id="franja-20-21-' + count + '" value="20"> <label for="franja-20-21-' + count + '"> 20:00 — 21:00</label></div>' + 
 	            '</div>' + 
-	        '</div>');
+	        '</div></div>');
 	    
 	    datepickerFunction();
 	    //document.getElementById('#datepicker' + count).focus();
