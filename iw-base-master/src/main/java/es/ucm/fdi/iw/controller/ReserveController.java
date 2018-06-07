@@ -96,8 +96,10 @@ public class ReserveController {
 	}
 	
     @RequestMapping(value ="/reserva/{id}", method = RequestMethod.GET)
-	public String reserva(@PathVariable("id") String id, Model m) {
+	public String reserva(@PathVariable("id") String id, Model m, HttpSession session) {
+    	User u = entityManager.find(User.class, session.getAttribute("user"));
     	m.addAttribute("idCourt", id);
+    	m.addAttribute("isPlayer", u.isPlayer());
     	m.addAttribute("s", "../../static");
 		return "reserva";
 	}

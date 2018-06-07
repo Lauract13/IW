@@ -7,6 +7,7 @@
 
 <div class="container">
 		<h3>Tus reservas</h3>
+		<c:if test="${empty list}"><p>No tienes reservas.</p></c:if>
 		<ul class="list-group pistas">
 			<c:forEach items="${list}" var="r">
 	         	<li class="list-group-item">

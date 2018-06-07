@@ -7,7 +7,7 @@
 
 <div class="container">
 		<h3>Pistas disponibles</h3>
-		<c:if test="${empty list}"><p>No hay ninguna pista disponible</p></c:if>
+		<c:if test="${empty list}"><p>No hay ninguna pista disponible.</p></c:if>
 		<ul class="list-group pistas">
 			<c:forEach items="${list}" var="court">
 	         	<li class="list-group-item">
