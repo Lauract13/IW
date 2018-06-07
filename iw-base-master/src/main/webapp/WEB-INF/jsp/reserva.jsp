@@ -20,7 +20,7 @@
 						<label for="datepicker<%= count%>">Fecha <%= count + 1%>:</label>
 						<% String claseDatepicker = "datepicker-weekend";%>
 						<c:if test="${isPlayer}">
-							<% String claseDatepicker = "datepicker";%>
+							<% claseDatepicker = "datepicker";%>
 						</c:if>
 						<input type="text" name="datepicker" id="datepicker<%= count%>" class="<%=claseDatepicker %>" autocomplete="off">
 					</div>
