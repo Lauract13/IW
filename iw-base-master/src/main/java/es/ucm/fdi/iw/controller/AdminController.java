@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,7 +55,16 @@ public class AdminController {
     public void addAttributes(Model model) {
         model.addAttribute("s", "../static");
     }
-
+    
+    @GetMapping("/listado-admins")
+	public String listadoAdmins() {
+		return "listado-admins";
+	}
+    
+    @GetMapping("/crear-admin")
+	public String crearAdmin() {
+		return "crear-admin";
+	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@Transactional
