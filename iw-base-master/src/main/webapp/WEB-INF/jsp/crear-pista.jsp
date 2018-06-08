@@ -40,7 +40,8 @@
             </div>
              <div class="form-group">
            		<label for="Extras">Extras</label> 
-            	<textarea id="Extras" name="Extras" cols="40" rows="5" class="form-control" required></textarea>    
+            	<textarea id="Extras" name="Extras" cols="40" rows="5" class="form-control" required></textarea>
+            	<c:if test="${not empty errorExtras}"><p class="error">${errorExtras}</p></c:if>    
             </div>
             <div class="form-group">
 			    <label for="Imagen">Imágen</label>
