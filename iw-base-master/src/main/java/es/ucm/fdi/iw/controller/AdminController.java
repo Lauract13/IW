@@ -66,6 +66,17 @@ public class AdminController {
 		return "crear-admin";
 	}
     
+    @RequestMapping(value = "/deleteAdmin", method = RequestMethod.POST)
+	@Transactional
+	public String deleteAdmin(@RequestParam String Nombre,Model m, HttpSession session) {
+		
+    	
+		Admin a = entityManager.find(Admin.class, Nombre);
+		entityManager.remove(a);
+		
+		return "redirect:/admin/listado-admins";
+	}
+    
     @RequestMapping(value = "/newAdmin", method = RequestMethod.POST)
 	@Transactional
 	public String newCourt(
@@ -123,7 +134,7 @@ public class AdminController {
 		a.setDni(Dni);
 		a.setWorkplace(Workplace);
 		a.setJob(Job);
-		a.setRoles("ADMIN");
+		a.setRoles("ADMIN,USER");
 		
 		
 		entityManager.persist(a);

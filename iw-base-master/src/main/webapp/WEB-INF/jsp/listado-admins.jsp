@@ -13,10 +13,11 @@
 	         	<li class="list-group-item">
 	         		<span class="titulo-pista">${admin.login}</span>
 	         		<p class="descripcion-pista">${admin.dni}</p>
-	         		<form method="post" action="" id="borrar-admin-form">
+	         		<form method="POST" action="/admin/deleteAdmin" id="borrar-admin-form">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-						<input type="hidden" value="////dinámico////" id="id-admin" name="id-admin">
-						<a href="#" class="link-borrar-pista" id="borrar-admin"><span class="glyphicon glyphicon-remove"></span> Dar de baja</a>
+						<input type="hidden" value="${admin.login}" id="id-admin" name="Nombre">
+						<!-- <a href="/admin/deleteAdmin" class="link-borrar-pista" id="borrar-admin"><span class="glyphicon glyphicon-remove"></span> Dar de baja</a> -->
+						<input type="submit" value="Dar de baja" class="link-borrar-pista" id="borrar-admin"><span class="glyphicon glyphicon-remove"></span>
 					</form>
 				</li>
 				
