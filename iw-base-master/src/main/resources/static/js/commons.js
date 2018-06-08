@@ -8,6 +8,12 @@ $( document ).ready(function() {
 	document.getElementById("borrar-pista").onclick = function() {
 	    document.getElementById("borrar-pista-form").submit();
 	}
+	document.getElementById("borrar-admin").onclick = function() {
+	    document.getElementById("borrar-admin-form").submit();
+	}
+	document.getElementById("borrar-reserva").onclick = function() {
+	    document.getElementById("borrar-reserva-form").submit();
+	}
 });
 
 function navBar() {

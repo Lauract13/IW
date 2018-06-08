@@ -12,8 +12,10 @@
 			<c:forEach items="${list}" var="r">
 	         	<li class="list-group-item">
 	         		<img class="img-pista" src="${s}/img/rugby.jpg"/><span class="titulo-pista">${r.nameCourt}</span>
-	         		<a href="/reserve/editar/${r.id}" class="link-masinfo-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-	         		<a href="#" class="link-masinfo-pista cancelar"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+	         		<form id="borrar-reserva-form" method="post">
+	         			<a href="/reserve/editar/${r.id}" class="link-masinfo-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+	         			<a href="#" class="link-masinfo-pista cancelar" id="borrar-reserva"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+	         		</form>
 	         		<hr class="division-reserva"/>
 					<div class="info-reserva">
 						<span class="fecha-reserva">${r.date}</span><br/>

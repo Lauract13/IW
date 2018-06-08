@@ -12,7 +12,11 @@
 	         	<li class="list-group-item">
 	         		<span class="titulo-pista">Pepito</span>
 	         		<p class="descripcion-pista">45371696X</p>
-					<a href="#" class="link-borrar-pista"><span class="glyphicon glyphicon-remove"></span> Dar de baja</a>
+	         		<form method="post" action="" id="borrar-admin-form">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+						<input type="hidden" value="////dinámico////" id="id-admin" name="id-admin">
+						<a href="#" class="link-borrar-pista" id="borrar-admin"><span class="glyphicon glyphicon-remove"></span> Dar de baja</a>
+					</form>
 				</li>
 				<li class="list-group-item">
 	         		<span class="titulo-pista">Pepito</span>
