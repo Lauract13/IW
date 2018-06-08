@@ -104,8 +104,24 @@ public class ReserveController {
 		return "reserva";
 	}
     
-    @GetMapping("/editar-reserva")
-	public String editarReserva() {
+    @RequestMapping(value ="/editar/{id}", method = RequestMethod.GET)
+	public String editarReserva(@PathVariable("id") String id, Model m) {
+    	
+    	Reservation r = entityManager.find(Reservation.class, Long.parseLong(id));
+    	
+    	TReservation t = new TReservation();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		String date = sdf.format(r.getDate());
+		
+		t.setDate(date);
+		t.setId(r.getId());
+		t.setNameCourt(r.getCourt().getName());
+		t.setHoras(r.getHoras());
+    	
+		m.addAttribute("t", t);
+		m.addAttribute("s", "../../static");
+		
 		return "editar-reserva";
 	}
 

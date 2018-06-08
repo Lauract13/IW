@@ -162,6 +162,7 @@ public class CourtController {
 	}	
 	
 	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
+	@Transactional
 	public String uploadCourt(
 			@RequestParam long idCourt,
 			@RequestParam String Nombre, 
@@ -186,6 +187,7 @@ public class CourtController {
 				byte[] bytes = photo.getBytes();
 				c.setPhoto(bytes);
 				m.addAttribute("court", c);
+				//entityManager.merge(c);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
