@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-    <form action="" method="POST" id="form-registro">               
+    <form action="/admin/newAdmin" method="POST" id="form-registro">               
         <fieldset>
             <legend>Crear admin</legend>
             <div class="form-group custom-form-group">

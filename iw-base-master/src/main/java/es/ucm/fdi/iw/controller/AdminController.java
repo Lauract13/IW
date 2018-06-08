@@ -11,6 +11,7 @@ import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -64,6 +65,75 @@ public class AdminController {
 	public String crearAdmin() {
 		return "crear-admin";
 	}
+    
+    @RequestMapping(value = "/newAdmin", method = RequestMethod.POST)
+	@Transactional
+	public String newCourt(
+			@RequestParam String Nombre, 
+			@RequestParam String Email,
+			@RequestParam String Direccion,
+			@RequestParam String Telefono,
+			@RequestParam String Dni,
+			@RequestParam String Workplace,
+			@RequestParam String Job,@RequestParam String Password, Model m, HttpSession session) {
+		
+		
+		Boolean errores = false;
+		
+		if (Nombre == "") {
+			m.addAttribute("errorNombre", "Debe insertar un nombre");
+			errores = true;
+		}
+		if (Direccion == "") {
+			m.addAttribute("errorDireccion", "Debe insertar una dirección");
+			errores = true;
+		}
+		if (Telefono == "") {
+			m.addAttribute("errorTelefono", "Debe insertar un teléfono");
+			errores = true;
+		}
+		if (Email == "") {
+			m.addAttribute("errorEmail", "Debe insertar un email");
+			errores = true;
+		}
+		if (Dni == "") {
+			m.addAttribute("errorDni", "Debe insertar un dni");
+			errores = true;
+		}
+		if (Workplace == "") {
+			m.addAttribute("errorWorkplace", "Debe insertar un lugar de trabajo");
+			errores = true;
+		}
+		if (Job == "") {
+			m.addAttribute("errorJob", "Debe insertar un puesto de trabajo");
+			errores = true;
+		}
+		if (errores) {
+			return "crear-admin";
+		}
+		
+		
+		
+		Admin a = new Admin();
+		a.setLogin(Email);
+		a.setPassword(Password);
+		a.setDir(Direccion);
+		a.setName(Nombre);
+		a.setPhone(Telefono);
+		a.setDni(Dni);
+		a.setWorkplace(Workplace);
+		a.setJob(Job);
+		a.setRoles("ADMIN");
+		
+		
+		entityManager.persist(a);
+		
+		session.setAttribute("admin", a.getLogin());
+		
+		
+		return "redirect:/admin/listado-admins";
+	}
+	
     
 	@SuppressWarnings("unchecked")
 	@GetMapping("/listado-admins")
