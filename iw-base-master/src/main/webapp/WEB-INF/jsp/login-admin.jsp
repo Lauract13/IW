@@ -11,11 +11,11 @@
             <legend>Inicio de sesión administrador</legend>
             <div class="form-group">
 	            <label for="Email">Email</label>
-	            <input type="text" id="username" name="Email" class="form-control"/>
+	            <input type="text" id="username" name="Email" class="form-control" required/>
 	        </div>        
 	        <div class="form-group">
 	            <label for="password">Contraseña</label>
-	            <input type="password" id="password" name="Password" class="form-control"/>
+	            <input type="password" id="password" name="Password" class="form-control" required/>
 	        </div>
             
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

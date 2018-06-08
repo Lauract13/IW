@@ -210,6 +210,42 @@ public class CourtController {
 			@RequestParam String Descripcion,
 			@RequestParam("file") MultipartFile photo, Model m) {
 				
+		
+		
+Boolean errores = false;
+		
+		if (Nombre == "") {
+			m.addAttribute("errorNombre", "Debe insertar un nombre");
+			errores = true;
+		}
+		if (Precio.equals(null)) {
+			m.addAttribute("errorPrecio", "Debe insertar un precio");
+			errores = true;
+		} 
+		if (Precio.isNaN() || Precio <= 0) {
+			m.addAttribute("errorPrecio", "El precio debe ser un número mayor que cero");
+			errores = true;
+		}
+		if (Direccion == "") {
+			m.addAttribute("errorDireccion", "Debe insertar una dirección");
+			errores = true;
+		}
+		if (Telefono == "") {
+			m.addAttribute("errorTelefono", "Debe insertar un teléfono");
+			errores = true;
+		}
+		if (Extras == "") {
+			m.addAttribute("errorExtras", "Debe insertar unos extras");
+			errores = true;
+		}
+		if (Descripcion == "") {
+			m.addAttribute("errorDescripcion", "Debe insertar una descripción");
+			errores = true;
+		}
+		if (errores) {
+			return "modificar-pista";
+		}
+		
 		Court c = entityManager.find(Court.class, idCourt);
 		
 		c.setDescription(Descripcion);

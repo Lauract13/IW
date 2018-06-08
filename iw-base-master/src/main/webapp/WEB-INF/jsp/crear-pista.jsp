@@ -37,6 +37,8 @@
             <div class="form-group">
            		<label for="Descripcion">Descripción</label> 
             	<textarea id="Descripcion" name="Descripcion" cols="40" rows="5" class="form-control" required></textarea>    
+            	<c:if test="${not empty errorDescripcion}"><p class="error">${errorDescripcion}</p></c:if>    
+           
             </div>
              <div class="form-group">
            		<label for="Extras">Extras</label> 

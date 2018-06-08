@@ -12,27 +12,39 @@
             <div class="form-group">
  				<label for="Nombre">Nombre</label>  
   				<input id="Nombre" name="Nombre" value="${court.name}" type="text" placeholder="" class="form-control" required="">
+           		<c:if test="${not empty errorNombre}"><p class="error">${errorNombre}</p></c:if>
+            	
             </div>
             <div class="form-group">
  				<label for="Precio">Precio (€/hora)</label>  
   				<input id="Precio" name="Precio" value="${court.price}" type="text" placeholder="" class="form-control" required="">
+            	<c:if test="${not empty errorPrecio}"><p class="error">${errorPrecio}</p></c:if>
+            	
             </div>
             <div class="form-group">
  				<label for="Direccion">Dirección</label>  
   				<input id="Direccion" name="Direccion" value="${court.dir}" type="text" placeholder="" class="form-control" required="">
+            	<c:if test="${not empty errorDireccion}"><p class="error">${errorDireccion}</p></c:if>
+            	
             </div>
             <div class="form-group">
  				<label for="Telefono">Teléfono</label>  
   				<input id="Telefono" name="Telefono" value="${court.phone}" type="tel" placeholder="" class="form-control" required="">
+            	<c:if test="${not empty errorTelefono}"><p class="error">${errorTelefono}</p></c:if>
+            	
             </div>
             
             <div class="form-group">
            		<label for="Descripcion">Descripción</label> 
             	<textarea id="Descripcion" name="Descripcion" cols="40" rows="5" class="form-control" required>${court.description}</textarea>    
+            	<c:if test="${not empty errorDescripcion}"><p class="error">${errorDescripcion}</p></c:if>    
+           
             </div>
              <div class="form-group">
            		<label for="Extras">Extras</label> 
             	<textarea id="Extras" name="Extras" cols="40" rows="5" class="form-control" required>${court.extras}</textarea>    
+           		<c:if test="${not empty errorExtras}"><p class="error">${errorExtras}</p></c:if>    
+           
             </div>
             <div class="form-group">
 			    <label for="Imagen">Imágen</label>
