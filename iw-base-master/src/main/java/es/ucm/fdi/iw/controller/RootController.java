@@ -89,9 +89,39 @@ public class RootController {
 			@RequestParam String Direccion,
 			@RequestParam String Telefono,
 			@RequestParam String Password,
+			@RequestParam String CodUcm,
+			@RequestParam ("Player") String checkboxPlayer,
 			@RequestParam ("UCM") String checkboxValue,			
 			@RequestParam(required=false) String isAdmin, Model m, HttpSession session) {
-	
+		
+		Boolean errores = false;
+		if(checkboxValue.equals(null)){
+			
+		}
+		if (Email == "") {
+			m.addAttribute("errorEmail", "Debe insertar un email");
+			errores = true;
+		}
+		if (Direccion == "") {
+			m.addAttribute("errorDireccion", "Debe insertar una direccion");
+			errores = true;
+		}
+		if (Telefono == "") {
+			m.addAttribute("errorTelefono", "Debe insertar un telefono");
+			errores = true;
+		}
+		if (Nombre == "") {
+			m.addAttribute("errorNombre", "Debe insertar un nombre");
+			errores = true;
+		}
+		if (Password == "") {
+			m.addAttribute("errorPassword", "Debe insertar una contraseña");
+			errores = true;
+		}
+		if (errores) {
+			return "register";
+		}
+		
 		User u = new Normal();
 		u.setLogin(Email);
 		u.setPassword(Password);
@@ -99,8 +129,22 @@ public class RootController {
 		u.setName(Nombre);
 		u.setPhone(Telefono);
 		
+		
+		
 		if(checkboxValue.equals("option1")) {
 			u.setUCM(true);
+			u.setCodUCM(CodUcm);
+			if (CodUcm == "") {
+				m.addAttribute("errorCodUcm", "Debe insertar un código UCM");
+				errores = true;
+			}
+			
+			if(checkboxPlayer.equals("option1")) {
+				u.setPlayer(true);
+			}else {
+				u.setPlayer(false);
+			}
+			
 		}else {
 			u.setUCM(false);
 		}

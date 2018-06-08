@@ -5,10 +5,49 @@ $( document ).ready(function() {
 	anadirFecha();
 	datepickerFunction();
 	countHours();
-	document.getElementById("borrar-pista").onclick = function() {
-	    document.getElementById("borrar-pista-form").submit();
+	try {
+		$("#inlineCheckbox1").click(function() {
+			displayCodUcmInput();
+		});
+		$("#inlineCheckbox2").click(function() {
+			hideCodUcmInput();
+		});
+	} catch {
+		
+	}
+	
+	$( ".inactive" ).prev().attr("disabled", true);
+	try {
+		document.getElementById("borrar-pista").onclick = function() {
+		    document.getElementById("borrar-pista-form").submit();
+		}
+	} catch {
+		
+	}
+	try {
+		document.getElementById("borrar-admin").onclick = function() {
+		    document.getElementById("borrar-admin-form").submit();
+		}
+	} catch {
+		
+	}
+	try {
+		document.getElementById("borrar-reserva").onclick = function() {
+		    document.getElementById("borrar-reserva-form").submit();
+		}
+	} catch {
+		
 	}
 });
+
+function displayCodUcmInput() {
+    var x = document.getElementById("input-cod-ucm");
+    x.style.display = "block";
+}
+function hideCodUcmInput() {
+    var x = document.getElementById("input-cod-ucm");
+    x.style.display = "none";
+}
 
 function navBar() {
 	var pathname = window.location.pathname;
