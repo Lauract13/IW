@@ -111,6 +111,31 @@ private static Logger log = Logger.getLogger(AdminController.class);
 			@RequestParam String OldPassword, 
 			@RequestParam String Password, Model m, HttpSession session) {
 		
+		Boolean errores = false;
+		if (Direccion == "") {
+			m.addAttribute("errorDireccion", "Debe insertar una direccion");
+			errores = true;
+		}
+		if (Telefono == "") {
+			m.addAttribute("errorTelefono", "Debe insertar un telefono");
+			errores = true;
+		}
+		if (Nombre == "") {
+			m.addAttribute("errorNombre", "Debe insertar un nombre");
+			errores = true;
+		}
+		if (Password == "") {
+			m.addAttribute("errorPassword", "Debe insertar una contraseña");
+			errores = true;
+		}
+		if (OldPassword == "") {
+			m.addAttribute("errorOldPassword", "Debe insertar la contraseña antigua");
+			errores = true;
+		}
+		if (errores) {
+			return "register";
+		}
+		
 		
 		User u = entityManager.find(User.class, session.getAttribute("user") );
 		if(u.getPassword().equals(OldPassword)) {

@@ -95,9 +95,6 @@ public class RootController {
 			@RequestParam(required=false) String isAdmin, Model m, HttpSession session) {
 		
 		Boolean errores = false;
-		if(checkboxValue.equals(null)){
-			
-		}
 		if (Email == "") {
 			m.addAttribute("errorEmail", "Debe insertar un email");
 			errores = true;
