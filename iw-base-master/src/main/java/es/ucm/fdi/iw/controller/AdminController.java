@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.iw.LocalData;
+import es.ucm.fdi.iw.model.Admin;
 import es.ucm.fdi.iw.model.Court;
 import es.ucm.fdi.iw.model.Normal;
 import es.ucm.fdi.iw.model.User;
@@ -56,16 +58,22 @@ public class AdminController {
         model.addAttribute("s", "../static");
     }
     
-    @GetMapping("/listado-admins")
-	public String listadoAdmins() {
-		return "listado-admins";
-	}
+  
     
     @GetMapping("/crear-admin")
 	public String crearAdmin() {
 		return "crear-admin";
 	}
-
+    
+	@SuppressWarnings("unchecked")
+	@GetMapping("/listado-admins")
+	public String admins(Model m) {
+		
+		List<Admin> admin = entityManager.createNamedQuery("allAdmins").getResultList();
+		
+		m.addAttribute("listAdmins", admin);
+		return "listado-admins";
+	}
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@Transactional
 	public String addUser(

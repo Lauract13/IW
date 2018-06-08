@@ -1,6 +1,14 @@
 package es.ucm.fdi.iw.model;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+
+@NamedQueries({
+	
+	@NamedQuery(name = "allAdmins", query = "select a from Admin a")
+})
 
 @Entity
 public class Admin extends User{

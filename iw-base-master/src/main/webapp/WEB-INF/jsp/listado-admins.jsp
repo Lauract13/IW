@@ -6,23 +6,22 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-    	<div class="crear-pista"><a href="#" class="link-crear-pista"><span class="glyphicon glyphicon-plus"></span> CREAR ADMIN</a></div>
-    	<p>Aún no hay ningún administrador creado.</p>
+    	<div class="crear-pista"><a href="/admin/crear-admin" class="link-crear-pista"><span class="glyphicon glyphicon-plus"></span> CREAR ADMIN</a></div>
+    	<c:if test="${empty listAdmins}"><p>Aún no hay ningun admin creado.</p></c:if>
 		<ul class="list-group pistas">
+			<c:forEach items="${listAdmins}" var="admin">
 	         	<li class="list-group-item">
-	         		<span class="titulo-pista">Pepito</span>
-	         		<p class="descripcion-pista">45371696X</p>
+	         		<span class="titulo-pista">${admin.login}</span>
+	         		<p class="descripcion-pista">${admin.dni}</p>
 	         		<form method="post" action="" id="borrar-admin-form">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<input type="hidden" value="////dinámico////" id="id-admin" name="id-admin">
 						<a href="#" class="link-borrar-pista" id="borrar-admin"><span class="glyphicon glyphicon-remove"></span> Dar de baja</a>
 					</form>
 				</li>
-				<li class="list-group-item">
-	         		<span class="titulo-pista">Pepito</span>
-	         		<p class="descripcion-pista">45371696X</p>
-					<a href="#" class="link-borrar-pista"><span class="glyphicon glyphicon-remove"></span> Dar de baja</a>
-				</li>
+				
+				
+			</c:forEach>
 		</ul>
 		
 </div>
