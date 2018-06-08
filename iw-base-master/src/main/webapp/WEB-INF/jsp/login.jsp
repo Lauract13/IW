@@ -24,7 +24,6 @@
             
             <button type="submit" class="btn btn-login">Iniciar sesión</button><a href="/register" class="btn btn-registro">Registrarse</a>
         </fieldset>
-        <%@ include file="../jspf/authinfo.jspf"%>
     </form>
     
 
