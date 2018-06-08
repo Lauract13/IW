@@ -5,6 +5,17 @@ $( document ).ready(function() {
 	anadirFecha();
 	datepickerFunction();
 	countHours();
+	try {
+		$("#inlineCheckbox1").click(function() {
+			displayCodUcmInput();
+		});
+		$("#inlineCheckbox2").click(function() {
+			hideCodUcmInput();
+		});
+	} catch {
+		
+	}
+	
 	$( ".inactive" ).prev().attr("disabled", true);
 	try {
 		document.getElementById("borrar-pista").onclick = function() {
@@ -28,6 +39,15 @@ $( document ).ready(function() {
 		
 	}
 });
+
+function displayCodUcmInput() {
+    var x = document.getElementById("input-cod-ucm");
+    x.style.display = "block";
+}
+function hideCodUcmInput() {
+    var x = document.getElementById("input-cod-ucm");
+    x.style.display = "none";
+}
 
 function navBar() {
 	var pathname = window.location.pathname;

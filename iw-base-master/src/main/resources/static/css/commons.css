@@ -99,7 +99,7 @@
 	background-color: #cccccc;
 }
 
-#inlineCheckbox2 {
+input[type="radio"].second-checkbox {
 	margin-left: 10px;
 }
 
@@ -376,4 +376,14 @@ p.error {
 
 .inactive {
 	color: LightGray;
+}
+
+#input-cod-ucm {
+	display: none;
+}
+
+.cod-input {
+	width: 150px;
+	border-left: solid 2px black;
+	font-size: 20px;
 }

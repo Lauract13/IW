@@ -38,10 +38,25 @@
     			<div class="form-check">
 				  <input class="form-check-input micheckbox" type="radio" name="UCM" id="inlineCheckbox1" value="option1" required>
 				  <label class="form-check-label" for="inlineCheckbox1">Sí</label>
-				  <input class="form-check-input micheckbox" type="radio" name="UCM" id="inlineCheckbox2" value="option2" required>
+				  <input class="form-check-input micheckbox second-checkbox" type="radio" name="UCM" id="inlineCheckbox2" value="option2" required>
 				  <label class="form-check-label" for="inlineCheckbox2">No</label>
 				</div>
     		</div>
+    		<div id="input-cod-ucm">
+    			<div class="form-group custom-form-group">
+  					<input id="CodUcm" name="CodUcm" type="text" placeholder="Código ucm" class="form-control cod-input" required="">
+            		<c:if test="${not empty errorCodUcm}"><p class="error">${errorCodUcm}</p></c:if>
+            	</div>
+            	<div class="form-group custom-form-group">
+	            	<label for="UCM">¿Perteneces a algún equipo de la UCM?</label>
+	            	<div class="form-check">
+					  <input class="form-check-input micheckbox" type="radio" name="Player" id="checkbox-player1" value="option1" required>
+					  <label class="form-check-label" for="checkbox-player1">Sí</label>
+					  <input class="form-check-input micheckbox second-checkbox" type="radio" name="Player" id="checkbox-player2" value="option2" required>
+					  <label class="form-check-label" for="checkbox-player2">No</label>
+					</div>
+				</div>
+            </div>
     		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     		<div class="centrar">
     			<input type="submit" value="Registrarse" class="btn submit-registro">
