@@ -70,7 +70,7 @@ public class ReserveController {
     			DateFormat format2=new SimpleDateFormat("EEEE"); 
             	String finalDay=format2.format(date);
             	
-    			if(finalDay.equals("domingo") || finalDay.equals("sábado") || finalDay.equals("saturday") || finalDay.equals("sunday")) {
+    			if(finalDay.equals("domingo") || finalDay.equals("sÃ¡bado") || finalDay.equals("saturday") || finalDay.equals("sunday")) {
     				r.setWeekend(true);
     			}else {
     				r.setWeekend(false);
@@ -129,7 +129,29 @@ public class ReserveController {
 		t.setDate(date);
 		t.setId(r.getId());
 		t.setNameCourt(r.getCourt().getName());
-		t.setHoras(r.getHoras());
+		
+		List<String> horas = r.getHoras();
+		List<Integer> tHoras = new ArrayList<Integer>();
+		for(int i = 0; i < horas.size(); i++) {
+			String[] h = horas.get(i).split(":");
+			
+			tHoras.add(Integer.parseInt(h[0]));
+		}
+		
+		List<THour> tHours = new ArrayList<THour>();
+		for(int i = 9; i < 21; i++) {
+			THour th = new THour();
+			th.setHour(i);
+			if(tHoras.indexOf(i) != -1) {
+				th.setReserved(1);
+			}else {
+				th.setReserved(0);
+			}
+			
+			tHours.add(th);
+		}
+		
+		t.setHoras(tHours);
     	
 		m.addAttribute("t", t);
 		m.addAttribute("s", "../../static");
@@ -174,14 +196,6 @@ public class ReserveController {
 		entityManager.remove(r);
 		
 		return "home";
-	}
-	
-	private int horas() {
-		
-		
-		
-		return 0;
-		
 	}
 
 }

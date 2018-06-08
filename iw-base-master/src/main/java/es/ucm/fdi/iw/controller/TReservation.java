@@ -7,13 +7,13 @@ public class TReservation {
 	private long id;
 	private String nameCourt;
 	private String date;
-	private List<String> horas;
+	private List<THour> horas;
 	
 	public TReservation() {
 		id = 0;
 		nameCourt = "";
 		date = "";
-		horas = new ArrayList<String>();
+		horas = new ArrayList<THour>();
 	}
 	
 	public long getId() {
@@ -34,10 +34,10 @@ public class TReservation {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public List<String> getHoras() {
+	public List<THour> getHoras() {
 		return horas;
 	}
-	public void setHoras(List<String> horas) {
+	public void setHoras(List<THour> horas) {
 		this.horas = horas;
 	}	
 }

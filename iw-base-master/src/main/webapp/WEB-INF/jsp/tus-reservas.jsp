@@ -23,7 +23,7 @@
 						<ul>
 							<c:forEach items="${r.horas}" var="h">
 								<li>
-									<span class="hora-reseva">${h}</span>
+									<span class="hora-reseva">${h.cad}</span>
 								</li>
 							</c:forEach>
 						</ul>

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +23,6 @@ import es.ucm.fdi.iw.model.User;
 @Controller	
 @RequestMapping("user")
 public class UserController {
-private static Logger log = Logger.getLogger(AdminController.class);
 	
 	@Autowired
 	private EntityManager entityManager;
@@ -78,15 +76,16 @@ private static Logger log = Logger.getLogger(AdminController.class);
 				t.setNameCourt(r.getCourt().getName());
 				
 				List<String> horas = r.getHoras();
-				List<String> tHoras = new ArrayList<String>();
+				List<THour> tHoras = new ArrayList<THour>();
 				for(int i = 0; i < horas.size(); i++) {
+					THour th = new THour();
 					String[] h = horas.get(i).split(":");
 					
 					int n = Integer.parseInt(h[0]);
 					
 					String cad = n + ":00 - " + (n+1) + ":00";
-					
-					tHoras.add(cad);
+					th.setCad(cad);
+					tHoras.add(th);
 				}
 				
 				t.setHoras(tHoras);
