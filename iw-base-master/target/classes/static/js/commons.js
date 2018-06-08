@@ -5,6 +5,9 @@ $( document ).ready(function() {
 	anadirFecha();
 	datepickerFunction();
 	countHours();
+	document.getElementById("borrar-pista").onclick = function() {
+	    document.getElementById("borrar-pista-form").submit();
+	}
 });
 
 function navBar() {

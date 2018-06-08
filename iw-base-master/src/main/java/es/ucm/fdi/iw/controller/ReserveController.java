@@ -1,5 +1,6 @@
 package es.ucm.fdi.iw.controller;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -58,10 +59,23 @@ public class ReserveController {
         	Reservation r = new Reservation();
         	
         	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        
         	String d = datepicker[k];
-        	Date date;
+        	Date date = new Date();
     		try {
+  
+         			
     			date = sdf.parse(d);
+    			
+    			DateFormat format2=new SimpleDateFormat("EEEE"); 
+            	String finalDay=format2.format(date);
+            	
+    			if(finalDay.equals("domingo") || finalDay.equals("sábado") || finalDay.equals("saturday") || finalDay.equals("sunday")) {
+    				r.setWeekend(true);
+    			}else {
+    				r.setWeekend(false);
+    			}
+    			
     			r.setDate(date);
     			r.setUser(u);		
     			r.setCourt(c);			
@@ -90,24 +104,22 @@ public class ReserveController {
 
 		return "redirect:/user/tus-reservas";
 	}
-    @GetMapping("/upload")
-	public String upload() {
-		return "upload";
-	}
 	
     @RequestMapping(value ="/reserva/{id}", method = RequestMethod.GET)
-	public String reserva(@PathVariable("id") String id, Model m, HttpSession session) {
+	public String reserva(@PathVariable("id") long id, Model m, HttpSession session) {
     	User u = entityManager.find(User.class, session.getAttribute("user"));
+    	
     	m.addAttribute("idCourt", id);
     	m.addAttribute("isPlayer", u.isPlayer());
     	m.addAttribute("s", "../../static");
+    	
 		return "reserva";
 	}
     
     @RequestMapping(value ="/editar/{id}", method = RequestMethod.GET)
-	public String editarReserva(@PathVariable("id") String id, Model m) {
+	public String editarReserva(@PathVariable("id") long id, Model m) {
     	
-    	Reservation r = entityManager.find(Reservation.class, Long.parseLong(id));
+    	Reservation r = entityManager.find(Reservation.class, id);
     	
     	TReservation t = new TReservation();
 		
@@ -124,18 +136,52 @@ public class ReserveController {
 		
 		return "editar-reserva";
 	}
-
-	@RequestMapping(value = "/", method = RequestMethod.DELETE)
+    
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
 	@Transactional
-	public String deleteReservation(
-			@RequestParam long idReserva,
+	public String upload(
+			@RequestParam long id,
+			@RequestParam ("franja-horaria") String[] checkboxValue,
+			//@RequestParam String[] countH,
 			HttpSession session) {
 		
-		Reservation r = entityManager.find(Reservation.class,idReserva);
+		Reservation r = entityManager.find(Reservation.class, id);
+		
+		List<String> horas = new ArrayList<>();
+		int count = 0;
+		for(int i = 9; i < 21 && count < checkboxValue.length; i++) {
+    		String aux = Integer.toString(i);
+    		if(checkboxValue[count].equals(aux)) {
+    			String h = checkboxValue[count] + ":00";
+    			horas.add(h);				
+    			count++;
+    		}	    		
+    	}
+			
+		r.setHoras(horas);
+		
+		return "home";
+	}    
+    
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@Transactional
+	public String deleteReservation(
+			@RequestParam long id,
+			HttpSession session) {
+		
+		Reservation r = entityManager.find(Reservation.class, id);
 		
 		entityManager.remove(r);
 		
 		return "home";
+	}
+	
+	private int horas() {
+		
+		
+		
+		return 0;
+		
 	}
 
 }

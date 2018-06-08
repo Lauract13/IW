@@ -15,7 +15,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 @NamedQueries({
-	@NamedQuery(name = "findUserBooking", query = "select r from Reservation r where r.user = :n")
+	@NamedQuery(name = "findUserBooking", query = "select r from Reservation r where r.user = :n"),
+	@NamedQuery(name = "booking", query = "select r from Reservation r where r.isWeekend = 0"),
+	@NamedQuery(name = "freeHours", query = "select r from Reservation r where r.date = :d")
 })
 
 @Entity
@@ -25,6 +27,7 @@ public class Reservation {
 	@GeneratedValue
 	private long id;
 	private Date date;
+	private boolean isWeekend;
 	
 	@OneToOne
 	private Court court;
@@ -74,5 +77,13 @@ public class Reservation {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public boolean isWeekend() {
+		return isWeekend;
+	}
+
+	public void setWeekend(boolean isWeekend) {
+		this.isWeekend = isWeekend;
 	}
 }

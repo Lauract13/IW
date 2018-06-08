@@ -37,6 +37,7 @@
 			    		</div>
 			    	</div>
 		    	</div>
+		    	<!--  <input type="hidden" name="countH" value=""> -->
 		    	<div class="centrar">
 		    		<button type="submit" class="btn btn-reservar">Guardar cambios</button>
 		    	</div>
