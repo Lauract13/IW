@@ -369,3 +369,11 @@ p.error {
 	font-weight: 700;
 	border: solid 1px #cccccc;
 }
+
+#borrar-reserva-form {
+	display: inline;
+}
+
+.inactive {
+	color: LightGray;
+}

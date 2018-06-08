@@ -26,7 +26,7 @@
 					</div>
 			    	<div class="horario">
 			    		<div class="celda-horario">
-			    			<div><input type="checkbox" name="franja-horaria" class="franja-<%= count + 1%>" value="9" id="franja-9-10"> <label for="franja-9-10"> 09:00 — 10:00</label></div>
+			    			<div><input type="checkbox" name="franja-horaria" class="franja-<%= count + 1%>" value="9" id="franja-9-10"> <label for="franja-9-10" class="inactive"> 09:00 — 10:00</label></div>
 			     			<div><input type="checkbox" name="franja-horaria" class="franja-<%= count + 1%>" value="10" id="franja-10-11"> <label for="franja-10-11"> 10:00 — 11:00</label></div>
 			    			<div><input type="checkbox" name="franja-horaria" class="franja-<%= count + 1%>" value="11" id="franja-11-12"> <label for="franja-11-12"> 11:00 — 12:00</label></div>
 			    		</div>

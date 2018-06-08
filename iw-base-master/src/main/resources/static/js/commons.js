@@ -5,14 +5,27 @@ $( document ).ready(function() {
 	anadirFecha();
 	datepickerFunction();
 	countHours();
-	document.getElementById("borrar-pista").onclick = function() {
-	    document.getElementById("borrar-pista-form").submit();
+	$( ".inactive" ).prev().attr("disabled", true);
+	try {
+		document.getElementById("borrar-pista").onclick = function() {
+		    document.getElementById("borrar-pista-form").submit();
+		}
+	} catch {
+		
 	}
-	document.getElementById("borrar-admin").onclick = function() {
-	    document.getElementById("borrar-admin-form").submit();
+	try {
+		document.getElementById("borrar-admin").onclick = function() {
+		    document.getElementById("borrar-admin-form").submit();
+		}
+	} catch {
+		
 	}
-	document.getElementById("borrar-reserva").onclick = function() {
-	    document.getElementById("borrar-reserva-form").submit();
+	try {
+		document.getElementById("borrar-reserva").onclick = function() {
+		    document.getElementById("borrar-reserva-form").submit();
+		}
+	} catch {
+		
 	}
 });
 
