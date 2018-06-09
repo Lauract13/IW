@@ -196,14 +196,15 @@ public class CourtController {
 		return "redirect:/court/pistas";
 	}
 	
-	@RequestMapping(value="/deleteCourt/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/deleteCourt/{id}", method=RequestMethod.POST)
+	@Transactional
 	public String deleteCourt(@PathVariable("id") long id) {
 				
 		Court c = entityManager.find(Court.class, id);
 		
 		entityManager.remove(c);
 		
-		return "home";
+		return "redirect:/court/pistas";
 	}	
 	
 	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
