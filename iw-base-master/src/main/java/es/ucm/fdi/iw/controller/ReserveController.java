@@ -230,13 +230,14 @@ public class ReserveController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/booking", method = RequestMethod.GET)
 	@ResponseBody
-	public List<THour> booking(@RequestParam String date) {
+	public List<THour> booking(@RequestParam String date, @RequestParam long court) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		List<THour> t = new ArrayList<THour>();
 		
     	try {
 			Date d = sdf.parse(date);
-			List<Reservation> list = entityManager.createNamedQuery("freeHours").setParameter("d", d).getResultList();
+			Court c = entityManager.find(Court.class, court);
+			List<Reservation> list = entityManager.createNamedQuery("freeHours").setParameter("d", d).setParameter("c", c).getResultList();
 			
 			List<String> all = new ArrayList<String>();
 			for(Reservation r: list) {

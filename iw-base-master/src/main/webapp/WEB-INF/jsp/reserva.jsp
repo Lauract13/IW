@@ -43,7 +43,7 @@
 		    		<button type="submit" class="btn btn-reservar">Reservar</button>
 		    	</div>
 		    	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		    	<input type="hidden" name="idCourt" value="${idCourt}"/>
+		    	<input type="hidden" name="idCourt" id="idCourt" value="${idCourt}"/>
 		    </form>
 	    </div>
 </div>

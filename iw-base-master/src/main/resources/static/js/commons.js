@@ -105,10 +105,11 @@ function mostrarHoras(){
 }
 
 function horasDisponibles(f, h){
+	var idC = $("#idCourt").val();
 	$.ajax({
         type: "GET",
         url: "/reserve/booking",
-        data: {date: f},
+        data: {date: f, court: idC},
         success: function(data, statusText, jqXHR){
         	horas_aux = horas;
         	if(data.length == 0){

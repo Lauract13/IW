@@ -17,10 +17,10 @@
 		  		</p>
 	  		</div>
 		  	<div class="div-modificar">
-		  		<form>
+		  		<form action="/delete" method="POST">
 		  			<a href="/user/editar-perfil" class="btn btn-modificar">Modificar perfil</a>
 		  			<input type="hidden" id="userLogin" name="userLogin" value="${user.login}">
-		  			<button type="submit" class="btn btn-login">Darse de baja</button>
+		  			<input type="submit" class="btn btn-login" value="Darse de baja">
 		  		</form>
 		  	</div>
 		</div>
