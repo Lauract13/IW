@@ -9,9 +9,15 @@ $( document ).ready(function() {
 	try {
 		$("#inlineCheckbox1").click(function() {
 			displayCodUcmInput();
+			$("#CodUcm").attr("required",true);
+			$("#checkbox-player1").attr("required",true);
+			$("#checkbox-player2").attr("required",true);
 		});
 		$("#inlineCheckbox2").click(function() {
 			hideCodUcmInput();
+			$("#CodUcm").attr("required",false);
+			$("#checkbox-player1").attr("required",false);
+			$("#checkbox-player2").attr("required",false);
 		});
 	} catch {
 		
@@ -116,7 +122,7 @@ function horasDisponibles(f, h){
 	        	var cad = '<div class="celda-horario">';
 	        	data.forEach(element => {
 	        		var hour = element.hour;
-	        		
+	        		alert(element.reserved);
 	        		if(element.reserved == 2){
 	        			cad += '<div><input type="checkbox" name="franja-horaria" class="franja-' + c + '" value="' + hour + '" id="franja-' + hour + '-' + (hour + 1) + '-' + c + '" disabled><label class="inactive" for="franja-' + hour + '-' + (hour + 1) + '-' + c + '"> ' + hour + ':00 — ' + (hour + 1) + ':00</label></div>';
 	        		}else{
