@@ -117,7 +117,7 @@ function horasDisponibles(f, h){
 	        	data.forEach(element => {
 	        		var hour = element.hour;
 	        		
-	        		if(element.reserved == 1){
+	        		if(element.reserved == 2){
 	        			cad += '<div><input type="checkbox" name="franja-horaria" class="franja-' + c + '" value="' + hour + '" id="franja-' + hour + '-' + (hour + 1) + '-' + c + '" disabled><label class="inactive" for="franja-' + hour + '-' + (hour + 1) + '-' + c + '"> ' + hour + ':00 — ' + (hour + 1) + ':00</label></div>';
 	        		}else{
 	        			cad += '<div><input type="checkbox" name="franja-horaria" class="franja-' + c + '" value="' + hour + '" id="franja-' + hour + '-' + (hour + 1) + '-' + c + '"><label for="franja-' + hour + '-' + (hour + 1) + '-' + c + '"> ' + hour + ':00 — ' + (hour + 1) + ':00</label></div>';
