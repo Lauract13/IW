@@ -5,13 +5,10 @@ import java.security.Principal;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import es.ucm.fdi.iw.model.Normal;
+import es.ucm.fdi.iw.model.Player;
 import es.ucm.fdi.iw.model.User;
 
 @Controller	
 public class RootController {
-
-	private static Logger log = Logger.getLogger(RootController.class);
 		
 	@Autowired
 	private EntityManager entityManager;
@@ -119,14 +115,17 @@ public class RootController {
 			return "register";
 		}
 		
-		User u = new Normal();
+		User u = null;
+		if(checkboxPlayer != null && checkboxPlayer.equals("option1")) {
+			u = new Player();
+		}else {
+			u = new Normal();
+		}
 		u.setLogin(Email);
 		u.setPassword(Password);
 		u.setDir(Direccion);
 		u.setName(Nombre);
 		u.setPhone(Telefono);
-		
-		
 		
 		if(checkboxValue.equals("option1")) {
 			u.setUCM(true);
@@ -185,7 +184,7 @@ public class RootController {
 			}
 		} catch (Exception e) {
 			m.addAttribute("error", "El usuario introducido no es correcto");
-			return "login";
+			return "redirect:/login";
 		}
 			
 	}
@@ -204,5 +203,14 @@ public class RootController {
 			return "login-admin";
 		}
 			
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@Transactional
+	public String deleteUser(Model m, HttpSession session) {		
+		User u = entityManager.find(User.class, session.getAttribute("user") );
+		entityManager.remove(u);
+		
+		return "redirect:/login";
 	}
 }
