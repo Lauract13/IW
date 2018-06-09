@@ -17,11 +17,8 @@
 		  		</p>
 	  		</div>
 		  	<div class="div-modificar">
-		  		<form action="/delete" method="POST">
-		  			<a href="/user/editar-perfil" class="btn btn-modificar">Modificar perfil</a>
-		  			<input type="hidden" id="userLogin" name="userLogin" value="${user.login}">
-		  			<input type="submit" class="btn btn-login" value="Darse de baja">
-		  		</form>
+			  	<a href="/user/editar-perfil" class="btn btn-modificar">Modificar perfil</a>
+		
 		  	</div>
 		</div>
 </div>

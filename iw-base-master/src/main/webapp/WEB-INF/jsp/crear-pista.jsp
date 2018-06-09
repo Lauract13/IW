@@ -57,5 +57,4 @@
         </fieldset>
     </form> 	
 </div>
-<%@ include file="../jspf/authinfo.jspf"%>
 <%@ include file="../jspf/footer.jspf"%>

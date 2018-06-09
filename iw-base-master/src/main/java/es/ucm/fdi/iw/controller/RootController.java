@@ -205,9 +205,9 @@ public class RootController {
 			
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
 	@Transactional
-	public String deleteUser(Model m, HttpSession session) {		
+	public String removeUser(Model m, HttpSession session) {		
 		User u = entityManager.find(User.class, session.getAttribute("user") );
 		entityManager.remove(u);
 		

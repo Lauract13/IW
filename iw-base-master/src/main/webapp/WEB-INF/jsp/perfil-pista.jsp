@@ -7,7 +7,7 @@
 
 <div class="container">
     	<div class="perfil">
-    		<div class="cabecera-perfil"><img src="${s}/img/futbol.jpg" class="foto-perfil"/><span class="nombre-perfil">${court.name}, ${court.price}€/hora</span></div>
+    		<div class="cabecera-perfil"><img src="${s}/img/volley_sur.jpg" class="foto-perfil"/><span class="nombre-perfil">${court.name}, ${court.price}€/hora</span></div>
     		<div class="info-pista">
     			<h4>Descripción</h4>
 		  		<p>${court.description}</p>
