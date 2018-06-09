@@ -20,7 +20,7 @@
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<a href="/court/editar-pista/${court.id}" class="link-editar-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
 						<input type="hidden" value="${court.id}" id="id-pista" name="id-pista">
-						<input type="submit" value="Borrar" class="">
+						<input type="submit" value="Borrar" class="baja">
 					</form>
 				</li>
 	      	</c:forEach>

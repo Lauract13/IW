@@ -210,6 +210,7 @@ dd {
 	border-radius: 15px;
 	padding: 10px;
 	margin-left: 10px;
+	background-color: white;
 }
 
 .info-pista {
@@ -386,4 +387,16 @@ p.error {
 	width: 150px;
 	border-left: solid 2px black;
 	font-size: 20px;
+}
+.baja {
+	background: none;
+    color: red;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+.baja:hover {
+	text-decoration: underline;
 }

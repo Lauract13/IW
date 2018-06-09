@@ -25,27 +25,7 @@ $( document ).ready(function() {
 	}
 	
 	$( ".inactive" ).prev().attr("disabled", true);
-	try {
-		document.getElementById("borrar-pista").onclick = function() {
-		    document.getElementById("borrar-pista-form").submit();
-		}
-	} catch {
-		
-	}
-	try {
-		document.getElementById("borrar-admin").onclick = function() {
-		    document.getElementById("borrar-admin-form").submit();
-		}
-	} catch {
-		
-	}
-	try {
-		document.getElementById("borrar-reserva").onclick = function() {
-		    document.getElementById("borrar-reserva-form").submit();
-		}
-	} catch {
-		
-	}
+	
 });
 
 function displayCodUcmInput() {
