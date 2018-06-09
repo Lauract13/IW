@@ -355,6 +355,7 @@ p.error {
 	border-bottom: solid 1px #000;
 	border-radius: 0;
 	font-size: 20px;
+	box-shadow: none;
 }
 
 .custom-input:focus {

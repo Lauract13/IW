@@ -70,6 +70,15 @@ public class AdminController {
 		}
 	}
     
+    @GetMapping("/asignar-equipo")
+	public String asignarEquipo(HttpSession session) {
+    	if (session.getAttribute("role") == "admin") {
+    		return "asignar-equipo";
+    	}else {
+			return "redirect:/error";
+		}
+	}
+    
     @RequestMapping(value = "/deleteAdmin", method = RequestMethod.POST)
 	@Transactional
 	public String deleteAdmin(@RequestParam String Nombre,Model m, HttpSession session) {

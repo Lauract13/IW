@@ -52,6 +52,9 @@
             <c:if test="${sessionScope['role'] == 'admin'}">
             	<li><a href="/admin/listado-admins">Administradores</a></li>
             </c:if>
+            <c:if test="${sessionScope['role'] == 'admin'}">
+            	<li><a href="/admin/asignar-equipo">Asginar equipos</a></li>
+            </c:if>
             <li><a href="/logout">Desconectarse</a></li>
           </ul>
         </div><!--/.nav-collapse -->
