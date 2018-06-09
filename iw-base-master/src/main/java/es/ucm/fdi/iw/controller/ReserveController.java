@@ -116,8 +116,9 @@ public class ReserveController {
 		return "reserva";
 	}
     
-    @RequestMapping(value ="/editar/{id}", method = RequestMethod.GET)
-	public String editarReserva(@PathVariable("id") long id, Model m) {
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value ="/editar/{id}", method = RequestMethod.GET)
+	public String editarReserva(@PathVariable("id") long id, Model m, HttpSession session) {
     	
     	Reservation r = entityManager.find(Reservation.class, id);
     	
@@ -130,11 +131,33 @@ public class ReserveController {
 		t.setId(r.getId());
 		t.setNameCourt(r.getCourt().getName());
 		
-		List<String> horas = r.getHoras();
-			
-		List<THour> tHours = toTHour(horas);
+		User u = entityManager.find(User.class, session.getAttribute("user"));
 		
-		t.setHoras(tHours);
+		List<Reservation> list = entityManager.createNamedQuery("freeHoursEdit").setParameter("d", r.getDate()).setParameter("u", u).getResultList();
+		
+		List<THour> th = new ArrayList<THour>();
+		for(Reservation res: list) {
+			List<String> horas = res.getHoras();
+			List<THour> aux = toTHour(horas);
+			
+			for(THour h: aux) {
+				th.add(h);
+			}
+		}
+		
+		List<THour> aux = toTHour(r.getHoras());
+		
+		if(!th.isEmpty()) {
+			for(int i = 0; i < th.size(); i++) {
+				if(aux.get(i).getReserved() == 2) {
+					th.get(i).setReserved(1);
+				}
+			}
+		}else {
+			th = aux;
+		}
+		
+		t.setHoras(th);
     	
 		m.addAttribute("t", t);
 		m.addAttribute("s", "../../static");
@@ -219,7 +242,7 @@ public class ReserveController {
 			THour th = new THour();
 			th.setHour(i);
 			if(tHoras.indexOf(i) != -1) {
-				th.setReserved(1);
+				th.setReserved(2);
 			}else {
 				th.setReserved(0);
 			}
