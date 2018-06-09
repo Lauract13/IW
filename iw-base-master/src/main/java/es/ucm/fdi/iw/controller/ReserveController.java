@@ -105,14 +105,23 @@ public class ReserveController {
 		return "redirect:/user/tus-reservas";
 	}
 	
-    @RequestMapping(value ="/reserva/{id}", method = RequestMethod.GET)
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value ="/reserva/{id}", method = RequestMethod.GET)
 	public String reserva(@PathVariable("id") long id, Model m, HttpSession session) {
     	User u = entityManager.find(User.class, session.getAttribute("user"));
-    	
-    	
+    	int cont = -1;
+    	if(u.isPlayer()) {
+    		cont = 0;
+    		List<Reservation> list = entityManager.createNamedQuery("reservationsPlayer").setParameter("n", u).getResultList();
+        	
+        	for(Reservation r: list) {
+        		cont += r.getHoras().size();
+        	}
+    	}
     	
     	m.addAttribute("idCourt", id);
     	m.addAttribute("isPlayer", u.isPlayer());
+    	m.addAttribute("cont", cont);
     	m.addAttribute("s", "../../static");
     	
 		return "reserva";
@@ -216,14 +225,16 @@ public class ReserveController {
 			Date d = sdf.parse(date);
 			List<Reservation> list = entityManager.createNamedQuery("freeHours").setParameter("d", d).getResultList();
 			
+			List<String> all = new ArrayList<String>();
 			for(Reservation r: list) {
 				List<String> horas = r.getHoras();
-				List<THour> aux = toTHour(horas);
 				
-				for(THour h: aux) {
-					t.add(h);
+				for(String h: horas) {
+					all.add(h);
 				}
 			}
+			
+			t = toTHour(all);
 			
 		} catch (ParseException e) {
 			e.printStackTrace();
