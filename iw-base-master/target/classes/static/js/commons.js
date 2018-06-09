@@ -60,10 +60,12 @@ function datepickerFunction() {
 	$( ".datepicker" ).datepicker({
         altFormat: "dd-mm-yy",
         dateFormat: "dd-mm-yy",
+        minDate: 0
 	});
 	$( ".datepicker-weekend" ).datepicker({
         altFormat: "dd-mm-yy",
         dateFormat: "dd-mm-yy",
+        minDate: 0,
         beforeShowDay:
              function(dt)
              {
