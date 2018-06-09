@@ -180,9 +180,7 @@ public class ReserveController {
 	@Transactional
 	public String upload(
 			@RequestParam long id,
-			@RequestParam ("franja-horaria") int[] checkboxValue,
-			//@RequestParam String[] countH,
-			HttpSession session) {
+			@RequestParam ("franja-horaria") int[] checkboxValue) {
 		
 		Reservation r = entityManager.find(Reservation.class, id);
 		

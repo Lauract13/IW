@@ -9,7 +9,7 @@
 		<div class="reserva">
 			<h3>Reserva de ${t.nameCourt}</h3>
 			
-			<form action="/reserve/nuevaReserva" method="post" id="form-reserva">
+			<form action="/reserve/update" method="post" id="form-reserva">
 				<div class="reserva-celda">
 					<div class="centrar">
 						<h2>Fecha: ${t.date}</h2>
