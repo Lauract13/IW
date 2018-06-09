@@ -4,30 +4,45 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>Iw-Base</h1>
-
-Este es un leeme.html de ejemplo, pensado para que lo modifiques para tu proyecto. Cambia el encabezado (h1), y lista los integrantes de tu grupo, y en general actualízalo para hacerlo tuyo.
+<h1>VolleyUCM</h1>
 
 <h2>Integrantes</h2>
 
 <ul>
-    <li>María Ejémplez Pérez</li>
-    <li>José Pérez Ejémplez</li>
+    <li>Laura Casas Torres</li>
+    <li>Pedro Morell Prats</li>
+    <li>Milagros del Rocío Peña Quineche</li>
 </ul>
 
 <h2>Proyecto</h2>
 
-Copia y pega aquí el texto de la última versión de proyecto.
+<p>Consiste en informatizar el sistema actual de reservas para las pistas de voleibol de la UCM que tiene actualmente la univerdad</p>
+<p>para ello existen 3 tipos de usuarios, un administrador que podrá crear a otros y realizar cualquier operación sobre las pistas</p>
+<p>además del servicio principal que es reservar, este también podrá asignarle un equipo a un capitán, denominado Player; este</p>
+<p>tipo de usuario puede hacer reservas todos los días de la semana, pero con un tope de 18 horas mensuales para los días entre</p>
+<p>lunes y viernes. Y por último se encuentra el usuario Normal, que puede estar o no vinculado con la UCM (esto es para los descuentos)</p>
+<p>el cual puede hacer reservas solo los fines de semana.</p>
 
-<h2>Comentarios al profesor</h2>
-
-Este es el único sitio de tu entrega en el que debes poner comentarios "al profesor" (en otros sitios, se trataría de comentarios "al desarrollador" o "al cliente"). ¡Aprovecha"
 
 <h2>Vistas</h2>
 
-Detalla aquí tus vistas. Usa enlaces a localhost:8080/ (SIN nombre de proyecto; correspondientes a arrancar la aplicación en modo spring-boot desde STS) para enlazar cada vista.
 <ul>
-    <li><a href="localhost:8080/">vista principal</a> - descripción muy corta de la vista
+	<li><a href="localhost:8080/register">Registro</a>Registro para un usuario no administrador</li>
+	<li><a href="localhost:8080/login">Login</a>Login usuario que no es administrador</li>
+	<li><a href="localhost:8080/login-admin">Iniciar sesión para administrador</a>Login de administrador</li>
+	<li><a href="localhost:8080/admin/crear-admin">Crear administrador</a>Formulario para crear otro administrador</li>
+	<li><a href="localhost:8080/admin/listado-admins">Listar administradores</a>Listado para poder darles de baja</li>
+	<li><a href="localhost:8080/home">Página de inicio</a></li>
+	<li><a href="localhost:8080/user/editar-perfil">Modificar perfil</a>Formulario para modificar datos</li>
+	<li><a href="localhost:8080/admin/crear-pista">Crear pista</a>Formulario para crear pista</li>
+	<li><a href="localhost:8080/court/pistas-user">Listado de pistas</a>Lista de pistas disponibles, si le das a mas info se puede reservar</li>
+	<li><a href="localhost:8080/court/pistas">Listado de pistas para administrador</a>Listado para poder editar o borrar pistas</li>
+	<li><a href="localhost:8080/court/perfil-pista">Perfil de pista</a>Datos de una pista</li>
+	<li><a href="localhost:8080/reserve/reserva">Reservar pista</a>Solo se pueden elegir horas disponibles</li>
+	<li><a href="localhost:8080/user/tus-reservas">Listado de reservas</a>Listado de reservas por fechas</li>
+	<li><a href="localhost:8080/reserve/editar-reserva">Editar reserva</a>Aparecen las disponibles y las ya seleccionadas</li>
+	<li><a href="localhost:8080/admin/asignar-equipo">Asignar equipo a usuario (para administrador)</a>Pide email del capitan y equipo al que pertenece</li>
+	
 </ul>
 
 <h2>Recursos</h2>
@@ -35,9 +50,20 @@ Detalla aquí tus vistas. Usa enlaces a localhost:8080/ (SIN nombre de proyecto;
 Esto es un listado de todos los recursos externos utilizados (es decir: no escritos por los desarrolladors ni incluidos en la plantilla del profesor).
 
 <ul>
-    <li><a href="localhost:8080/spring.jpg">imagen de primavera</a> (<a href="https://en.wikipedia.org/wiki/Spring_(season)#/media/File:Camino_entre_el_bosque_de_cerezos_en_flor.jpg">
-            CC-BY-SA</a>) - usada para logotipo
+    <li><a href="#">imagen de Pista voleibol somodaguas</a> (<a href="https://www.ucm.es/data/cont/media/www/pag-2260/documento13906.jpg">
+    <li><a href="#">imagen de Pista voleibol paraninfo sur</a> (<a href="https://www.ucm.es/data/cont/media/www/pag-2258/_DSC1963c.jpg">
+    <li><a href="#">imagen de Pista voleibol playa</a> (<a href="https://www.ucm.es/data/cont/media/www/pag-2258/_DSC1868c.jpg">
     <li><a href="https://code.jquery.com/jquery-3.1.1.min.js">JQuery</a> (<a href="https://jquery.org/license/">MIT/Apache</a>) - librería js para simplificar la aplicación de comportamientos		
+</ul>
+
+<h2>Usuarios y contraseñas</h2>
+<ul>
+	<li>Usuario (admin): <strong>admin@gmail.com</strong>. Contraseña: admin</li>
+	<li>Usuario (usuario player): <strong>milagros@gmail.com</strong>. Contraseña: milagros</li>
+	<li>Usuario (usuario normal): <strong>laura@gmail.com</strong>. Contraseña: laura</li>
+	<li>Usuario (usuario normal): <strong>pedro@ucm.es</strong>. Contraseña: pedro</li>
+	<li>Usuario (usuario player): <strong>carmen@ucm.es</strong>. Contraseña: carmen</li>
+	<li>Usuario (usuario admin): <strong>teresa@gmail.com</strong>. Contraseña: teresa</li>
 </ul>
 </body>
 </html>
