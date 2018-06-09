@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -178,18 +179,23 @@ public class UserController {
 			User u = entityManager.find(User.class, Email);
 			Player player = (Player) u;
 			
-			if(player != null && u.isPlayer() && player.getTeam() != "") {
-				Player p = (Player) entityManager.createNamedQuery("findUserByTeam").setParameter("t", Equipo).getSingleResult();
+			if(player != null && u.isPlayer() && player.getTeam() == "") {
+				Query q = entityManager.createNamedQuery("findPlayerTeam").setParameter("t", Equipo);
 				
-				if(p != null) {
+				if(q.getResultList().size() == 0) {
 					
 					player.setTeam(Equipo);
 				}else {
-					m.addAttribute("error", "Este equipo ya tiene equipo");
+					m.addAttribute("error", "Este equipo ya tiene capitán");
 					errores = true;
 				}
 			}else {
-				m.addAttribute("error", "El usuario no estÃ¡ registrado");
+				if(player == null)
+					m.addAttribute("error", "El usuario no está registrado");
+				if(!u.isPlayer())
+					m.addAttribute("error", "El usuario no es un jugador");
+				if(player.getTeam() != "")
+					m.addAttribute("error", "El usuario ya tiene equipo");
 				errores = true;
 			}
 			
