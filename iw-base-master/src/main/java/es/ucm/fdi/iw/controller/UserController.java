@@ -63,7 +63,6 @@ public class UserController {
 		if (session.getAttribute("user") != null) {
 			User u = entityManager.find(User.class, session.getAttribute("user"));
 			List<Reservation> l = entityManager.createNamedQuery("findUserBooking").setParameter("n", u).getResultList();
-			
 			List<TReservation> list = new ArrayList<TReservation>();
 			for(Reservation r: l) {
 				TReservation t = new TReservation();
@@ -89,7 +88,7 @@ public class UserController {
 				}
 				
 				t.setHoras(tHoras);
-				t.setWeekend(r.isWeekend());
+				t.setWeekend(r.isIsWeekend());
 				list.add(t);
 			}
 			

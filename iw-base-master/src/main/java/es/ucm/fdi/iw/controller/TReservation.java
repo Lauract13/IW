@@ -42,7 +42,7 @@ public class TReservation {
 		this.horas = horas;
 	}
 
-	public boolean isWeekend() {
+	public boolean isIsWeekend() {
 		return isWeekend;
 	}
 

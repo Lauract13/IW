@@ -81,7 +81,7 @@ public class Reservation {
 		this.user = user;
 	}
 
-	public boolean isWeekend() {
+	public boolean isIsWeekend() {
 		return isWeekend;
 	}
 
