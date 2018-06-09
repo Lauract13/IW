@@ -14,7 +14,7 @@
 	         		<img class="img-pista" src="${s}/img/rugby.jpg"/><span class="titulo-pista">${r.nameCourt}</span>
 	         		<form id="borrar-reserva-form" method="post">
 	         			<a href="/reserve/editar/${r.id}" class="link-masinfo-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-	         			<a href="#" class="link-masinfo-pista cancelar" id="borrar-reserva"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+	         			<input type="submit" value="Cancelar" class="link-masinfo-pista">
 	         		</form>
 	         		<hr class="division-reserva"/>
 					<div class="info-reserva">
