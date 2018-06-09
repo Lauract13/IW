@@ -13,6 +13,7 @@
 	         	<li class="list-group-item">
 	         		<img class="img-pista" src="${s}/img/futbol.jpg"/>
 	         		<span class="titulo-pista">${court.name}, ${court.price}€/hora</span>
+	         		<a href="/reserve/reserva/${court.id}" class="link-masinfo-pista">Reservar</a>
 	         		<p class="descripcion-pista">${court.description}</p>
 					<p>${court.dir} · ${court.phone}</p>
 					<form method="post" action="" id="borrar-pista-form">

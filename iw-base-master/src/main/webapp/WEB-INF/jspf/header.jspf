@@ -42,8 +42,16 @@
           <ul class="nav navbar-nav">
             <li><a href="/home">Inicio</a></li>
             <li><a href="/user/profile">Perfil</a></li>
-            <li><a href="/court/pistas-user">Pistas</a></li>
+            <c:if test="${sessionScope['role'] == 'user'}">
+            	<li><a href="/court/pistas-user">Pistas</a></li>
+            </c:if>
+            <c:if test="${sessionScope['role'] == 'admin'}">
+            	<li><a href="/court/pistas">Pistas</a></li>
+            </c:if>
             <li><a href="/user/tus-reservas">Reservas</a></li>
+            <c:if test="${sessionScope['role'] == 'admin'}">
+            	<li><a href="/admin/listado-admins">Administradores</a></li>
+            </c:if>
             <li><a href="/logout">Desconectarse</a></li>
           </ul>
         </div><!--/.nav-collapse -->

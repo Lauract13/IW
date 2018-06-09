@@ -151,7 +151,7 @@ public class RootController {
 		entityManager.persist(u);
 		
 		session.setAttribute("user", u.getLogin());
-		
+		session.setAttribute("role", "user");
 		
 		return "home";
 	}
@@ -176,8 +176,8 @@ public class RootController {
 		try {
 			User u = entityManager.find(User.class, Email);
 			session.setAttribute("user", u.getLogin());	
-			
 			if(u.getPassword().equals(Password)) {
+				session.setAttribute("role", "user");	
 				return "home";
 			}else {
 				m.addAttribute("error", "El usuario introducido no es correcto");
@@ -197,9 +197,9 @@ public class RootController {
 		User u = entityManager.find(User.class, Email);
 	
 		session.setAttribute("user", u.getLogin());	
-		
 		if(u.getPassword().equals(Password) && u.getRoles().contains("ADMIN")) {
-			return "redirect:/court/pistas";
+			session.setAttribute("role", "admin");
+			return "redirect:/home";
 		}else {
 			return "login-admin";
 		}
