@@ -6,7 +6,7 @@
 <%@ include file="../jspf/header.jspf"%>
 
 <div class="container">
-    <form action="" method="post" id="form-registro">
+    <form action="/user/addTeam" method="post" id="form-registro">
         <fieldset class="form-group">
             <legend>Asigna un equipo a un jugador</legend>
             <div class="form-group custom-form-group">

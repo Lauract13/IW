@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import es.ucm.fdi.iw.model.Player;
 import es.ucm.fdi.iw.model.Reservation;
 import es.ucm.fdi.iw.model.User;
 
@@ -148,17 +149,60 @@ public class UserController {
 		}		
 	}
 	
-	@RequestMapping(value = "/deleteUser", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@Transactional
-	public String deleteUser(Model m, HttpSession session) {
-		
-		
+	public String deleteUser(Model m, HttpSession session) {		
 		User u = entityManager.find(User.class, session.getAttribute("user") );
 		entityManager.remove(u);
 		
-		return "profile";
+		return "redirect:/login";
 	}
 	
+	@RequestMapping(value = "/addTeam", method = RequestMethod.POST)
+	@Transactional
+	public String addTeam(@RequestParam String Email, 
+						  @RequestParam String Equipo,
+						  Model m, HttpSession session) {
+		
+		Boolean errores = false;
+		if (Email == "") {
+			m.addAttribute("errorEmail", "Debe insertar una direccion");
+			errores = true;
+		}
+		if (Equipo == "") {
+			m.addAttribute("errorEquipo", "Debe insertar un telefono");
+			errores = true;
+		}
+		
+		if(session.getAttribute("user") != null) {
+			User u = entityManager.find(User.class, Email);
+			Player player = (Player) u;
+			
+			if(player != null && u.isPlayer() && player.getTeam() != "") {
+				Player p = (Player) entityManager.createNamedQuery("findUserByTeam").setParameter("t", Equipo).getSingleResult();
+				
+				if(p != null) {
+					
+					player.setTeam(Equipo);
+				}else {
+					m.addAttribute("error", "Este equipo ya tiene equipo");
+					errores = true;
+				}
+			}else {
+				m.addAttribute("error", "El usuario no estÃ¡ registrado");
+				errores = true;
+			}
+			
+			if (errores) {
+				return "asignar-equipo";
+			}
+			
+		}else {
+			return "redirect:/error";
+		}
+		
+		return "pistas";
+	}
 	
 }
 
