@@ -5,7 +5,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @NamedQueries({
-	@NamedQuery(name = "findUserByTeam", query = "select p from Player p where p.team = :t")
+	@NamedQuery(name = "findPlayerTeam", query = "select p from Player p where p.team =:t")
 })
 
 @Entity

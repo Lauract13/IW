@@ -150,15 +150,6 @@ public class UserController {
 		}		
 	}
 	
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	@Transactional
-	public String deleteUser(Model m, HttpSession session) {		
-		User u = entityManager.find(User.class, session.getAttribute("user") );
-		entityManager.remove(u);
-		
-		return "redirect:/login";
-	}
-	
 	@RequestMapping(value = "/addTeam", method = RequestMethod.POST)
 	@Transactional
 	public String addTeam(@RequestParam String Email, 

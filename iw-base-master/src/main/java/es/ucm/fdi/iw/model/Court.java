@@ -25,7 +25,6 @@ public class Court {
 	@Size(min=1, max=1000)
 	private String extras;
 	private double price;
-	private byte[] photo;
 	
 	@Id
 	@GeneratedValue
@@ -70,13 +69,5 @@ public class Court {
 	}
 	public void setExtras(String extras) {
 		this.extras = extras;
-	}
-	public byte[] getPhoto() {
-		return photo;
-	}
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
-	}
-	
-	
+	}	
 }

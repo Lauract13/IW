@@ -28,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.Court;
-import es.ucm.fdi.iw.model.User;
 
 
 @Controller
@@ -178,17 +177,7 @@ public class CourtController {
 			c.setExtras(Extras);
 			c.setName(Nombre);
 			c.setPhone(Telefono);
-			c.setPrice(Precio);
-			
-			if (!photo.isEmpty()) {
-				try {
-					byte[] bytes = photo.getBytes();
-					c.setPhoto(bytes);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}	
-	        }		
+			c.setPrice(Precio);	
 		}				
 				
 		entityManager.persist(c);
@@ -263,20 +252,7 @@ Boolean errores = false;
 		c.setExtras(Extras);
 		c.setPrice(Precio);
 		c.setDir(Direccion);
-		
-		if (!photo.isEmpty()) {
-			try {
-				byte[] bytes = photo.getBytes();
-				c.setPhoto(bytes);
-				m.addAttribute("court", c);
-				//entityManager.merge(c);
 				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-        }	
-		
 		return "redirect:/court/pistas";
 	}
 	
