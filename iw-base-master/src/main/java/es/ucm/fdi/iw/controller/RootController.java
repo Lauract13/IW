@@ -90,7 +90,7 @@ public class RootController {
 			@RequestParam String Telefono,
 			@RequestParam String Password,
 			@RequestParam String CodUcm,
-			@RequestParam ("Player") String checkboxPlayer,
+			@RequestParam (required=false,name="Player") String checkboxPlayer,
 			@RequestParam ("UCM") String checkboxValue,			
 			@RequestParam(required=false) String isAdmin, Model m, HttpSession session) {
 		

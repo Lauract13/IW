@@ -44,15 +44,15 @@
     		</div>
     		<div id="input-cod-ucm">
     			<div class="form-group custom-form-group">
-  					<input id="CodUcm" name="CodUcm" type="text" placeholder="Código ucm" class="form-control cod-input" required="">
+  					<input id="CodUcm" name="CodUcm" type="text" placeholder="Código ucm" class="form-control cod-input">
             		<c:if test="${not empty errorCodUcm}"><p class="error">${errorCodUcm}</p></c:if>
             	</div>
             	<div class="form-group custom-form-group">
 	            	<label for="UCM">¿Perteneces a algún equipo de la UCM?</label>
 	            	<div class="form-check">
-					  <input class="form-check-input micheckbox" type="radio" name="Player" id="checkbox-player1" value="option1" required>
+					  <input class="form-check-input micheckbox" type="radio" name="Player" id="checkbox-player1" value="option1">
 					  <label class="form-check-label" for="checkbox-player1">Sí</label>
-					  <input class="form-check-input micheckbox second-checkbox" type="radio" name="Player" id="checkbox-player2" value="option2" required>
+					  <input class="form-check-input micheckbox second-checkbox" type="radio" name="Player" id="checkbox-player2" value="option2">
 					  <label class="form-check-label" for="checkbox-player2">No</label>
 					</div>
 				</div>

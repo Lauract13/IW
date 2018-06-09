@@ -9,7 +9,7 @@
 	<h3>¡Bienvenido!</h3>
 	<p>Bienvenido a UCMVolley, donde podrás visualizar y reservar las pistas de volley de la Universidad Complutense de Madrid.</p>
 	<div class="centrar">
-	<img class="img-home" src="https://www.ucm.es/data/cont/media/www/pag-2257/_B220282c.jpg" alt="Futbol">
+	<img class="img-home" src="${s}/img/volley_sur.jpg" alt="Pista Somosaguas">
     </div>
     <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel"> -->
 		<!-- Indicators -->
