@@ -9,9 +9,15 @@ $( document ).ready(function() {
 	try {
 		$("#inlineCheckbox1").click(function() {
 			displayCodUcmInput();
+			$("#CodUcm").attr("required",true);
+			$("#CodUcm").attr("required",true);
+			$("#CodUcm").attr("required",true);
 		});
 		$("#inlineCheckbox2").click(function() {
 			hideCodUcmInput();
+			$("#CodUcm").attr("required",false);
+			$("#CodUcm").attr("required",false);
+			$("#CodUcm").attr("required",false);
 		});
 	} catch {
 		
