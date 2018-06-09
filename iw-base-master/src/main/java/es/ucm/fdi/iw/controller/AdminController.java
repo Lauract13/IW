@@ -62,8 +62,12 @@ public class AdminController {
   
     
     @GetMapping("/crear-admin")
-	public String crearAdmin() {
-		return "crear-admin";
+	public String crearAdmin(HttpSession session) {
+    	if (session.getAttribute("role") == "admin") {
+    		return "crear-admin";
+    	}else {
+			return "redirect:/error";
+		}
 	}
     
     @RequestMapping(value = "/deleteAdmin", method = RequestMethod.POST)
@@ -148,12 +152,17 @@ public class AdminController {
     
 	@SuppressWarnings("unchecked")
 	@GetMapping("/listado-admins")
-	public String admins(Model m) {
+	public String admins(Model m, HttpSession session) {
 		
-		List<Admin> admin = entityManager.createNamedQuery("allAdmins").getResultList();
-		
-		m.addAttribute("listAdmins", admin);
-		return "listado-admins";
+		if (session.getAttribute("role") == "admin") {
+			List<Admin> admin = entityManager.createNamedQuery("allAdmins").getResultList();
+			
+			m.addAttribute("listAdmins", admin);
+			return "listado-admins";
+		}
+		else {
+			return "redirect:/error";
+		}
 	}
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@Transactional
