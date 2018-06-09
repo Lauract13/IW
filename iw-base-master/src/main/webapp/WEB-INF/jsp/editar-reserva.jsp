@@ -15,26 +15,25 @@
 						<h2>Fecha: ${t.date}</h2>
 					</div>
 			    	<div class="horario">
+			    		<% int i = 9; %>
 			    		<div class="celda-horario">
-			    			<div><input type="checkbox" name="franja-horaria" value="9" id="franja-9-10"> <label for="franja-9-10"> 09:00 — 10:00</label></div>
-			     			<div><input type="checkbox" name="franja-horaria" value="10" id="franja-10-11"> <label for="franja-10-11"> 10:00 — 11:00</label></div>
-			    			<div><input type="checkbox" name="franja-horaria" value="11" id="franja-11-12"> <label for="franja-11-12"> 11:00 — 12:00</label></div>
-			    		</div>
-			    		<div class="celda-horario">
-			    			<div><input type="checkbox" name="franja-horaria" value="12" id="franja-12-13"> <label for="franja-12-13"> 12:00 — 13:00</label></div>
-			    			<div><input type="checkbox" name="franja-horaria" value="13" id="franja-13-14"> <label for="franja-13-14"> 13:00 — 14:00</label></div>
-			    			<div><input type="checkbox" name="franja-horaria" value="14" id="franja-14-15"> <label for="franja-14-15"> 14:00 — 15:00</label></div>
-			    		</div>
-			    		<div class="celda-horario">
-			    			<div><input type="checkbox" name="franja-horaria" value="15" id="franja-15-16"> <label for="franja-15-16"> 15:00 — 16:00</label></div>
-			    			<div><input type="checkbox" name="franja-horaria" value="16" id="franja-16-17"> <label for="franja-16-17"> 16:00 — 17:00</label></div>
-			    			<div><input type="checkbox" name="franja-horaria" value="17" id="franja-17-18"> <label for="franja-17-18"> 17:00 — 18:00</label></div>
-			    		</div>
-			    		<div class="celda-horario">
-			    			<div><input type="checkbox" name="franja-horaria" value="18" id="franja-18-19"> <label for="franja-18-19"> 18:00 — 19:00</label></div>
-			    			<div><input type="checkbox" name="franja-horaria" value="19" id="franja-19-20"> <label for="franja-19-20"> 19:00 — 20:00</label></div>
-			    			<div><input type="checkbox" name="franja-horaria" value="20" id="franja-20-21"> <label for="franja-20-21"> 20:00 — 21:00</label></div>
-			    		</div>
+			    		<c:forEach items="${t.horas}" var="h">	
+			    			<c:choose>
+								<c:when test="${h.reserved == 1}">
+									<div><input type="checkbox" name="franja-horaria" value="${h.hour}" id="franja-${h.hour}-<%= i + 1 %>" checked> <label for="franja-${h.hour}-<%= i + 1 %>"> ${h.hour}:00 — <%= i + 1 %>:00</label></div>
+								</c:when>
+								<c:otherwise>
+									<div><input type="checkbox" name="franja-horaria" value="${h.hour}" id="franja-${h.hour}-<%= i + 1 %>"> <label for="franja-${h.hour}-<%= i + 1 %>"> ${h.hour}:00 — <%= i + 1 %>:00</label></div>
+								</c:otherwise>
+							</c:choose>					
+							
+							<% if(i == 11 || i == 14 || i == 17){ %>
+								</div>
+								<div class="celda-horario">
+							<%} %>
+							<% i++; %>
+						</c:forEach>
+						</div>
 			    	</div>
 		    	</div>
 		    	<!--  <input type="hidden" name="countH" value=""> -->
