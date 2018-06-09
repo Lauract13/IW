@@ -1,10 +1,19 @@
 var c = 1;
+var horas = 0;
+var horas_aux = 0;
 
 $( document ).ready(function() { 
     navBar();
 	anadirFecha();
 	datepickerFunction();
 	mostrarHoras();
+	horas = $("#horasR").val();
+	horas_aux = horas;
+	if( $.trim($('#horario1').html()) != "" ) {
+		horas = horas_aux;
+		$("#muestra-horas").text("");
+		$("#muestra-horas").text('Horas reservadas: ' + horas);
+	}
 	
 	try {
 		$("#inlineCheckbox1").click(function() {
@@ -85,17 +94,24 @@ function mostrarHoras(){
 	
 	$(id).change('input',function(e){
 		var fecha = $(id).val();
+		if( $.trim($(h).html()) != "" ) {
+			horas = horas_aux;
+			$("#muestra-horas").text("");
+			$("#muestra-horas").text('Horas reservadas: ' + horas);
+		}
 		$(h).empty();
 		horasDisponibles(fecha, h);	
 	});
 }
 
 function horasDisponibles(f, h){
+	var idC = $("#idCourt").val();
 	$.ajax({
         type: "GET",
         url: "/reserve/booking",
-        data: {date: f},
+        data: {date: f, court: idC},
         success: function(data, statusText, jqXHR){
+        	horas_aux = horas;
         	if(data.length == 0){
         		$(h).append(
         	            '<div class="celda-horario">' +
@@ -122,7 +138,6 @@ function horasDisponibles(f, h){
 	        	var cad = '<div class="celda-horario">';
 	        	data.forEach(element => {
 	        		var hour = element.hour;
-	        		alert(element.reserved);
 	        		if(element.reserved == 2){
 	        			cad += '<div><input type="checkbox" name="franja-horaria" class="franja-' + c + '" value="' + hour + '" id="franja-' + hour + '-' + (hour + 1) + '-' + c + '" disabled><label class="inactive" for="franja-' + hour + '-' + (hour + 1) + '-' + c + '"> ' + hour + ':00 — ' + (hour + 1) + ':00</label></div>';
 	        		}else{
@@ -149,12 +164,10 @@ function anadirFecha() {
 	$("#anadir-fecha").click(function(){
 		c++;
 	    $("#nuevas-fechas").append('<div class="reserva-celda"><div class="centrar nueva-reserva">' +
-	        '<label for="datepicker">Fecha ' + c + ':</label> <input type="text" name="datepicker" id="datepicker' + c + '" autocomplete="off" class="datepicker">' +
+	        '<label for="datepicker">Fecha ' + c + ':</label> <input type="text" name="datepicker" id="datepicker' + c + '" autocomplete="off" class="' + claseDatepicker + '">' +
 	        '</div>'  + '<input type="hidden" name="countH" id="countH-' + c + '" value="">' +
 	        '<div class="horario" id="horario' + c + '"></div></div>');
-	    
 	    datepickerFunction();
-	    
 	    mostrarHoras();
 	});
 }
@@ -163,15 +176,27 @@ function countHours(){
 	var countH = 0;
 	var clase = '.franja-' + c;
 	var h = "#countH-" + c;	
-	console.log(clase);
 	$(clase).on( 'click', function() {
 	    if( $(this).is(':checked') ){
 	        countH++;
+	        
+	        if(horas != -1)
+	        	horas++;
+	        	
 	    } else {
 	        countH--;
+	        
+	        if(horas != -1)
+	        	horas--;
 	    }
 	    $(h).val(countH);
-	    console.log(countH);
+	    $("#muestra-horas").text("");
+	    
+	    if(horas > 18){
+	    	$("#muestra-horas").text('Ya has reservado todas las horas disponibles');
+	    }else{
+	    	$("#muestra-horas").text('Horas reservadas: ' + horas);
+	    }
 	});
 	
 }

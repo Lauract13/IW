@@ -170,7 +170,7 @@ public class UserController {
 			User u = entityManager.find(User.class, Email);
 			Player player = (Player) u;
 			
-			if(player != null && u.isPlayer() && player.getTeam() == "") {
+			if(player != null && u.isPlayer() && player.getTeam() == null) {
 				Query q = entityManager.createNamedQuery("findPlayerTeam").setParameter("t", Equipo);
 				
 				if(q.getResultList().size() == 0) {
@@ -185,7 +185,7 @@ public class UserController {
 					m.addAttribute("error", "El usuario no está registrado");
 				if(!u.isPlayer())
 					m.addAttribute("error", "El usuario no es un jugador");
-				if(player.getTeam() != "")
+				if(player.getTeam() != null)
 					m.addAttribute("error", "El usuario ya tiene equipo");
 				errores = true;
 			}
@@ -198,7 +198,7 @@ public class UserController {
 			return "redirect:/error";
 		}
 		
-		return "pistas";
+		return "redirect:/court/pistas";
 	}
 	
 }
