@@ -149,7 +149,7 @@ function anadirFecha() {
 	$("#anadir-fecha").click(function(){
 		c++;
 	    $("#nuevas-fechas").append('<div class="reserva-celda"><div class="centrar nueva-reserva">' +
-	        '<label for="datepicker">Fecha ' + c + ':</label> <input type="text" name="datepicker" id="datepicker' + c + '" autocomplete="off" class="datepicker">' +
+	        '<label for="datepicker">Fecha ' + c + ':</label> <input type="text" name="datepicker" id="datepicker' + c + '" autocomplete="off" class="' + claseDatepicker + '">' +
 	        '</div>'  + '<input type="hidden" name="countH" id="countH-' + c + '" value="">' +
 	        '<div class="horario" id="horario' + c + '"></div></div>');
 	    
