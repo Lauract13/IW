@@ -24,6 +24,7 @@
 						</c:if>
 						<input type="text" name="datepicker" id="datepicker<%= count%>" class="<%=claseDatepicker %>" autocomplete="off">
 					</div>
+					<input type="hidden" name="countH" id="countH-<%= count%>" value="">
 			    	<div class="horario" id="horario<%= count%>">
 
 			    	</div>

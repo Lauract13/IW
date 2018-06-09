@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import es.ucm.fdi.iw.model.Court;
 import es.ucm.fdi.iw.model.Reservation;
@@ -47,8 +48,8 @@ public class ReserveController {
 	public String creaReserva(
 			@RequestParam String idCourt,
 			@RequestParam String[] datepicker,
-			@RequestParam ("franja-horaria") String[] checkboxValue,
-			@RequestParam String[] countH,
+			@RequestParam ("franja-horaria") int[] checkboxValue,
+			@RequestParam int[] countH,
 			HttpSession session) {
     	
     	int j = 0;
@@ -82,9 +83,8 @@ public class ReserveController {
     			
     			List<String> horas = new ArrayList<>();
     			int count = 0;
-    			for(int i = 9; i < 21 && count < Integer.parseInt(countH[k]); i++) {
-    	    		String aux = Integer.toString(i);
-    	    		if(checkboxValue[j].equals(aux)) {
+    			for(int i = 9; i < 21 && count < countH[k]; i++) {
+    	    		if(checkboxValue[j] == i) {
     	    			String h = checkboxValue[j] + ":00";
     	    			
     	    			horas.add(h);				
@@ -131,25 +131,8 @@ public class ReserveController {
 		t.setNameCourt(r.getCourt().getName());
 		
 		List<String> horas = r.getHoras();
-		List<Integer> tHoras = new ArrayList<Integer>();
-		for(int i = 0; i < horas.size(); i++) {
-			String[] h = horas.get(i).split(":");
 			
-			tHoras.add(Integer.parseInt(h[0]));
-		}
-		
-		List<THour> tHours = new ArrayList<THour>();
-		for(int i = 9; i < 21; i++) {
-			THour th = new THour();
-			th.setHour(i);
-			if(tHoras.indexOf(i) != -1) {
-				th.setReserved(1);
-			}else {
-				th.setReserved(0);
-			}
-			
-			tHours.add(th);
-		}
+		List<THour> tHours = toTHour(horas);
 		
 		t.setHoras(tHours);
     	
@@ -163,7 +146,7 @@ public class ReserveController {
 	@Transactional
 	public String upload(
 			@RequestParam long id,
-			@RequestParam ("franja-horaria") String[] checkboxValue,
+			@RequestParam ("franja-horaria") int[] checkboxValue,
 			//@RequestParam String[] countH,
 			HttpSession session) {
 		
@@ -172,8 +155,7 @@ public class ReserveController {
 		List<String> horas = new ArrayList<>();
 		int count = 0;
 		for(int i = 9; i < 21 && count < checkboxValue.length; i++) {
-    		String aux = Integer.toString(i);
-    		if(checkboxValue[count].equals(aux)) {
+    		if(checkboxValue[count] == i) {
     			String h = checkboxValue[count] + ":00";
     			horas.add(h);				
     			count++;
@@ -196,6 +178,56 @@ public class ReserveController {
 		entityManager.remove(r);
 		
 		return "home";
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value = "/booking", method = RequestMethod.GET)
+	@ResponseBody
+	public List<THour> booking(@RequestParam String date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		List<THour> t = new ArrayList<THour>();
+		
+    	try {
+			Date d = sdf.parse(date);
+			List<Reservation> list = entityManager.createNamedQuery("freeHours").setParameter("d", d).getResultList();
+			
+			for(Reservation r: list) {
+				List<String> horas = r.getHoras();
+				List<THour> aux = toTHour(horas);
+				
+				for(THour h: aux) {
+					t.add(h);
+				}
+			}
+			
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return t;	
+	}
+	
+	private List<THour> toTHour(List<String> horas) {
+		List<Integer> tHoras = new ArrayList<Integer>();
+		for(int i = 0; i < horas.size(); i++) {
+			String[] h = horas.get(i).split(":");
+			
+			tHoras.add(Integer.parseInt(h[0]));
+		}
+		
+		List<THour> tHours = new ArrayList<THour>();
+		for(int i = 9; i < 21; i++) {
+			THour th = new THour();
+			th.setHour(i);
+			if(tHoras.indexOf(i) != -1) {
+				th.setReserved(1);
+			}else {
+				th.setReserved(0);
+			}
+			
+			tHours.add(th);
+		}
+		
+		return tHours;
 	}
 
 }
