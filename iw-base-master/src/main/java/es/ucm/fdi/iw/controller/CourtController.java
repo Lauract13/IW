@@ -70,12 +70,15 @@ public class CourtController {
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/pistas")
-	public String pistas(Model m) {
-		
-		List<Court> l = entityManager.createNamedQuery("allCourts").getResultList();
-		
-		m.addAttribute("list", l);
-		return "pistas";
+	public String pistas(Model m, HttpSession session) {
+		if (session.getAttribute("role") == "admin") {
+			List<Court> l = entityManager.createNamedQuery("allCourts").getResultList();
+			
+			m.addAttribute("list", l);
+			return "pistas";
+		} else {
+			return "redirect:/error";
+		}
 	}
 	
 	@RequestMapping(value="/perfil-pista/{id}", method = RequestMethod.GET)
@@ -100,8 +103,13 @@ public class CourtController {
 	}
 	
 	@GetMapping("/crear-pista")
-	public String loginAdmin() {
-		return "crear-pista";
+	public String loginAdmin(HttpSession session) {
+		if (session.getAttribute("role") == "admin") {
+			return "crear-pista";
+		}
+		else {
+			return "redirect:/error";
+		}
 	}
 	
 	@RequestMapping(value="/editar-pista/{id}", method = RequestMethod.GET)
