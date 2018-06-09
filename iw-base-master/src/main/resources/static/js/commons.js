@@ -1,11 +1,19 @@
 var c = 1;
 var horas = 0;
+var horas_aux = 0;
 
 $( document ).ready(function() { 
     navBar();
 	anadirFecha();
 	datepickerFunction();
 	mostrarHoras();
+	horas = $("#horasR").val();
+	horas_aux = horas;
+	if( $.trim($('#horario1').html()) != "" ) {
+		horas = horas_aux;
+		$("#muestra-horas").text("");
+		$("#muestra-horas").text('Horas reservadas: ' + horas);
+	}
 	
 	try {
 		$("#inlineCheckbox1").click(function() {
@@ -25,7 +33,27 @@ $( document ).ready(function() {
 	}
 	
 	$( ".inactive" ).prev().attr("disabled", true);
-	
+	try {
+		document.getElementById("borrar-pista").onclick = function() {
+		    document.getElementById("borrar-pista-form").submit();
+		}
+	} catch {
+		
+	}
+	try {
+		document.getElementById("borrar-admin").onclick = function() {
+		    document.getElementById("borrar-admin-form").submit();
+		}
+	} catch {
+		
+	}
+	try {
+		document.getElementById("borrar-reserva").onclick = function() {
+		    document.getElementById("borrar-reserva-form").submit();
+		}
+	} catch {
+		
+	}
 });
 
 function displayCodUcmInput() {
@@ -66,6 +94,11 @@ function mostrarHoras(){
 	
 	$(id).change('input',function(e){
 		var fecha = $(id).val();
+		if( $.trim($(h).html()) != "" ) {
+			horas = horas_aux;
+			$("#muestra-horas").text("");
+			$("#muestra-horas").text('Horas reservadas: ' + horas);
+		}
 		$(h).empty();
 		horasDisponibles(fecha, h);	
 	});
@@ -77,6 +110,7 @@ function horasDisponibles(f, h){
         url: "/reserve/booking",
         data: {date: f},
         success: function(data, statusText, jqXHR){
+        	horas_aux = horas;
         	if(data.length == 0){
         		$(h).append(
         	            '<div class="celda-horario">' +
@@ -144,21 +178,24 @@ function countHours(){
 	$(clase).on( 'click', function() {
 	    if( $(this).is(':checked') ){
 	        countH++;
-	        /*
+	        
 	        if(horas != -1)
 	        	horas++;
-	        	*/
+	        	
 	    } else {
 	        countH--;
-	        /*
+	        
 	        if(horas != -1)
-	        	horas--;*/
+	        	horas--;
 	    }
 	    $(h).val(countH);
-	    /*
-	    if(horas > 17){
-	    	claseDatepicker = "datepicker-weekend";
-	    }*/
+	    $("#muestra-horas").text("");
+	    
+	    if(horas > 18){
+	    	$("#muestra-horas").text('Ya has reservado todas las horas disponibles');
+	    }else{
+	    	$("#muestra-horas").text('Horas reservadas: ' + horas);
+	    }
 	});
 	
 }

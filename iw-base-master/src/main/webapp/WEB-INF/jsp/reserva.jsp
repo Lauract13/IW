@@ -12,14 +12,19 @@
 </script>
 <div class="container">
 		<div class="reserva">
-			<h3>Reservar pista Pista1</h3>
+			<h3>Reservar pista ${nameCourt} </h3>
 			
 			<form action="/reserve/nuevaReserva" method="post" id="form-reserva">
+				<input type="hidden" name="horasR" id="horasR" value="${cont}"> 
+				<c:if test="${isPlayer and cont < 18}">
+					<p>Una vez reserves todas las horas disponibles de L-V para tu equipo no se podrá realizar ninguna modificación</p>
+					<h4 id="muestra-horas">Horas reservadas: ${cont}</h4>
+				</c:if>
 				<div class="reserva-celda">
 					<div class="centrar">
 						<label for="datepicker<%= count%>">Fecha <%= count %>:</label>
 						<% String claseDatepicker = "datepicker-weekend";%>
-						<c:if test="${isPlayer}">
+						<c:if test="${isPlayer and cont < 18}">
 							<% claseDatepicker = "datepicker";%>
 						</c:if>
 						<input type="text" name="datepicker" id="datepicker<%= count%>" class="<%=claseDatepicker %>" autocomplete="off">

@@ -43,29 +43,33 @@ public class ReserveController {
 		return "create";
 	}
     // id usuario, fecha->date, id pista
-    @RequestMapping(value = "/nuevaReserva", method = RequestMethod.POST)
+    @SuppressWarnings("unused")
+	@RequestMapping(value = "/nuevaReserva", method = RequestMethod.POST)
 	@Transactional
 	public String creaReserva(
 			@RequestParam String idCourt,
 			@RequestParam String[] datepicker,
 			@RequestParam ("franja-horaria") int[] checkboxValue,
 			@RequestParam int[] countH,
+			@RequestParam int horasR,
 			HttpSession session) {
     	
     	int j = 0;
     	User u = entityManager.find(User.class, session.getAttribute("user"));
     	Court c = entityManager.find(Court.class, Long.parseLong(idCourt));
+    	int cont = 0;
+    	if(u.isPlayer())
+    		cont = horasR;
     	
     	for(int k = 0; k < datepicker.length; k++) {
         	Reservation r = new Reservation();
+        	boolean suma = false;
         	
         	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         
         	String d = datepicker[k];
         	Date date = new Date();
-    		try {
-  
-         			
+    		try {      			
     			date = sdf.parse(d);
     			
     			DateFormat format2=new SimpleDateFormat("EEEE"); 
@@ -75,6 +79,8 @@ public class ReserveController {
     				r.setWeekend(true);
     			}else {
     				r.setWeekend(false);
+    				if(u.isPlayer())
+    					suma = true;
     			}
     			
     			r.setDate(date);
@@ -91,10 +97,16 @@ public class ReserveController {
     					
     	    			j++;
     	    			count++;
+    	    			if(u.isPlayer())
+    	    				cont++;
     	    		}	    		
     	    	}
     			
     			r.setHoras(horas);
+    			
+    			if(cont > 18) {
+    				return "redirect:/error";
+    			}
         		entityManager.persist(r);
     		} catch (ParseException e1) {
     			// TODO Auto-generated catch block
@@ -119,7 +131,10 @@ public class ReserveController {
         	}
     	}
     	
+    	Court c = entityManager.find(Court.class, id);
+    	
     	m.addAttribute("idCourt", id);
+    	m.addAttribute("nameCourt", c.getName());
     	m.addAttribute("isPlayer", u.isPlayer());
     	m.addAttribute("cont", cont);
     	m.addAttribute("s", "../../static");

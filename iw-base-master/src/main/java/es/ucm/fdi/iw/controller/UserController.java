@@ -89,7 +89,7 @@ public class UserController {
 				}
 				
 				t.setHoras(tHoras);
-				
+				t.setWeekend(r.isWeekend());
 				list.add(t);
 			}
 			

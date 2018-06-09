@@ -8,6 +8,7 @@ public class TReservation {
 	private String nameCourt;
 	private String date;
 	private List<THour> horas;
+	private boolean isWeekend;
 	
 	public TReservation() {
 		id = 0;
@@ -39,5 +40,13 @@ public class TReservation {
 	}
 	public void setHoras(List<THour> horas) {
 		this.horas = horas;
+	}
+
+	public boolean isWeekend() {
+		return isWeekend;
+	}
+
+	public void setWeekend(boolean isWeekend) {
+		this.isWeekend = isWeekend;
 	}	
 }
