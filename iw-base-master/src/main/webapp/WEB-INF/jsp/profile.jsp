@@ -16,7 +16,13 @@
 		  		<span>${user.dir}</span><br/>
 		  		</p>
 	  		</div>
-		  	<div class="div-modificar"><a href="/user/editar-perfil" class="btn btn-modificar">Modificar perfil</a></div>
+		  	<div class="div-modificar">
+		  		<form>
+		  			<a href="/user/editar-perfil" class="btn btn-modificar">Modificar perfil</a>
+		  			<input type="hidden" id="userLogin" name="userLogin" value="${user.login}">
+		  			<button type="submit" class="btn btn-login">Darse de baja</button>
+		  		</form>
+		  	</div>
 		</div>
 </div>
 
