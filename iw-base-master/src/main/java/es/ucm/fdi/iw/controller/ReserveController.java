@@ -109,6 +109,8 @@ public class ReserveController {
 	public String reserva(@PathVariable("id") long id, Model m, HttpSession session) {
     	User u = entityManager.find(User.class, session.getAttribute("user"));
     	
+    	
+    	
     	m.addAttribute("idCourt", id);
     	m.addAttribute("isPlayer", u.isPlayer());
     	m.addAttribute("s", "../../static");
