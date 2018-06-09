@@ -401,3 +401,11 @@ p.error {
 .baja:hover {
 	text-decoration: underline;
 }
+
+.baja-reserva {
+	color: red;
+}
+
+.baja-reserva:hover {
+	text-decoration: underline;
+}

@@ -15,7 +15,7 @@
 	         		<c:if test="${r.isWeekend}">
 		         		<form id="borrar-reserva-form" action="/reserve/delete" method="post">
 	         				<a href="/reserve/editar/${r.id}" class="link-masinfo-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-	         				<input type="submit" value="Cancelar" class="link-masinfo-pista">
+	         				<input type="submit" value="Cancelar" class="link-masinfo-pista baja-reserva">
 	         			</form>
 	         		</c:if>
 	         		<hr class="division-reserva"/>
