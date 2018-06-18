@@ -37,21 +37,21 @@ $( document ).ready(function() {
 		document.getElementById("borrar-pista").onclick = function() {
 		    document.getElementById("borrar-pista-form").submit();
 		}
-	} catch {
+	} catch (err) {
 		
 	}
 	try {
 		document.getElementById("borrar-admin").onclick = function() {
 		    document.getElementById("borrar-admin-form").submit();
 		}
-	} catch {
+	} catch (err) {
 		
 	}
 	try {
 		document.getElementById("borrar-reserva").onclick = function() {
 		    document.getElementById("borrar-reserva-form").submit();
 		}
-	} catch {
+	} catch (err) {
 		
 	}
 });
