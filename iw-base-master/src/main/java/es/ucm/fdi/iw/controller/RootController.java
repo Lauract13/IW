@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -21,7 +23,10 @@ import es.ucm.fdi.iw.model.User;
 
 @Controller	
 public class RootController {
-		
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	private EntityManager entityManager;
 	
@@ -122,7 +127,7 @@ public class RootController {
 			u = new Normal();
 		}
 		u.setLogin(Email);
-		u.setPassword(Password);
+		u.setPassword(passwordEncoder.encode(Password));
 		u.setDir(Direccion);
 		u.setName(Nombre);
 		u.setPhone(Telefono);
@@ -175,7 +180,7 @@ public class RootController {
 		try {
 			User u = entityManager.find(User.class, Email);
 			session.setAttribute("user", u.getLogin());	
-			if(u.getPassword().equals(Password)) {
+			if(passwordEncoder.matches(Password, u.getPassword())) {
 				session.setAttribute("role", "user");	
 				return "home";
 			}else {
@@ -196,7 +201,8 @@ public class RootController {
 		User u = entityManager.find(User.class, Email);
 	
 		session.setAttribute("user", u.getLogin());	
-		if(u.getPassword().equals(Password) && u.getRoles().contains("ADMIN")) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		if(passwordEncoder.matches(Password, u.getPassword()) && u.getRoles().contains("ADMIN")) {
 			session.setAttribute("role", "admin");
 			return "redirect:/home";
 		}else {

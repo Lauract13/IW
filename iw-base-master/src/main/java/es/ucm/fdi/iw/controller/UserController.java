@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -25,6 +26,9 @@ import es.ucm.fdi.iw.model.User;
 @Controller	
 @RequestMapping("user")
 public class UserController {
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private EntityManager entityManager;
@@ -138,11 +142,11 @@ public class UserController {
 		
 		
 		User u = entityManager.find(User.class, session.getAttribute("user") );
-		if(u.getPassword().equals(OldPassword)) {
+		if(passwordEncoder.matches(OldPassword, u.getPassword())) {
 			u.setName(Nombre);
 			u.setDir(Direccion);
 			u.setPhone(Telefono);
-			u.setPassword(Password);
+			u.setPassword(passwordEncoder.encode(Password));
 			m.addAttribute("user", u);
 			return "profile";
 		}else {

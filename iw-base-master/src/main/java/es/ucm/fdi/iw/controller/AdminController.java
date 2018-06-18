@@ -136,7 +136,7 @@ public class AdminController {
 		
 		Admin a = new Admin();
 		a.setLogin(Email);
-		a.setPassword(Password);
+		a.setPassword(passwordEncoder.encode(Password));
 		a.setDir(Direccion);
 		a.setName(Nombre);
 		a.setPhone(Telefono);
