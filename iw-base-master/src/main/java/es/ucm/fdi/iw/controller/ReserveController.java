@@ -142,6 +142,14 @@ public class ReserveController {
 		return "reserva";
 	}
     
+    /**
+     * Mapper de la vista encargada de editar una reserva, obtiene las horas disponibles esa
+     * fecha en la pista de la reseva.
+     * @param id Id de la reserva
+     * @param m
+     * @param session
+     * @return 
+     */
     @SuppressWarnings("unchecked")
 	@RequestMapping(value ="/editar/{id}", method = RequestMethod.GET)
 	public String editarReserva(@PathVariable("id") long id, Model m, HttpSession session) {
@@ -156,32 +164,28 @@ public class ReserveController {
 		t.setDate(date);
 		t.setId(r.getId());
 		t.setNameCourt(r.getCourt().getName());
-		
-		User u = entityManager.find(User.class, session.getAttribute("user"));
-		
-		List<Reservation> list = entityManager.createNamedQuery("freeHoursEdit").setParameter("d", r.getDate()).setParameter("u", u).getResultList();
-		
+				
+		List<Reservation> list = entityManager.createNamedQuery("bookingCourt").setParameter("d", r.getDate()).setParameter("c", r.getCourt()).getResultList();
 		List<THour> th = new ArrayList<THour>();
+		
+		th = toTHour(r.getHoras()); //Lleno la lista con las horas de la reserva del usuario
+		
+		for(int i = 0; i < th.size(); i++) {
+			if(th.get(i).getReserved() == 2) {
+				th.get(i).setReserved(1);
+			}
+		}
+		
 		for(Reservation res: list) {
 			List<String> horas = res.getHoras();
 			List<THour> aux = toTHour(horas);
 			
-			for(THour h: aux) {
-				th.add(h);
-			}
-		}
-		
-		List<THour> aux = toTHour(r.getHoras());
-		
-		if(!th.isEmpty()) {
 			for(int i = 0; i < th.size(); i++) {
-				if(aux.get(i).getReserved() == 2) {
-					th.get(i).setReserved(1);
+				if(aux.get(i).getReserved() == 2 && th.get(i).getReserved() != 1) {
+					th.get(i).setReserved(2);
 				}
 			}
-		}else {
-			th = aux;
-		}
+		}	
 		
 		t.setHoras(th);
     	
@@ -227,6 +231,12 @@ public class ReserveController {
 		return "home";
 	}
 	
+	/**
+	 * Devuelve las horas reservadas y disponibles dada una fecha concreta.
+	 * @param date Fecha de la que obetener información
+	 * @param court Pista sobre la que se quiere obtener información de las reservas.
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/booking", method = RequestMethod.GET)
 	@ResponseBody
@@ -256,6 +266,13 @@ public class ReserveController {
 		return t;	
 	}
 	
+	/**
+	 * Método encargado de parsear las horas de las que dispone un día,
+	 * parseando la hora y la disponibilidad de cada una de ellas en un transfer adecuado para la vista,
+	 * en este caso el transfer THour.
+	 * @param horas
+	 * @return
+	 */
 	private List<THour> toTHour(List<String> horas) {
 		List<Integer> tHoras = new ArrayList<Integer>();
 		for(int i = 0; i < horas.size(); i++) {

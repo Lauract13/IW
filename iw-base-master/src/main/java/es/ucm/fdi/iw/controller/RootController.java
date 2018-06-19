@@ -82,6 +82,22 @@ public class RootController {
 		
 	}
 	
+	/**
+	 * Registra un nuevo usuario con los datos proporcionados por el usuario,
+	 * además, gestiona el control de los campos del formulario.
+	 * @param Nombre
+	 * @param Email
+	 * @param Direccion
+	 * @param Telefono
+	 * @param Password
+	 * @param CodUcm
+	 * @param checkboxPlayer
+	 * @param checkboxValue
+	 * @param isAdmin
+	 * @param m
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/newUser", method = RequestMethod.POST)
 	@Transactional
 	public String addUser(
