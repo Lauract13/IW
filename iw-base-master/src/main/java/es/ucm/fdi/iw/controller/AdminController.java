@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -33,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.Admin;
 import es.ucm.fdi.iw.model.Normal;
+import es.ucm.fdi.iw.model.Reservation;
 import es.ucm.fdi.iw.model.User;
 
 @Controller	
@@ -237,6 +240,49 @@ public class AdminController {
         } else {
             return "You failed to upload a photo for " + id + " because the file was empty.";
         }
+	}
+	
+	@SuppressWarnings("unchecked")
+	@GetMapping("/ver-reservas")
+	public String tusReservas(Model m, HttpSession session) {
+		if (session.getAttribute("role") == "admin") {
+			User u = entityManager.find(User.class, session.getAttribute("user"));
+			List<Reservation> l = entityManager.createNamedQuery("findAllBookings").getResultList();
+			List<ReservationTransfer> list = new ArrayList<ReservationTransfer>();
+			for(Reservation r: l) {
+				ReservationTransfer t = new ReservationTransfer();
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+				String date = sdf.format(r.getDate());
+				
+				t.setDate(date);
+				t.setId(r.getId());
+				t.setNameCourt(r.getCourt().getName());
+				t.setIdCourt(r.getCourt().getId());
+				t.setUser(r.getUser().getLogin());
+				List<String> horas = r.getHoras();
+				List<HourTransfer> tHoras = new ArrayList<HourTransfer>();
+				for(int i = 0; i < horas.size(); i++) {
+					HourTransfer th = new HourTransfer();
+					String[] h = horas.get(i).split(":");
+					
+					int n = Integer.parseInt(h[0]);
+					
+					String cad = n + ":00 - " + (n+1) + ":00";
+					th.setCad(cad);
+					tHoras.add(th);
+				}
+				t.setHoras(tHoras);
+				t.setWeekend(r.isIsWeekend());
+				list.add(t);
+			}
+			
+			m.addAttribute("list", list);	
+			
+			return "ver-reservas";
+		} else {
+			return "redirect:/error";
+		}
 	}
 	
 }

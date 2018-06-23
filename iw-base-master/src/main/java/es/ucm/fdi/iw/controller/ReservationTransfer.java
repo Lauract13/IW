@@ -10,6 +10,7 @@ public class ReservationTransfer {
 	private String date;
 	private List<HourTransfer> horas;
 	private boolean isWeekend;
+	private String user;
 	
 	public ReservationTransfer() {
 		id = 0;
@@ -57,5 +58,13 @@ public class ReservationTransfer {
 
 	public void setIdCourt(long idCourt) {
 		this.idCourt = idCourt;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
 	}	
 }
