@@ -220,7 +220,7 @@ public class ReserveController {
     
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@Transactional
-	public String deleteReservation(@RequestParam long id) {
+	public String delete(@RequestParam long id) {
 		
 		Reservation r = entityManager.find(Reservation.class, id);
 		

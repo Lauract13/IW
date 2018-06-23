@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -34,7 +33,7 @@ public class Reservation {
 	private Date date;
 	private boolean isWeekend;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private Court court;
 	
 	@ElementCollection
@@ -49,7 +48,7 @@ public class Reservation {
 		this.horas = horas;
 	}
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
 	private User user;
 
 	public Date getDate() {
