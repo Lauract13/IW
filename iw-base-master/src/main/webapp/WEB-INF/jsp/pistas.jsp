@@ -11,7 +11,7 @@
 		<ul class="list-group pistas">
 			<c:forEach items="${list}" var="court">
 	         	<li class="list-group-item">
-	         		<img class="img-pista" src="${s}/img/volley_sur.jpg"/>
+	         		<img class="img-pista" src="/court/photo/${court.id}"/>
 	         		<span class="titulo-pista">${court.name}, ${court.price}€/hora</span>
 	         		<a href="/reserve/reserva/${court.id}" class="link-masinfo-pista">Reservar</a>
 	         		<p class="descripcion-pista">${court.description}</p>

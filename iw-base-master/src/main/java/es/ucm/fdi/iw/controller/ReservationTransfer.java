@@ -6,6 +6,7 @@ import java.util.List;
 public class ReservationTransfer {
 	private long id;
 	private String nameCourt;
+	private long idCourt;
 	private String date;
 	private List<HourTransfer> horas;
 	private boolean isWeekend;
@@ -48,5 +49,13 @@ public class ReservationTransfer {
 
 	public void setWeekend(boolean isWeekend) {
 		this.isWeekend = isWeekend;
+	}
+
+	public long getIdCourt() {
+		return idCourt;
+	}
+
+	public void setIdCourt(long idCourt) {
+		this.idCourt = idCourt;
 	}	
 }

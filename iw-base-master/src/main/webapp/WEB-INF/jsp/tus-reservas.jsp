@@ -11,7 +11,7 @@
 		<ul class="list-group pistas">
 			<c:forEach items="${list}" var="r">
 	         	<li class="list-group-item">
-	         		<img class="img-pista" src="${s}/img/rugby.jpg"/><span class="titulo-pista">${r.nameCourt}</span>
+	         		<img class="img-pista" src="/court/photo/${r.idCourt}"/><span class="titulo-pista">${r.nameCourt}</span>
 	         		<c:if test="${r.isWeekend}">
 		         		<form id="borrar-reserva-form" action="/reserve/delete" method="post">
 	         				<a href="/reserve/editar/${r.id}" class="link-masinfo-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>

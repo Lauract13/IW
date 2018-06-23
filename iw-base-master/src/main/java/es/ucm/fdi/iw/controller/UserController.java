@@ -79,6 +79,7 @@ public class UserController {
 				t.setDate(date);
 				t.setId(r.getId());
 				t.setNameCourt(r.getCourt().getName());
+				t.setIdCourt(r.getCourt().getId());
 				
 				List<String> horas = r.getHoras();
 				List<HourTransfer> tHoras = new ArrayList<HourTransfer>();

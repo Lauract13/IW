@@ -46,6 +46,12 @@ public class CourtController {
         model.addAttribute("s", "/static");
     }
 	
+	/**
+	 * Mapper para listar todas las pistas disponibles y mostrarlas a un administrador.
+	 * @param m
+	 * @param session
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@GetMapping("/pistas")
 	public String pistas(Model m, HttpSession session) {
@@ -59,6 +65,12 @@ public class CourtController {
 		}
 	}
 	
+	/**
+	 * Mapper para visualizar información de una determinada pista.
+	 * @param id
+	 * @param m
+	 * @return
+	 */
 	@RequestMapping(value="/perfil-pista/{id}", method = RequestMethod.GET)
 	public String perfilPista(@PathVariable("id") long id, Model m) {
 		Court c = (Court) entityManager.find(Court.class, id);
@@ -67,6 +79,12 @@ public class CourtController {
 		return "perfil-pista";
 	}
 	
+	/**
+	 * Mapper para listar todas las pistas disponibles y mostrarlas a un usuario.
+	 * @param m
+	 * @param session
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@GetMapping("/pistas-user")
 	public String pistasUser(Model m, HttpSession session) {
@@ -80,6 +98,11 @@ public class CourtController {
 		}
 	}
 	
+	/**
+	 * Mapper para mostrar formulario de crear una pista.
+	 * @param session
+	 * @return
+	 */
 	@GetMapping("/crear-pista")
 	public String loginAdmin(HttpSession session) {
 		if (session.getAttribute("role") == "admin") {
@@ -90,6 +113,13 @@ public class CourtController {
 		}
 	}
 	
+	/**
+	 * Mapper para mostrar formulario y editar una determinada pista.
+	 * @param id
+	 * @param m
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/editar-pista/{id}", method = RequestMethod.GET)
 	public String editarPista(@PathVariable("id") long id, Model m, HttpSession session) {
 		if (session.getAttribute("role") == "admin") {
@@ -103,6 +133,19 @@ public class CourtController {
 		
 	}
 	
+	/**
+	 * Crea una nueva pista con la información proporcionada por un administrador.
+	 * @param Nombre
+	 * @param Precio
+	 * @param Direccion
+	 * @param Telefono
+	 * @param Extras
+	 * @param Descripcion
+	 * @param photo
+	 * @param m
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/newCourt", method = RequestMethod.POST)
 	@Transactional
 	public String newCourt(
@@ -181,6 +224,12 @@ public class CourtController {
 		return "redirect:/court/pistas";
 	}
 	
+	/**
+	 * Elimina una pista permanentemente.
+	 * @param id
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/deleteCourt/{id}", method=RequestMethod.POST)
 	@Transactional
 	public String deleteCourt(@PathVariable("id") long id,  HttpSession session) {
@@ -197,6 +246,19 @@ public class CourtController {
 		
 	}	
 	
+	/**
+	 * Actualiza datos de una pista con la información proporcionada por administrador.
+	 * @param idCourt
+	 * @param Nombre
+	 * @param Precio
+	 * @param Direccion
+	 * @param Telefono
+	 * @param Extras
+	 * @param Descripcion
+	 * @param photo
+	 * @param m
+	 * @return
+	 */
 	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)
 	@Transactional
 	public String uploadCourt(
@@ -208,10 +270,8 @@ public class CourtController {
 			@RequestParam String Extras,
 			@RequestParam String Descripcion,
 			@RequestParam("file") MultipartFile photo, Model m) {
-				
-		
-		
-Boolean errores = false;
+						
+		Boolean errores = false;
 		
 		if (Nombre == "") {
 			m.addAttribute("errorNombre", "Debe insertar un nombre");
@@ -253,6 +313,18 @@ Boolean errores = false;
 		c.setExtras(Extras);
 		c.setPrice(Precio);
 		c.setDir(Direccion);
+		
+		try {
+			byte[] bytes = photo.getBytes();
+            BufferedOutputStream stream =
+                    new BufferedOutputStream(
+                    		new FileOutputStream(localData.getFile("court", Long.toString(c.getId()))));
+            stream.write(bytes);
+            stream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 				
 		return "redirect:/court/pistas";
 	}
@@ -264,7 +336,7 @@ Boolean errores = false;
 	 * @return
 	 */
 	@RequestMapping(value="/photo/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-	public void userPhoto(@PathVariable("id") String id, 
+	public void courtPhoto(@PathVariable("id") String id, 
 			HttpServletResponse response) {
 	    File f = localData.getFile("court", id);
 	    InputStream in = null;
@@ -273,18 +345,12 @@ Boolean errores = false;
 		    	in = new BufferedInputStream(new FileInputStream(f));
 		    } else {
 		    	in = new BufferedInputStream(
-		    			this.getClass().getClassLoader().getResourceAsStream("unknown-user.jpg"));
+		    			this.getClass().getClassLoader().getResourceAsStream("sin_imagen.jpg"));
 		    }
 	    	FileCopyUtils.copy(in, response.getOutputStream());
 	    } catch (IOException ioe) {
 	    	//log.info("Error retrieving file: " + f + " -- " + ioe.getMessage());
 	    }
 	}
-     
-    private static void saveBytesToFile(String filePath, byte[] fileBytes) throws IOException {
-        FileOutputStream outputStream = new FileOutputStream(filePath);
-        outputStream.write(fileBytes);
-        outputStream.close();
-    }
 	
 }
