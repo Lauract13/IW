@@ -48,9 +48,6 @@
             <c:if test="${sessionScope['role'] == 'admin'}">
             	<li><a href="/court/pistas">Pistas</a></li>
             </c:if>            
-            <c:if test="${sessionScope['role'] == 'admin'}">
-            	<li><a href="/admin/ver-reservas">Ver reservas</a></li>
-            </c:if>
             <li><a href="/user/tus-reservas">Mis reservas</a></li>
             <c:if test="${sessionScope['role'] == 'admin'}">
             	<li><a href="/admin/listado-admins">Administradores</a></li>

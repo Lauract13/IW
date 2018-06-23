@@ -21,7 +21,8 @@ import javax.persistence.OneToOne;
 	@NamedQuery(name = "booking", query = "select r from Reservation r where r.isWeekend = 0"),
 	@NamedQuery(name = "freeHours", query = "select r from Reservation r where r.date = :d and r.court = :c"),
 	@NamedQuery(name = "bookingCourt", query = "select r from Reservation r where r.date = :d and r.court = :c"),
-	@NamedQuery(name = "reservationsPlayer", query = "select r from Reservation r where r.isWeekend = 0 and r.user = :n")
+	@NamedQuery(name = "reservationsPlayer", query = "select r from Reservation r where r.isWeekend = 0 and r.user = :n"),
+	@NamedQuery(name = "reservationsCourt", query = "select r from Reservation r where r.court = :c")
 })
 
 @Entity

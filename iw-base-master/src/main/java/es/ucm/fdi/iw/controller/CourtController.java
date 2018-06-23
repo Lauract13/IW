@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.ucm.fdi.iw.LocalData;
 import es.ucm.fdi.iw.model.Court;
+import es.ucm.fdi.iw.model.Reservation;
 
 
 @Controller
@@ -225,17 +226,23 @@ public class CourtController {
 	}
 	
 	/**
-	 * Elimina una pista permanentemente.
+	 * Elimina una pista permanentemente y las reservas asociadas a ella.
 	 * @param id
 	 * @param session
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/deleteCourt/{id}", method=RequestMethod.POST)
 	@Transactional
 	public String deleteCourt(@PathVariable("id") long id,  HttpSession session) {
 		
 		if (session.getAttribute("role") == "admin") {
 			Court c = entityManager.find(Court.class, id);
+			List<Reservation> l = entityManager.createNamedQuery("reservationsCourt").setParameter("c", c).getResultList();
+			
+			for(Reservation r : l) {
+				entityManager.remove(r);
+			}
 			
 			entityManager.remove(c);
 			

@@ -19,6 +19,7 @@
 					<form method="post" action="/court/deleteCourt/${court.id}" id="borrar-pista-form">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<a href="/court/editar-pista/${court.id}" class="link-editar-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
+						<a href="/admin/ver-reservas/${court.id}" class="link-editar-pista">Ver reservas</a>
 						<input type="hidden" value="${court.id}" id="id-pista" name="id-pista">
 						<input type="submit" value="Borrar" class="baja">
 					</form>
