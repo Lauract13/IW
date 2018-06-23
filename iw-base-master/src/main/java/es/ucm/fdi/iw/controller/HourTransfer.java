@@ -1,6 +1,6 @@
 package es.ucm.fdi.iw.controller;
 
-public class THour {
+public class HourTransfer {
 	private int hour;
 	private int reserved;
 	private String cad;
@@ -23,5 +23,4 @@ public class THour {
 	public void setReserved(int reserved) {
 		this.reserved = reserved;
 	}
-
 }

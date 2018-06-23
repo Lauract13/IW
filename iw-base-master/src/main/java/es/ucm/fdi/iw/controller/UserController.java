@@ -69,9 +69,9 @@ public class UserController {
 		if (session.getAttribute("user") != null) {
 			User u = entityManager.find(User.class, session.getAttribute("user"));
 			List<Reservation> l = entityManager.createNamedQuery("findUserBooking").setParameter("n", u).getResultList();
-			List<TReservation> list = new ArrayList<TReservation>();
+			List<ReservationTransfer> list = new ArrayList<ReservationTransfer>();
 			for(Reservation r: l) {
-				TReservation t = new TReservation();
+				ReservationTransfer t = new ReservationTransfer();
 				
 				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 				String date = sdf.format(r.getDate());
@@ -81,9 +81,9 @@ public class UserController {
 				t.setNameCourt(r.getCourt().getName());
 				
 				List<String> horas = r.getHoras();
-				List<THour> tHoras = new ArrayList<THour>();
+				List<HourTransfer> tHoras = new ArrayList<HourTransfer>();
 				for(int i = 0; i < horas.size(); i++) {
-					THour th = new THour();
+					HourTransfer th = new HourTransfer();
 					String[] h = horas.get(i).split(":");
 					
 					int n = Integer.parseInt(h[0]);

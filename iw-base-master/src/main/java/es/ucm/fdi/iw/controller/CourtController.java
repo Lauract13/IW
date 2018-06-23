@@ -112,11 +112,16 @@ public class CourtController {
 	}
 	
 	@RequestMapping(value="/editar-pista/{id}", method = RequestMethod.GET)
-	public String editarPista(@PathVariable("id") long id, Model m) {
-		Court c =  entityManager.find(Court.class, id);
+	public String editarPista(@PathVariable("id") long id, Model m, HttpSession session) {
+		if (session.getAttribute("role") == "admin") {
+			Court c =  entityManager.find(Court.class, id);
+			
+			m.addAttribute("court", c);
+			return "modificar-pista";
+		}else {
+			return "redirect:/error";
+		}
 		
-		m.addAttribute("court", c);
-		return "modificar-pista";
 	}
 	
 	@RequestMapping(value = "/newCourt", method = RequestMethod.POST)
@@ -187,13 +192,18 @@ public class CourtController {
 	
 	@RequestMapping(value="/deleteCourt/{id}", method=RequestMethod.POST)
 	@Transactional
-	public String deleteCourt(@PathVariable("id") long id) {
-				
-		Court c = entityManager.find(Court.class, id);
+	public String deleteCourt(@PathVariable("id") long id,  HttpSession session) {
 		
-		entityManager.remove(c);
+		if (session.getAttribute("role") == "admin") {
+			Court c = entityManager.find(Court.class, id);
+			
+			entityManager.remove(c);
+			
+			return "redirect:/court/pistas";
+		}else {
+			return "redirect:/error";
+		}
 		
-		return "redirect:/court/pistas";
 	}	
 	
 	@RequestMapping(value="/uploadCourt", method=RequestMethod.POST)

@@ -156,7 +156,7 @@ public class ReserveController {
     	
     	Reservation r = entityManager.find(Reservation.class, id);
     	
-    	TReservation t = new TReservation();
+    	ReservationTransfer t = new ReservationTransfer();
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		String date = sdf.format(r.getDate());
@@ -166,7 +166,7 @@ public class ReserveController {
 		t.setNameCourt(r.getCourt().getName());
 				
 		List<Reservation> list = entityManager.createNamedQuery("bookingCourt").setParameter("d", r.getDate()).setParameter("c", r.getCourt()).getResultList();
-		List<THour> th = new ArrayList<THour>();
+		List<HourTransfer> th = new ArrayList<HourTransfer>();
 		
 		th = toTHour(r.getHoras()); //Lleno la lista con las horas de la reserva del usuario
 		
@@ -178,7 +178,7 @@ public class ReserveController {
 		
 		for(Reservation res: list) {
 			List<String> horas = res.getHoras();
-			List<THour> aux = toTHour(horas);
+			List<HourTransfer> aux = toTHour(horas);
 			
 			for(int i = 0; i < th.size(); i++) {
 				if(aux.get(i).getReserved() == 2 && th.get(i).getReserved() != 1) {
@@ -240,9 +240,9 @@ public class ReserveController {
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/booking", method = RequestMethod.GET)
 	@ResponseBody
-	public List<THour> booking(@RequestParam String date, @RequestParam long court) {
+	public List<HourTransfer> booking(@RequestParam String date, @RequestParam long court) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		List<THour> t = new ArrayList<THour>();
+		List<HourTransfer> t = new ArrayList<HourTransfer>();
 		
     	try {
 			Date d = sdf.parse(date);
@@ -273,7 +273,7 @@ public class ReserveController {
 	 * @param horas
 	 * @return
 	 */
-	private List<THour> toTHour(List<String> horas) {
+	private List<HourTransfer> toTHour(List<String> horas) {
 		List<Integer> tHoras = new ArrayList<Integer>();
 		for(int i = 0; i < horas.size(); i++) {
 			String[] h = horas.get(i).split(":");
@@ -281,9 +281,9 @@ public class ReserveController {
 			tHoras.add(Integer.parseInt(h[0]));
 		}
 		
-		List<THour> tHours = new ArrayList<THour>();
+		List<HourTransfer> tHours = new ArrayList<HourTransfer>();
 		for(int i = 9; i < 21; i++) {
-			THour th = new THour();
+			HourTransfer th = new HourTransfer();
 			th.setHour(i);
 			if(tHoras.indexOf(i) != -1) {
 				th.setReserved(2);
