@@ -1,8 +1,10 @@
 package es.ucm.fdi.iw.controller;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -43,29 +45,6 @@ public class CourtController {
     public void addAttributes(Model model) {
         model.addAttribute("s", "/static");
     }
-
-	/**
-	 * Returns a users' photo
-	 * @param id of user to get photo from
-	 * @return
-	 */
-	@RequestMapping(value="/photo/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-	public void userPhoto(@PathVariable("id") String id, 
-			HttpServletResponse response) {
-	    File f = localData.getFile("user", id);
-	    InputStream in = null;
-	    try {
-		    if (f.exists()) {
-		    	in = new BufferedInputStream(new FileInputStream(f));
-		    } else {
-		    	in = new BufferedInputStream(
-		    			this.getClass().getClassLoader().getResourceAsStream("unknown-user.jpg"));
-		    }
-	    	FileCopyUtils.copy(in, response.getOutputStream());
-	    } catch (IOException ioe) {
-	    	//log.info("Error retrieving file: " + f + " -- " + ioe.getMessage());
-	    }
-	}
 	
 	@SuppressWarnings("unchecked")
 	@GetMapping("/pistas")
@@ -187,6 +166,18 @@ public class CourtController {
 				
 		entityManager.persist(c);
 		
+		try {
+			byte[] bytes = photo.getBytes();
+            BufferedOutputStream stream =
+                    new BufferedOutputStream(
+                    		new FileOutputStream(localData.getFile("court", Long.toString(c.getId()))));
+            stream.write(bytes);
+            stream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return "redirect:/court/pistas";
 	}
 	
@@ -265,5 +256,35 @@ Boolean errores = false;
 				
 		return "redirect:/court/pistas";
 	}
+	
+	
+	/**
+	 * Returns a court's photo
+	 * @param id of user to get photo from
+	 * @return
+	 */
+	@RequestMapping(value="/photo/{id}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	public void userPhoto(@PathVariable("id") String id, 
+			HttpServletResponse response) {
+	    File f = localData.getFile("court", id);
+	    InputStream in = null;
+	    try {
+		    if (f.exists()) {
+		    	in = new BufferedInputStream(new FileInputStream(f));
+		    } else {
+		    	in = new BufferedInputStream(
+		    			this.getClass().getClassLoader().getResourceAsStream("unknown-user.jpg"));
+		    }
+	    	FileCopyUtils.copy(in, response.getOutputStream());
+	    } catch (IOException ioe) {
+	    	//log.info("Error retrieving file: " + f + " -- " + ioe.getMessage());
+	    }
+	}
+     
+    private static void saveBytesToFile(String filePath, byte[] fileBytes) throws IOException {
+        FileOutputStream outputStream = new FileOutputStream(filePath);
+        outputStream.write(fileBytes);
+        outputStream.close();
+    }
 	
 }

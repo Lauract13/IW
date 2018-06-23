@@ -7,6 +7,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.Size;
 
+
 @NamedQueries({
 	@NamedQuery(name = "findCourtByName", query = "select c from Court c where c.name = :n"),
 	@NamedQuery(name = "allCourts", query = "select c from Court c"),
@@ -25,6 +26,7 @@ public class Court {
 	@Size(min=1, max=1000)
 	private String extras;
 	private double price;
+	
 	
 	@Id
 	@GeneratedValue
