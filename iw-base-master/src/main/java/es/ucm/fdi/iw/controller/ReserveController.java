@@ -75,7 +75,7 @@ public class ReserveController {
     			DateFormat format2=new SimpleDateFormat("EEEE"); 
             	String finalDay=format2.format(date);
             	
-    			if(finalDay.equals("domingo") || finalDay.equals("sÃ¡bado") || finalDay.equals("saturday") || finalDay.equals("sunday")) {
+    			if(finalDay.equals("domingo") || finalDay.equals("sábado") || finalDay.equals("saturday") || finalDay.equals("sunday")) {
     				r.setWeekend(true);
     			}else {
     				r.setWeekend(false);
