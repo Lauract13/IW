@@ -372,7 +372,7 @@ p.error {
 	border: solid 1px #cccccc;
 }
 
-#borrar-reserva-form {
+.borrar-reserva-form {
 	display: inline;
 }
 
@@ -408,4 +408,8 @@ p.error {
 
 .baja-reserva:hover {
 	text-decoration: underline;
+}
+
+.link-pista, .link-pista:hover {
+	color: black;
 }

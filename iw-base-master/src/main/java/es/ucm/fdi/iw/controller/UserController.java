@@ -148,8 +148,9 @@ public class UserController {
 			u.setDir(Direccion);
 			u.setPhone(Telefono);
 			u.setPassword(passwordEncoder.encode(Password));
+			
 			m.addAttribute("user", u);
-			return "profile";
+			return "redirect:/user/profile";
 		}else {
 			return "editar-perfil";
 		}		
