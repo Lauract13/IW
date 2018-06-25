@@ -409,3 +409,7 @@ p.error {
 .baja-reserva:hover {
 	text-decoration: underline;
 }
+
+.link-pista, .link-pista:hover {
+	color: black;
+}

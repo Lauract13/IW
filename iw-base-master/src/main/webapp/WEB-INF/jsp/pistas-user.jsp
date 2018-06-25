@@ -12,8 +12,7 @@
 			<c:forEach items="${list}" var="court">
 	         	<li class="list-group-item">
 	         		<img class="img-pista" src="/court/photo/${court.id}"/>
-	         		<span class="titulo-pista">${court.name}, ${court.price}€/hora</span>
-	         		<a href="/court/perfil-pista/${court.id}" class="link-masinfo-pista"><span class="glyphicon glyphicon-zoom-in"></span> Más info</a>
+	         		<a href="/court/perfil-pista/${court.id}" class="link-pista"><span class="titulo-pista">${court.name}, ${court.price}€/hora</span></a>
 	         		<p class="descripcion-pista">${court.description}</p>				
 				</li>
 	      	</c:forEach>
