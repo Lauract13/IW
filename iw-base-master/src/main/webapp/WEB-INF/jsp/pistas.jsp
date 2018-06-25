@@ -14,12 +14,12 @@
 	         		<img class="img-pista" src="/court/photo/${court.id}"/>
 	         		<span class="titulo-pista">${court.name}, ${court.price}€/hora</span>
 	         		<a href="/reserve/reserva/${court.id}" class="link-masinfo-pista">Reservar</a>
+	         		<a href="/admin/ver-reservas/${court.id}" class="link-masinfo-pista">Ver reservas</a>
 	         		<p class="descripcion-pista">${court.description}</p>
 					<p>${court.dir} · ${court.phone}</p>
 					<form method="post" action="/court/deleteCourt/${court.id}" id="borrar-pista-form">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 						<a href="/court/editar-pista/${court.id}" class="link-editar-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
-						<a href="/admin/ver-reservas/${court.id}" class="link-editar-pista">Ver reservas</a>
 						<input type="hidden" value="${court.id}" id="id-pista" name="id-pista">
 						<input type="submit" value="Borrar" class="baja">
 					</form>

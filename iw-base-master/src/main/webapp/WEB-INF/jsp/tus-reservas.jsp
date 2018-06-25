@@ -13,9 +13,10 @@
 	         	<li class="list-group-item">
 	         		<img class="img-pista" src="/court/photo/${r.idCourt}"/><span class="titulo-pista">${r.nameCourt}</span>
 	         		<c:if test="${r.isWeekend}">
-		         		<form id="borrar-reserva-form" action="/reserve/delete" method="post">
+		         		<form class="borrar-reserva-form" action="/reserve/delete" method="post">
 	         				<a href="/reserve/editar/${r.id}" class="link-masinfo-pista"><span class="glyphicon glyphicon-pencil"></span> Editar</a>
 	         				<input type="hidden" name="id" value="${r.id}">
+	         				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	         				<input type="submit" value="Cancelar" class="link-masinfo-pista baja-reserva">
 	         			</form>
 	         		</c:if>

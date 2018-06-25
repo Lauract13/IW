@@ -221,7 +221,6 @@ public class ReserveController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@Transactional
 	public String delete(@RequestParam long id) {
-		
 		Reservation r = entityManager.find(Reservation.class, id);
 		
 		entityManager.remove(r);
